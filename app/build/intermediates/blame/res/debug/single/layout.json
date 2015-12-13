@@ -128,12 +128,12 @@
         "source": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\select_dialog_item_material.xml"
     },
     {
-        "merged": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
-        "source": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_media.xml"
-    },
-    {
         "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
         "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_media.xml"
     },
     {
         "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
@@ -156,12 +156,12 @@
         "source": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
     {
-        "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_controlpanel.xml",
-        "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\src\\main\\res\\layout\\fragment_controlpanel.xml"
-    },
-    {
         "merged": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
         "source": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_controlpanel.xml",
+        "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\src\\main\\res\\layout\\fragment_controlpanel.xml"
     },
     {
         "merged": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",

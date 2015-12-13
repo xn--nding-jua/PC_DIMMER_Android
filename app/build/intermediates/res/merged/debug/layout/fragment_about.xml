@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Version 0.5 Beta"
+        android:text="Version 0.6 Beta (13.12.2015)"
         android:id="@+id/textView9"
         android:layout_below="@+id/textView8"
         android:layout_alignLeft="@+id/textView8" />
