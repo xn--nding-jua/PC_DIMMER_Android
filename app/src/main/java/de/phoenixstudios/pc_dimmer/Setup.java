@@ -92,6 +92,12 @@ public class Setup extends Fragment implements View.OnClickListener{
         mCallbackToMain = null;
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Main.fragment_setup_isvisible = isVisibleToUser;
+    }
+
     public interface CallbackToMain {
         void SetupCallbackToMain(int Cmd); // call self-defined function in main-program
     }

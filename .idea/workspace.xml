@@ -31,12 +31,45 @@
   <component name="ChangeListManager">
     <list default="true" id="4c56a6bf-393d-44d2-b688-70a6a5134913" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/ExpandableListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/ExpandableListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$10.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$11.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$11.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$12.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$12.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$13.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$13.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$14.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$14.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$15.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$15.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$16.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$16.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$17.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$17.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$18.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$18.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$19.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$19.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$20.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$20.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$21.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$21.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$22.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$22.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$23.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$23.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$24.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$24.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$25.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$25.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$26.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$26.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$27.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$27.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$28.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$28.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$29.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$29.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$30.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$30.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$31.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$31.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$32.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$32.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$33.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$33.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$34.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$34.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$35.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$35.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$NetworkThread.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$NetworkThread.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$drawable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$drawable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$drawable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$id.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$integer.class" />
@@ -54,23 +87,17 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_b35e46841d8304eaa63fa1280974b1b9f409d989.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_b35e46841d8304eaa63fa1280974b1b9f409d989.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/de/phoenixstudios/pc_dimmer/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/de/phoenixstudios/pc_dimmer/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_about.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_about.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_channeloverview.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_channeloverview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_channeloverview.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_channeloverview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_devicecontrol.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_devicecontrol.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Setup.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Setup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_setup.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_setup.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PC_DIMMER.iws" />
@@ -101,67 +128,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45454547">
-              <caret line="739" column="36" selection-start-line="739" selection-start-column="36" selection-end-line="739" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="855" column="34" selection-start-line="855" selection-start-column="34" selection-end-line="855" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#30847#30848#0" expanded="true" />
-                <element signature="e#55901#57018#0" expanded="true" />
-                <element signature="e#57017#57018#0" expanded="true" />
+                <element signature="e#30708#30906#0" expanded="true" />
+                <element signature="e#30905#30906#0" expanded="true" />
+                <element signature="e#56108#57603#0" expanded="true" />
+                <element signature="e#57602#57603#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_stageview.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_stageview.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.8888888">
-              <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_devicecontrol.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.3207545">
-              <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_setup.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fragment_setup.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.7777777">
-              <caret line="6" column="53" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PanTiltCanvasView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java">
-          <provider selected="true" editor-type-id="text-editor">
+          <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="50" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="50" />
+              <caret line="176" column="12" selection-start-line="176" selection-start-column="12" selection-end-line="176" selection-end-column="12" />
               <folding />
             </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -1764,14 +1756,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Controlpanel.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/inputdialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/ExpandableListAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Setup.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_channeloverview.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_stageview.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Setup.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml" />
       </list>
     </option>
   </component>
@@ -1852,6 +1844,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PC_DIMMER" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2319,25 +2329,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/CollectionPagerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11584327">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/About.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/CustomOnItemSelectedListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3475298">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2455,41 +2450,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Scenes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3321976">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/ExpandableListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55025554">
-          <caret line="58" column="47" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Setup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="20" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4875">
-          <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_channeloverview.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6982143">
@@ -2531,17 +2491,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7777777">
-          <caret line="6" column="53" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.3207545">
@@ -2564,17 +2513,83 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45454547">
-          <caret line="739" column="36" selection-start-line="739" selection-start-column="36" selection-end-line="739" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.6964286">
+          <caret line="96" column="43" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Scenes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.89778537">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/CustomOnItemSelectedListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26064736">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/CollectionPagerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11584327">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/ExpandableListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1005111">
+          <caret line="58" column="47" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Setup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76831347">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#30847#30848#0" expanded="true" />
-            <element signature="e#55901#57018#0" expanded="true" />
-            <element signature="e#57017#57018#0" expanded="true" />
+            <element signature="e#2323#2324#0" expanded="true" />
+            <element signature="e#2385#2386#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="855" column="34" selection-start-line="855" selection-start-column="34" selection-end-line="855" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#30708#30906#0" expanded="true" />
+            <element signature="e#30905#30906#0" expanded="true" />
+            <element signature="e#56108#57603#0" expanded="true" />
+            <element signature="e#57602#57603#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="176" column="12" selection-start-line="176" selection-start-column="12" selection-end-line="176" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>

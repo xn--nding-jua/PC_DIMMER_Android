@@ -63,7 +63,7 @@
         <Button
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Verbinden"
+            android:text="Netzwerk ein"
             android:id="@+id/connectBtn"
             android:layout_below="@+id/ipAddressEdit"
             android:layout_alignParentLeft="true"
@@ -74,10 +74,9 @@
             android:layout_height="wrap_content"
             android:text="Trennen"
             android:id="@+id/disconnectBtn"
-            android:layout_alignBottom="@+id/connectBtn"
-            android:layout_toRightOf="@+id/connectBtn"
-            android:layout_below="@+id/ipAddressEdit"
-            android:layout_alignRight="@+id/syncBtn" />
+            android:layout_alignTop="@+id/connectBtn"
+            android:layout_alignLeft="@+id/portEdit"
+            android:layout_alignRight="@+id/textView2" />
 
         <Button
             android:layout_width="match_parent"
@@ -170,6 +169,14 @@
             android:layout_alignTop="@+id/savepresetbtn"
             android:layout_alignParentLeft="true"
             android:layout_alignRight="@+id/textView" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/networkstateimage"
+            android:src="@drawable/ic_uplinksearching"
+            android:layout_below="@+id/portEdit"
+            android:layout_toRightOf="@+id/textView2" />
 
     </RelativeLayout>
 </ScrollView>

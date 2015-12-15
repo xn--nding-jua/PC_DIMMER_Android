@@ -113,6 +113,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     static int NetworkCommandStatus=0;
     static int DownloadStageview=0;
     static Bitmap stageviewdownload=null;
+    public static boolean fragment_setup_isvisible=false;
 
     // Handler for TimerRunnable
     private Handler handler;
@@ -791,10 +792,6 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             case 3:
                 Answer = NetworkCommandReceivedString;
                 break;
-            case 4:
-                // Falsche Antwort
-                Answer = "-1";
-                break;
             default:
                 // Unbekannter Fehler!
                 Answer = "-1";
@@ -828,6 +825,8 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                         }
                         TCPSocket = new Socket(serverAddr, NetworkPort);
                         TCPSocket.setSoTimeout(10000);
+
+                        NetworkConnectionOK=true;
 
                         outToServer = new BufferedWriter(new OutputStreamWriter(TCPSocket.getOutputStream()));
                         inFromServer = new BufferedReader(new InputStreamReader(TCPSocket.getInputStream()));
@@ -891,6 +890,11 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     }
                 }
             }
+
+            NetworkConnectionOK=false;
+            NetworkCommandStatus = -1;
+            NetworkCommandReceivedString = "2"; // Keine Verbindung zum PC_DIMMER!
+            NetworkErrorMsg="Disconnected.";
 
             if (TCPSocket != null) {
                 try {
@@ -1328,6 +1332,14 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     private Runnable myTimerRunnable = new Runnable() {
         @Override
         public void run() {
+            if (fragment_setup_isvisible) {
+                if (NetworkConnectionOK) {
+                    ((ImageView) findViewById(R.id.networkstateimage)).setImageResource(R.drawable.ic_uplinkok);
+                } else {
+                    ((ImageView) findViewById(R.id.networkstateimage)).setImageResource(R.drawable.ic_uplinksearching);
+                }
+            }
+
             if (DownloadStageview==3) {
                 DownloadStageview=0;
 
@@ -1614,7 +1626,8 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
             Toast.makeText(getBaseContext(), "Preset geladen",Toast.LENGTH_SHORT).show();
         }catch(Exception e){
-            System.out.println(e.toString());
+            //System.out.println(e.toString());
+            Toast.makeText(getBaseContext(), "Fehler in Preset!",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -1639,8 +1652,11 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
             outputWriter.close();
             fileos.close();
-        }catch(Exception e){
 
+            Toast.makeText(getBaseContext(), "Einstellungen gespeichert",Toast.LENGTH_SHORT).show();
+        }catch(Exception e){
+            //System.out.println(e.toString());
+            Toast.makeText(getBaseContext(), "Fehler beim Speichern!",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -1654,9 +1670,11 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             NetworkPort=Integer.parseInt((String) InputRead.readObject());
             GlobalFadetime=Integer.parseInt((String) InputRead.readObject());
 
-            System.out.println(NetworkIPAddress);
-            System.out.println(NetworkPort);
-            System.out.println(GlobalFadetime);
+            if (BuildConfig.DEBUG) {
+                System.out.println(NetworkIPAddress);
+                System.out.println(NetworkPort);
+                System.out.println(GlobalFadetime);
+            }
 
             // set views
             ((EditText) findViewById(R.id.ipAddressEdit)).setText(NetworkIPAddress);
@@ -1665,8 +1683,10 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
             InputRead.close();
             fileis.close();
+
+            Toast.makeText(getBaseContext(), "Einstellungen geladen",Toast.LENGTH_SHORT).show();
         }catch(Exception e){
-System.out.println(e.toString());
+            //System.out.println(e.toString());
         }
     }
 }

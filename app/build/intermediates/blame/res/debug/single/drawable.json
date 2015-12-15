@@ -1,27 +1,27 @@
 [
     {
-        "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_scene7.png",
-        "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\src\\main\\res\\drawable\\ic_scene7.png"
-    },
-    {
         "merged": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_scene12.png",
         "source": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\src\\main\\res\\drawable\\ic_scene12.png"
+    },
+    {
+        "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_scene7.png",
+        "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\src\\main\\res\\drawable\\ic_scene7.png"
     },
     {
         "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_scene1.png",
         "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\src\\main\\res\\drawable\\ic_scene1.png"
     },
     {
-        "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
-        "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_item_background_holo_dark.xml"
+        "merged": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_tab_indicator_material.xml"
     },
     {
         "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
         "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_switch_thumb_material.xml"
     },
     {
-        "merged": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
-        "source": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_tab_indicator_material.xml"
+        "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_item_background_holo_dark.xml"
     },
     {
         "merged": "D:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
@@ -110,6 +110,10 @@
     {
         "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
         "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_uplinkok.png",
+        "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\src\\main\\res\\drawable\\ic_uplinkok.png"
     },
     {
         "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_light.xml",
@@ -270,6 +274,10 @@
     {
         "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_dark.xml",
         "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_dialog_material_background_dark.xml"
+    },
+    {
+        "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_uplinksearching.png",
+        "source": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\src\\main\\res\\drawable\\ic_uplinksearching.png"
     },
     {
         "merged": "C:\\Cloud\\Programmieren\\AndroidStudio\\PC_DIMMER\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_scene5.png",
