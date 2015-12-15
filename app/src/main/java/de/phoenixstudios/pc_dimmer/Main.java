@@ -1331,12 +1331,16 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             if (DownloadStageview==3) {
                 DownloadStageview=0;
 
-                ImageView stageviewimage = (ImageView) findViewById(R.id.stageviewimage);
+                if (stageviewdownload!=null){
+                    ImageView stageviewimage = (ImageView) findViewById(R.id.stageviewimage);
 
-                stageviewimage.setImageBitmap(stageviewdownload);
-                ViewGroup.LayoutParams params = findViewById(R.id.stageviewimage).getLayoutParams();
-                params.height = stageviewimage.getHeight();
-                findViewById(R.id.stageviewimage).requestLayout();
+                    if (stageviewimage!=null) {
+                        stageviewimage.setImageBitmap(stageviewdownload);
+                        ViewGroup.LayoutParams params = findViewById(R.id.stageviewimage).getLayoutParams();
+                        params.height = stageviewimage.getHeight();
+                        findViewById(R.id.stageviewimage).requestLayout();
+                    }
+                }
             }
 
             if (!NetworkCommandStringQueue.equals("")) {

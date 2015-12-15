@@ -1,175 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="de.phoenixstudios.pc_dimmer.Start">
+    tools:context="de.phoenixstudios.pc_dimmer.Setup">
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/presetbox"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" /><requestFocus /> />
-
-    <TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="IP-Adresse:"
-        android:id="@+id/textView"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true" />
-
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/ipAddressEdit"
-        android:text="192.168.0.203"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Port:"
-        android:id="@+id/textView3"
-        android:layout_alignTop="@+id/textView"
-        android:layout_alignLeft="@+id/portEdit" />
-
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/portEdit"
-        android:text="10160"
-        android:layout_alignTop="@+id/ipAddressEdit"
-        android:layout_toRightOf="@+id/ipAddressEdit"
-        android:layout_alignParentRight="true" />
-
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Verbinden"
-        android:id="@+id/connectBtn"
-        android:layout_below="@+id/ipAddressEdit"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/portEdit" />
-
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Trennen"
-        android:id="@+id/disconnectBtn"
-        android:layout_alignBottom="@+id/connectBtn"
-        android:layout_toRightOf="@+id/connectBtn"
-        android:layout_below="@+id/ipAddressEdit"
-        android:layout_alignRight="@+id/syncBtn" />
-
-    <Button
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Daten synchronisieren"
-        android:id="@+id/syncBtn"
-        android:layout_below="@+id/connectBtn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" />
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="de.phoenixstudios.pc_dimmer.Start">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/setuplogo"
-        android:src="@drawable/ic_pcdimmer"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/presetbox"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true">
+            <requestFocus />
+        </Spinner>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Speichern"
-        android:id="@+id/savepresetbtn"
-        android:layout_alignTop="@+id/deletepresetbtn"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignRight="@+id/textView2" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="IP-Adresse:"
+            android:id="@+id/textView"
+            android:layout_below="@+id/textView4"
+            android:layout_alignParentLeft="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Löschen"
-        android:id="@+id/deletepresetbtn"
-        android:layout_below="@+id/presetbox"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/savepresetbtn" />
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ipAddressEdit"
+            android:text="192.168.0.203"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Verfügbare Presets auswählen:"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Port:"
+            android:id="@+id/textView3"
+            android:layout_alignTop="@+id/textView"
+            android:layout_alignLeft="@+id/portEdit" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Verbindungseinstellungen:"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/savepresetbtn"
-        android:layout_alignParentLeft="true" />
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/portEdit"
+            android:text="10160"
+            android:layout_alignTop="@+id/ipAddressEdit"
+            android:layout_toRightOf="@+id/ipAddressEdit"
+            android:layout_alignParentRight="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Sonstige Einstellungen:"
-        android:id="@+id/textView5"
-        android:layout_below="@+id/syncBtn"
-        android:layout_alignParentLeft="true" />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Verbinden"
+            android:id="@+id/connectBtn"
+            android:layout_below="@+id/ipAddressEdit"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/portEdit" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/fadetimeEdit"
-        android:layout_below="@+id/textView6"
-        android:layout_alignParentLeft="true"
-        android:text="150"
-        android:layout_alignRight="@+id/connectBtn" />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Trennen"
+            android:id="@+id/disconnectBtn"
+            android:layout_alignBottom="@+id/connectBtn"
+            android:layout_toRightOf="@+id/connectBtn"
+            android:layout_below="@+id/ipAddressEdit"
+            android:layout_alignRight="@+id/syncBtn" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Blendzeit [ms]:"
-        android:id="@+id/textView6"
-        android:layout_below="@+id/textView5"
-        android:layout_alignParentLeft="true" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Daten synchronisieren"
+            android:id="@+id/syncBtn"
+            android:layout_below="@+id/connectBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Einstellungen speichern"
-        android:id="@+id/savesettingsbtn"
-        android:layout_below="@+id/fadetimeEdit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speichern"
+            android:id="@+id/savepresetbtn"
+            android:layout_alignTop="@+id/deletepresetbtn"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_alignRight="@+id/textView2" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Laden"
-        android:id="@+id/loadpresetbtn"
-        android:layout_alignTop="@+id/savepresetbtn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/textView" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Löschen"
+            android:id="@+id/deletepresetbtn"
+            android:layout_below="@+id/presetbox"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/savepresetbtn" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Verfügbare Presets auswählen:"
+            android:id="@+id/textView2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Verbindungseinstellungen:"
+            android:id="@+id/textView4"
+            android:layout_below="@+id/savepresetbtn"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Sonstige Einstellungen:"
+            android:id="@+id/textView5"
+            android:layout_below="@+id/syncBtn"
+            android:layout_alignParentLeft="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/fadetimeEdit"
+            android:layout_below="@+id/textView6"
+            android:layout_alignParentLeft="true"
+            android:text="150"
+            android:layout_alignRight="@+id/connectBtn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Blendzeit [ms]:"
+            android:id="@+id/textView6"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentLeft="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Einstellungen speichern"
+            android:id="@+id/savesettingsbtn"
+            android:layout_below="@+id/fadetimeEdit"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laden"
+            android:id="@+id/loadpresetbtn"
+            android:layout_alignTop="@+id/savepresetbtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/textView" />
+
+    </RelativeLayout>
+</ScrollView>

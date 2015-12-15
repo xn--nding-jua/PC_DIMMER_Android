@@ -2,7 +2,9 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <target>android-23</target>
+      </config>
     </shared>
     <layouts>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
@@ -12,6 +14,7 @@
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml">
         <config>
+          <state>Landscape</state>
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
@@ -26,7 +29,50 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c56a6bf-393d-44d2-b688-70a6a5134913" name="Default" comment="" />
+    <list default="true" id="4c56a6bf-393d-44d2-b688-70a6a5134913" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/ExpandableListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/ExpandableListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$32.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$32.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$33.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$33.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$34.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$34.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$35.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main$35.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$integer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$mipmap.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$mipmap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$string.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$style.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R$styleable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/R.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Setup.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/de/phoenixstudios/pc_dimmer/Setup.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_b35e46841d8304eaa63fa1280974b1b9f409d989.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_b35e46841d8304eaa63fa1280974b1b9f409d989.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/de/phoenixstudios/pc_dimmer/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/de/phoenixstudios/pc_dimmer/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_about.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_about.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_channeloverview.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_channeloverview.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_channeloverview.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_channeloverview.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_devicecontrol.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_devicecontrol.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_setup.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_setup.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="PC_DIMMER.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -58,54 +104,63 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334">
-              <caret line="181" column="32" selection-start-line="181" selection-start-column="25" selection-end-line="181" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.45454547">
+              <caret line="739" column="36" selection-start-line="739" selection-start-column="36" selection-end-line="739" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10350#10358#0" expanded="true" />
-                <element signature="e#11451#11459#0" expanded="true" />
-                <element signature="e#14047#14253#0" expanded="true" />
-                <element signature="e#14252#14253#0" expanded="true" />
-                <element signature="e#14381#14587#0" expanded="true" />
-                <element signature="e#14586#14587#0" expanded="true" />
-                <element signature="e#14715#14921#0" expanded="true" />
-                <element signature="e#14920#14921#0" expanded="true" />
-                <element signature="e#15049#15254#0" expanded="true" />
-                <element signature="e#15253#15254#0" expanded="true" />
-                <element signature="e#15379#15583#0" expanded="true" />
-                <element signature="e#15582#15583#0" expanded="true" />
-                <element signature="e#15717#15939#0" expanded="true" />
-                <element signature="e#15938#15939#0" expanded="true" />
-                <element signature="e#16070#16293#0" expanded="true" />
-                <element signature="e#16292#16293#0" expanded="true" />
-                <element signature="e#17000#17315#0" expanded="true" />
-                <element signature="e#17314#17315#0" expanded="true" />
-                <element signature="e#20739#20960#0" expanded="true" />
-                <element signature="e#20959#20960#0" expanded="true" />
-                <element signature="e#21091#21312#0" expanded="true" />
-                <element signature="e#21311#21312#0" expanded="true" />
-                <element signature="e#22569#22913#0" expanded="true" />
-                <element signature="e#22912#22913#0" expanded="true" />
-                <element signature="e#23080#23280#0" expanded="true" />
-                <element signature="e#23279#23280#0" expanded="true" />
-                <element signature="e#23405#23749#0" expanded="true" />
-                <element signature="e#23748#23749#0" expanded="true" />
-                <element signature="e#30650#30848#0" expanded="true" />
                 <element signature="e#30847#30848#0" expanded="true" />
-                <element signature="e#30941#30942#0" expanded="true" />
-                <element signature="e#30986#30987#0" expanded="true" />
-                <element signature="e#36722#36723#0" expanded="true" />
-                <element signature="e#36770#36771#0" expanded="true" />
-                <element signature="e#48991#48992#0" expanded="true" />
-                <element signature="e#49037#49038#0" expanded="true" />
-                <element signature="e#49085#49086#0" expanded="true" />
-                <element signature="e#49130#49131#0" expanded="true" />
-                <element signature="e#58060#58068#0" expanded="true" />
-                <element signature="e#59607#65073#0" expanded="true" />
-                <element signature="e#65072#65073#0" expanded="true" />
-                <element signature="e#65144#65370#0" expanded="true" />
-                <element signature="e#65369#65370#0" expanded="true" />
+                <element signature="e#55901#57018#0" expanded="true" />
+                <element signature="e#57017#57018#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_stageview.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_stageview.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.8888888">
+              <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_devicecontrol.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.3207545">
+              <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_setup.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.7777777">
+              <caret line="6" column="53" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PanTiltCanvasView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="50" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -124,6 +179,9 @@
     <option name="KEY_STORE_PATH" value="C:\Cloud\Programmieren\AndroidStudio\Keystore\Keystore.jks" />
     <option name="KEY_ALIAS" value="PC_DIMMER" />
     <option name="REMEMBER_PASSWORDS" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -1697,22 +1755,23 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/scenelist_group_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/scenelist_child_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/CustomOnItemSelectedListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/ZoomableImageView.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Devicecontrol.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/devicelist_child_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_stageview.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Controlpanel.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/inputdialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/ExpandableListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Setup.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_channeloverview.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_stageview.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" />
       </list>
     </option>
   </component>
@@ -1725,7 +1784,7 @@
     <option name="width" value="1936" />
     <option name="height" value="1066" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -1748,10 +1807,10 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1845,7 +1904,7 @@
   <component name="PropertiesComponent">
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="HT16NV801856" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="be404d33" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_22_x86" />
     <property name="settings.editor.selected.configurable" value="preferences.updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
@@ -2054,6 +2113,13 @@
       <option name="number" value="Default" />
       <updated>1449691288816</updated>
     </task>
+    <task id="LOCAL-00001" summary="Updated">
+      <created>1449968980426</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1449968980426</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2077,7 +2143,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32785088" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2138,6 +2204,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="2" />
@@ -2151,49 +2221,16 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10350#10358#0" expanded="true" />
-            <element signature="e#11451#11459#0" expanded="true" />
-            <element signature="e#14047#14253#0" expanded="true" />
-            <element signature="e#14252#14253#0" expanded="true" />
-            <element signature="e#14381#14587#0" expanded="true" />
-            <element signature="e#14586#14587#0" expanded="true" />
-            <element signature="e#14715#14921#0" expanded="true" />
-            <element signature="e#14920#14921#0" expanded="true" />
-            <element signature="e#15049#15254#0" expanded="true" />
-            <element signature="e#15253#15254#0" expanded="true" />
-            <element signature="e#15379#15583#0" expanded="true" />
-            <element signature="e#15582#15583#0" expanded="true" />
-            <element signature="e#15717#15939#0" expanded="true" />
-            <element signature="e#15938#15939#0" expanded="true" />
-            <element signature="e#16070#16293#0" expanded="true" />
-            <element signature="e#16292#16293#0" expanded="true" />
-            <element signature="e#17000#17315#0" expanded="true" />
-            <element signature="e#17314#17315#0" expanded="true" />
-            <element signature="e#20739#20960#0" expanded="true" />
-            <element signature="e#20959#20960#0" expanded="true" />
-            <element signature="e#21091#21312#0" expanded="true" />
-            <element signature="e#21311#21312#0" expanded="true" />
-            <element signature="e#22569#22913#0" expanded="true" />
-            <element signature="e#22912#22913#0" expanded="true" />
-            <element signature="e#23080#23280#0" expanded="true" />
-            <element signature="e#23279#23280#0" expanded="true" />
-            <element signature="e#23405#23749#0" expanded="true" />
-            <element signature="e#23748#23749#0" expanded="true" />
-            <element signature="e#30650#30848#0" expanded="true" />
-            <element signature="e#30847#30848#0" expanded="true" />
-            <element signature="e#30941#30942#0" expanded="true" />
-            <element signature="e#30986#30987#0" expanded="true" />
-            <element signature="e#36722#36723#0" expanded="true" />
-            <element signature="e#36770#36771#0" expanded="true" />
-            <element signature="e#48991#48992#0" expanded="true" />
-            <element signature="e#49037#49038#0" expanded="true" />
-            <element signature="e#49085#49086#0" expanded="true" />
-            <element signature="e#49130#49131#0" expanded="true" />
-            <element signature="e#58060#58068#0" expanded="true" />
-            <element signature="e#59607#65073#0" expanded="true" />
-            <element signature="e#65072#65073#0" expanded="true" />
-            <element signature="e#65144#65370#0" expanded="true" />
-            <element signature="e#65369#65370#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2221,7 +2258,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="4" selection-start-line="11" selection-start-column="0" selection-end-line="19" selection-end-column="42" />
-          <folding />
+          <folding>
+            <element signature="e#552#585#0" expanded="true" />
+            <element signature="e#614#649#0" expanded="true" />
+            <element signature="e#679#714#0" expanded="true" />
+            <element signature="e#742#775#0" expanded="true" />
+          </folding>
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -2234,49 +2276,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10350#10358#0" expanded="true" />
-            <element signature="e#11451#11459#0" expanded="true" />
-            <element signature="e#14047#14253#0" expanded="true" />
-            <element signature="e#14252#14253#0" expanded="true" />
-            <element signature="e#14381#14587#0" expanded="true" />
-            <element signature="e#14586#14587#0" expanded="true" />
-            <element signature="e#14715#14921#0" expanded="true" />
-            <element signature="e#14920#14921#0" expanded="true" />
-            <element signature="e#15049#15254#0" expanded="true" />
-            <element signature="e#15253#15254#0" expanded="true" />
-            <element signature="e#15379#15583#0" expanded="true" />
-            <element signature="e#15582#15583#0" expanded="true" />
-            <element signature="e#15717#15939#0" expanded="true" />
-            <element signature="e#15938#15939#0" expanded="true" />
-            <element signature="e#16070#16293#0" expanded="true" />
-            <element signature="e#16292#16293#0" expanded="true" />
-            <element signature="e#17000#17315#0" expanded="true" />
-            <element signature="e#17314#17315#0" expanded="true" />
-            <element signature="e#20739#20960#0" expanded="true" />
-            <element signature="e#20959#20960#0" expanded="true" />
-            <element signature="e#21091#21312#0" expanded="true" />
-            <element signature="e#21311#21312#0" expanded="true" />
-            <element signature="e#22569#22913#0" expanded="true" />
-            <element signature="e#22912#22913#0" expanded="true" />
-            <element signature="e#23080#23280#0" expanded="true" />
-            <element signature="e#23279#23280#0" expanded="true" />
-            <element signature="e#23405#23749#0" expanded="true" />
-            <element signature="e#23748#23749#0" expanded="true" />
-            <element signature="e#30650#30848#0" expanded="true" />
-            <element signature="e#30847#30848#0" expanded="true" />
-            <element signature="e#30941#30942#0" expanded="true" />
-            <element signature="e#30986#30987#0" expanded="true" />
-            <element signature="e#36722#36723#0" expanded="true" />
-            <element signature="e#36770#36771#0" expanded="true" />
-            <element signature="e#48991#48992#0" expanded="true" />
-            <element signature="e#49037#49038#0" expanded="true" />
-            <element signature="e#49085#49086#0" expanded="true" />
-            <element signature="e#49130#49131#0" expanded="true" />
-            <element signature="e#58060#58068#0" expanded="true" />
-            <element signature="e#59607#65073#0" expanded="true" />
-            <element signature="e#65072#65073#0" expanded="true" />
-            <element signature="e#65144#65370#0" expanded="true" />
-            <element signature="e#65369#65370#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2353,17 +2352,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_channeloverview.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6375">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2377,17 +2365,6 @@
         <state vertical-scroll-proportion="0.3321976">
           <caret line="603" column="0" selection-start-line="603" selection-start-column="0" selection-end-line="603" selection-end-column="0" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_controlpanel.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/support_simple_spinner_dropdown_item.xml">
@@ -2406,28 +2383,6 @@
           <caret line="4" column="76" selection-start-line="4" selection-start-column="76" selection-end-line="4" selection-end-column="76" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_scene.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="40" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_stageview.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.222222">
-          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/ZoomableImageView.java">
@@ -2457,17 +2412,6 @@
             <element signature="e#672#673#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="16" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/inputdialog.xml">
@@ -2535,85 +2479,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75298125">
-          <caret line="75" column="36" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
+        <state vertical-scroll-proportion="2.4875">
+          <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
+      <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_channeloverview.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6982143">
+          <caret line="266" column="39" selection-start-line="266" selection-start-column="39" selection-end-line="266" selection-end-column="39" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_controlpanel.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3642857">
+          <caret line="12" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/PanTiltCanvasView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="50" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_scene.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27321428">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_setup.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.7777777">
+          <caret line="6" column="53" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.3207545">
+          <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_stageview.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8888888">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="181" column="32" selection-start-line="181" selection-start-column="25" selection-end-line="181" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.45454547">
+          <caret line="739" column="36" selection-start-line="739" selection-start-column="36" selection-end-line="739" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10350#10358#0" expanded="true" />
-            <element signature="e#11451#11459#0" expanded="true" />
-            <element signature="e#14047#14253#0" expanded="true" />
-            <element signature="e#14252#14253#0" expanded="true" />
-            <element signature="e#14381#14587#0" expanded="true" />
-            <element signature="e#14586#14587#0" expanded="true" />
-            <element signature="e#14715#14921#0" expanded="true" />
-            <element signature="e#14920#14921#0" expanded="true" />
-            <element signature="e#15049#15254#0" expanded="true" />
-            <element signature="e#15253#15254#0" expanded="true" />
-            <element signature="e#15379#15583#0" expanded="true" />
-            <element signature="e#15582#15583#0" expanded="true" />
-            <element signature="e#15717#15939#0" expanded="true" />
-            <element signature="e#15938#15939#0" expanded="true" />
-            <element signature="e#16070#16293#0" expanded="true" />
-            <element signature="e#16292#16293#0" expanded="true" />
-            <element signature="e#17000#17315#0" expanded="true" />
-            <element signature="e#17314#17315#0" expanded="true" />
-            <element signature="e#20739#20960#0" expanded="true" />
-            <element signature="e#20959#20960#0" expanded="true" />
-            <element signature="e#21091#21312#0" expanded="true" />
-            <element signature="e#21311#21312#0" expanded="true" />
-            <element signature="e#22569#22913#0" expanded="true" />
-            <element signature="e#22912#22913#0" expanded="true" />
-            <element signature="e#23080#23280#0" expanded="true" />
-            <element signature="e#23279#23280#0" expanded="true" />
-            <element signature="e#23405#23749#0" expanded="true" />
-            <element signature="e#23748#23749#0" expanded="true" />
-            <element signature="e#30650#30848#0" expanded="true" />
             <element signature="e#30847#30848#0" expanded="true" />
-            <element signature="e#30941#30942#0" expanded="true" />
-            <element signature="e#30986#30987#0" expanded="true" />
-            <element signature="e#36722#36723#0" expanded="true" />
-            <element signature="e#36770#36771#0" expanded="true" />
-            <element signature="e#48991#48992#0" expanded="true" />
-            <element signature="e#49037#49038#0" expanded="true" />
-            <element signature="e#49085#49086#0" expanded="true" />
-            <element signature="e#49130#49131#0" expanded="true" />
-            <element signature="e#58060#58068#0" expanded="true" />
-            <element signature="e#59607#65073#0" expanded="true" />
-            <element signature="e#65072#65073#0" expanded="true" />
-            <element signature="e#65144#65370#0" expanded="true" />
-            <element signature="e#65369#65370#0" expanded="true" />
+            <element signature="e#55901#57018#0" expanded="true" />
+            <element signature="e#57017#57018#0" expanded="true" />
           </folding>
         </state>
       </provider>

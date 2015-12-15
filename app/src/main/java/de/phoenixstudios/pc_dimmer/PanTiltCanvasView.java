@@ -44,8 +44,13 @@ public class PanTiltCanvasView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 
         // your Canvas will draw onto the defined Bitmap
-        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        mCanvas = new Canvas(mBitmap);
+        if ((w>0) && (h>0)) {
+            mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+            mCanvas = new Canvas(mBitmap);
+        }else{
+            mBitmap = Bitmap.createBitmap(300, 300, Bitmap.Config.ARGB_8888);
+            mCanvas = new Canvas(mBitmap);
+        }
     }
 
     // override onDraw
