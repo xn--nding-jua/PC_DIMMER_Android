@@ -98,9 +98,10 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     ExpandableListView scenelistview;
 
     public static int Channelvalues[] = new int[8192];
-    String CurrentPresetName;
+    String CurrentPresetName="";
     String AvailablePresetNames[];
     int GlobalFadetime=150;
+    String LastPresetName="";
 
     TabHost devicecontrol_tabHost;
 
@@ -170,6 +171,11 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 firstcall_presetbox=true;
                 LoadSettings();
                 FindPresets();
+
+                if (!CurrentPresetName.equals(LastPresetName)) {
+                    CurrentPresetName=LastPresetName;
+                    LoadPreset();
+                }
                 break;
             case R.id.connectBtn:
                 // Connect
@@ -1343,12 +1349,16 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     private Runnable myTimerRunnable = new Runnable() {
         @Override
         public void run() {
-            if (fragment_setup_isvisible) {
-                if (NetworkConnectionOK) {
-                    ((ImageView) findViewById(R.id.networkstateimage)).setImageResource(R.drawable.ic_uplinkok);
-                } else {
-                    ((ImageView) findViewById(R.id.networkstateimage)).setImageResource(R.drawable.ic_uplinksearching);
+            try {
+                if (fragment_setup_isvisible) {
+                    if (NetworkConnectionOK) {
+                        ((ImageView) findViewById(R.id.networkstateimage)).setImageResource(R.drawable.ic_uplinkok);
+                    } else {
+                        ((ImageView) findViewById(R.id.networkstateimage)).setImageResource(R.drawable.ic_uplinksearching);
+                    }
                 }
+            }catch(Exception e){
+
             }
 
             if (DownloadStageview==3) {
@@ -1418,11 +1428,13 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 if (!firstcall_presetbox) {
                     // Load the chosen preset
-                    CurrentPresetName = AvailablePresetNames[pos];
-                    LoadPreset();
+                    if (!CurrentPresetName.equals(AvailablePresetNames[pos])) {
+                        CurrentPresetName = AvailablePresetNames[pos];
+                        LoadPreset();
 
-                    // Refresh controlpanel-fragment
-                    ControlpanelCallbackToMain(R.layout.fragment_controlpanel);
+                        // Refresh controlpanel-fragment
+                        ControlpanelCallbackToMain(R.layout.fragment_controlpanel);
+                    }
                 }
                 firstcall_presetbox = false;
             }
@@ -1660,6 +1672,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             outputWriter.writeObject(((EditText) findViewById(R.id.ipAddressEdit)).getText().toString());
             outputWriter.writeObject(((EditText) findViewById(R.id.portEdit)).getText().toString());
             outputWriter.writeObject(((EditText) findViewById(R.id.fadetimeEdit)).getText().toString());
+            outputWriter.writeObject(CurrentPresetName);
 
             outputWriter.close();
             fileos.close();
@@ -1680,11 +1693,13 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             NetworkIPAddress=(String) InputRead.readObject();
             NetworkPort=Integer.parseInt((String) InputRead.readObject());
             GlobalFadetime=Integer.parseInt((String) InputRead.readObject());
+            LastPresetName=(String) InputRead.readObject();
 
             if (BuildConfig.DEBUG) {
                 System.out.println(NetworkIPAddress);
                 System.out.println(NetworkPort);
                 System.out.println(GlobalFadetime);
+                System.out.println(LastPresetName);
             }
 
             // set views
@@ -1695,7 +1710,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             InputRead.close();
             fileis.close();
 
-            Toast.makeText(getBaseContext(), "Einstellungen geladen",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(), "Einstellungen geladen",Toast.LENGTH_SHORT).show(); // will be shown on every fragment-loading - so dont show it
         }catch(Exception e){
             //System.out.println(e.toString());
         }
