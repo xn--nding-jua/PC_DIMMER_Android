@@ -24,12 +24,15 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
                 fragment = Devicecontrol.newInstance();
                 return fragment;
             case 4:
-                fragment = Channeloverview.newInstance();
+                fragment = nodecontrol.newInstance();
                 return fragment;
             case 5:
                 fragment = Stageview.newInstance();
                 return fragment;
             case 6:
+                fragment = Channeloverview.newInstance();
+                return fragment;
+            case 7:
                 fragment = About.newInstance();
                 return fragment;
             default:
@@ -40,7 +43,7 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 7;
+        return 8;
     }
 
     @Override
@@ -53,10 +56,12 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
             case 3:
                 return "Gerätesteuerung";
             case 4:
-                return "Kanalübersicht";
+                return "Knotensteuerung";
             case 5:
                 return "Bühnenansicht";
             case 6:
+                return "Kanalübersicht";
+            case 7:
                 return "Info";
             default:
                 return "Einstellungen";

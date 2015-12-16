@@ -53,7 +53,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Main extends FragmentActivity implements Setup.CallbackToMain, Scenes.CallbackToMain, Devicecontrol.CallbackToMain, Controlpanel.CallbackToMain, Channeloverview.CallbackToMain, Stageview.CallbackToMain {
+public class Main extends FragmentActivity implements Setup.CallbackToMain, Scenes.CallbackToMain,
+        Devicecontrol.CallbackToMain, Controlpanel.CallbackToMain, Channeloverview.CallbackToMain,
+        Stageview.CallbackToMain, nodecontrol.CallbackToMain {
     public class PCD_Device {
         public String ID;
         public String Name;
@@ -186,8 +188,10 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 break;
             case R.id.syncBtn:
                 // Synchronizing Data with PC_DIMMER
-                SynchronizeData();
-                ControlpanelCallbackToMain(R.layout.fragment_controlpanel);
+                if (NetworkConnectionOK) {
+                    SynchronizeData();
+                    ControlpanelCallbackToMain(R.layout.fragment_controlpanel);
+                }
                 break;
             case R.id.loadpresetbtn:
                 CurrentPresetName = AvailablePresetNames[((Spinner) findViewById(R.id.presetbox)).getSelectedItemPosition()];
@@ -743,6 +747,13 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     }
                 });
 
+                break;
+        }
+    }
+
+    public void NodecontrolCallbackToMain(int Cmd){
+        switch(Cmd) {
+            case R.layout.fragment_nodecontrol:
                 break;
         }
     }

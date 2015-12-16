@@ -275,7 +275,17 @@
                             android:id="@+id/pantiltcanvas"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_above="@+id/linear3"
                             android:textColor="#FFFFFF" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:id="@+id/linear3"
+                            android:layout_alignParentBottom="true"
+                            android:weightSum="1">
+                        </LinearLayout>
 
                     </RelativeLayout>
 

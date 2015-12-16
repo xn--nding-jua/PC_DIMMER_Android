@@ -46,6 +46,7 @@
         android:id="@+id/linear1"
         android:weightSum="1"
         android:layout_below="@+id/plus8chbtn"
+        android:layout_above="@+id/linear2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true">
 
@@ -271,4 +272,13 @@
             android:progress="128"
             android:max="255" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linear2"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1">
+    </LinearLayout>
 </RelativeLayout>
