@@ -16,7 +16,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Geräte:"
+                android:text="@string/devicecontrol_devices"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_weight="0.5"
                 android:id="@+id/devicelbl"/>
@@ -24,7 +24,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gruppen:"
+                android:text="@string/devicecontrol_groups"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_weight="0.5"
                 android:id="@+id/grouplbl"/>
@@ -88,9 +88,8 @@
                             <TextView
                                 android:layout_width="75dp"
                                 android:layout_height="wrap_content"
-                                android:text="Dimmer"
+                                android:text="@string/devicecontrol_dimmer"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:layout_weight="1"
                                 android:id="@+id/dimmerlbl"
                                 android:layout_alignParentTop="true"
                                 android:textAlignment="center"
@@ -108,9 +107,8 @@
                             <TextView
                                 android:layout_width="75dp"
                                 android:layout_height="wrap_content"
-                                android:text="Strobe"
+                                android:text="@string/devicecontrol_strobe"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:layout_weight="1"
                                 android:id="@+id/strobelbl"
                                 android:layout_toRightOf="@+id/dimmerlbl"
                                 android:textAlignment="center"
@@ -128,7 +126,7 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dimmer 100%"
+                                android:text="@string/devicecontrol_dimmer100"
                                 android:id="@+id/dimmer100btn"
                                 android:layout_below="@+id/strobelbl"
                                 android:layout_toRightOf="@+id/strobelbl"
@@ -137,7 +135,7 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dimmer 75%"
+                                android:text="@string/devicecontrol_dimmer75"
                                 android:id="@+id/dimmer75btn"
                                 android:layout_below="@+id/dimmer100btn"
                                 android:layout_alignLeft="@+id/dimmer100btn"
@@ -146,7 +144,7 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dimmer 50%"
+                                android:text="@string/devicecontrol_dimmer50"
                                 android:id="@+id/dimmer50btn"
                                 android:layout_below="@+id/dimmer75btn"
                                 android:layout_alignLeft="@+id/dimmer75btn"
@@ -155,7 +153,7 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dimmer 25%"
+                                android:text="@string/devicecontrol_dimmer25"
                                 android:id="@+id/dimmer25btn"
                                 android:layout_below="@+id/dimmer50btn"
                                 android:layout_alignLeft="@+id/dimmer50btn"
@@ -164,7 +162,7 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Shutter auf"
+                                android:text="@string/devicecontrol_shutteropen"
                                 android:id="@+id/shutteraufbtn"
                                 android:layout_alignBottom="@+id/strobeslider"
                                 android:layout_alignLeft="@+id/dimmer25btn" />
@@ -172,7 +170,7 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Shutter zu"
+                                android:text="@string/devicecontrol_shutterclose"
                                 android:id="@+id/shutterzubtn"
                                 android:layout_alignTop="@+id/shutteraufbtn"
                                 android:layout_toRightOf="@+id/shutteraufbtn"
@@ -181,7 +179,7 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dimmer 0%"
+                                android:text="@string/devicecontrol_dimmer0"
                                 android:id="@+id/dimmer0btn"
                                 android:layout_below="@+id/dimmer25btn"
                                 android:layout_alignLeft="@+id/dimmer25btn"
@@ -197,7 +195,7 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <com.larswerkman.holocolorpicker.ColorPicker
@@ -232,9 +230,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Amber"
+                                android:text="@string/devicecontrol_amber"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:layout_weight="1"
                                 android:id="@+id/amberlbl"
                                 android:layout_alignParentTop="true"
                                 android:layout_toRightOf="@+id/colorpicker"
@@ -244,9 +241,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Weiß"
+                                android:text="@string/devicecontrol_white"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:layout_weight="1"
                                 android:id="@+id/whitelbl"
                                 android:layout_above="@+id/amberslider"
                                 android:layout_toRightOf="@+id/amberslider"
@@ -297,15 +293,14 @@
 
                         <RelativeLayout
                             android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="75dp"
                                 android:layout_height="wrap_content"
-                                android:text="Iris"
+                                android:text="@string/devicecontrol_iris"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:layout_weight="1"
                                 android:id="@+id/irislbl"
                                 android:layout_alignParentTop="true"
                                 android:textAlignment="center"
@@ -323,9 +318,8 @@
                             <TextView
                                 android:layout_width="75dp"
                                 android:layout_height="wrap_content"
-                                android:text="Prismarot."
+                                android:text="@string/devicecontrol_prismrot"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:layout_weight="1"
                                 android:id="@+id/prismarotlbl"
                                 android:layout_toRightOf="@+id/irislbl"
                                 android:textAlignment="center"
@@ -343,7 +337,7 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Prisma ein"
+                                android:text="@string/devicecontrol_prismon"
                                 android:id="@+id/prismaonbtn"
                                 android:layout_alignTop="@+id/prismarotslider"
                                 android:layout_toRightOf="@+id/prismarotslider"
@@ -352,14 +346,13 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Prisma aus"
+                                android:text="@string/devicecontrol_prismoff"
                                 android:id="@+id/prismaoffbtn"
                                 android:layout_below="@+id/prismaonbtn"
                                 android:layout_toRightOf="@+id/prismarotslider"
                                 android:layout_alignParentRight="true" />
                         </RelativeLayout>
                     </ScrollView>
-
                 </FrameLayout>
             </LinearLayout>
         </TabHost>

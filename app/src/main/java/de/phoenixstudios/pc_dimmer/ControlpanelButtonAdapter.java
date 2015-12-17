@@ -38,7 +38,7 @@ public class ControlpanelButtonAdapter extends BaseAdapter {
         Button b;
         if (convertView == null) {
             b = new Button(mContext);
-            b.setLayoutParams(new GridView.LayoutParams(LayoutParams.FILL_PARENT, 100));
+            b.setLayoutParams(new GridView.LayoutParams(LayoutParams.MATCH_PARENT, 100));
             b.setPadding(8, 8, 8, 8);
             b.setTextSize(8f);
         } else {
@@ -49,14 +49,17 @@ public class ControlpanelButtonAdapter extends BaseAdapter {
             if (Main.mPCD.ControlpanelButtons!=null) {
                 double CountX=Main.mPCD.ControlpanelButtons[0].length;
                 int Y=(int)Math.round(Math.floor(position/CountX));
-                double dY = Y;
-                int X=(int)Math.round(((position/CountX)-dY)*CountX);
+                int X=(int)Math.round(((position/CountX)-Y)*CountX);
 
 
                 int StartColor = Color.rgb(Main.mPCD.ControlpanelButtons[Y][X].R, Main.mPCD.ControlpanelButtons[Y][X].G, Main.mPCD.ControlpanelButtons[Y][X].B);
                 int EndColor = Color.rgb(Main.mPCD.ControlpanelButtons[Y][X].R-10, Main.mPCD.ControlpanelButtons[Y][X].G-10, Main.mPCD.ControlpanelButtons[Y][X].B-10);
                 final GradientColor gd = new GradientColor(StartColor, EndColor);
-                b.setBackgroundDrawable(Main.NewGradient(gd));
+                if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    b.setBackgroundDrawable(Main.NewGradient(gd));
+                }else{
+                    b.setBackground(Main.NewGradient(gd));
+                }
                 b.setText(Main.mPCD.ControlpanelButtons[Y][X].Name);
 
                 b.setTag(Main.mPCD.ControlpanelButtons[Y][X]);
@@ -71,7 +74,11 @@ public class ControlpanelButtonAdapter extends BaseAdapter {
             int StartColor = Color.rgb(255, 255, 255);
             int EndColor = Color.rgb(128, 128, 128);
             final GradientColor gd = new GradientColor(StartColor, EndColor);
-            b.setBackgroundDrawable(Main.NewGradient(gd));
+            if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                b.setBackgroundDrawable(Main.NewGradient(gd));
+            }else{
+                b.setBackground(Main.NewGradient(gd));
+            }
             b.setText("Button " + Integer.toString(position + 1));
         }
         return b;

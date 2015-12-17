@@ -1,13 +1,11 @@
 package de.phoenixstudios.pc_dimmer;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TabHost;
 
 
 public class Devicecontrol extends Fragment {
@@ -18,8 +16,7 @@ public class Devicecontrol extends Fragment {
     }
 
     public static Devicecontrol newInstance() {
-        Devicecontrol fragment = new Devicecontrol();
-        return fragment;
+        return new Devicecontrol();
     }
 
     @Override

@@ -6,15 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class PanTiltCanvasView extends View {
 
-    public int width;
-    public int height;
-    private Bitmap mBitmap;
     private Canvas mCanvas;
     private Path mPath;
     Context context;
@@ -44,6 +42,7 @@ public class PanTiltCanvasView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 
         // your Canvas will draw onto the defined Bitmap
+        Bitmap mBitmap;
         if ((w>0) && (h>0)) {
             mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
             mCanvas = new Canvas(mBitmap);
@@ -112,7 +111,7 @@ public class PanTiltCanvasView extends View {
 
     //override the onTouchEvent
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
 

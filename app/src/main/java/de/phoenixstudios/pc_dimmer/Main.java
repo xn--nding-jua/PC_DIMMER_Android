@@ -52,6 +52,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -205,17 +206,6 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 */
     }
 
-    public void ShowMessage(String msg) {
-        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(Main.this);
-        dlgAlert.setMessage(msg);
-        dlgAlert.setTitle("PC_DIMMER");
-        dlgAlert.setPositiveButton("OK", null);
-        dlgAlert.setCancelable(true);
-        dlgAlert.create().
-
-        show();
-    }
-
     public void SetupCallbackToMain(int Cmd){
         switch (Cmd) {
             case R.layout.fragment_setup:
@@ -278,7 +268,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 // Create Scenelists
                 create_scenelist_grouplist();
 
-                scenelist_collection = new LinkedHashMap<PCD_Scene, List<PCD_Scene>>();
+                scenelist_collection = new LinkedHashMap<>();
                 if (mPCD!=null) {
                     for (PCD_Scene scene : scenelist_grouplist) {
                         load_scene_child(mPCD.Scenes[Integer.parseInt(scene.ID)]);
@@ -288,10 +278,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 scenelistview = (ExpandableListView) findViewById(R.id.scenes_listview);
                 if (scenelistview!=null) {
                     final ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, scenelist_grouplist, scenelist_collection);
-
-                    if (expListAdapter!=null) {
-                        scenelistview.setAdapter(expListAdapter);
-                    }
+                    scenelistview.setAdapter(expListAdapter);
                 }
 
 
@@ -343,7 +330,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 if (mPCD!=null) {
                     if (mPCD.Devices!=null) {
                         Spinner devicelistbox = (Spinner) findViewById(R.id.devicelistbox);
-                        ArrayAdapter<String> deviceAdapter = new ArrayAdapter<String>(this, R.layout.devicelist_child_item, DeviceNames);
+                        ArrayAdapter<String> deviceAdapter = new ArrayAdapter<>(this, R.layout.devicelist_child_item, DeviceNames);
                         deviceAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
                         devicelistbox.setAdapter(deviceAdapter);
                         devicelistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
@@ -362,7 +349,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     if (mPCD.Groups!=null) {
                         try {
                             Spinner grouplistbox = (Spinner) findViewById(R.id.grouplistbox);
-                            ArrayAdapter<String> groupAdapter = new ArrayAdapter<String>(this, R.layout.devicelist_child_item, GroupNames);
+                            ArrayAdapter<String> groupAdapter = new ArrayAdapter<>(this, R.layout.devicelist_child_item, GroupNames);
                             groupAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
                             grouplistbox.setAdapter(groupAdapter);
                             grouplistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
@@ -377,7 +364,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                 }
                             });
                         }catch(Exception e){
-
+                            if (BuildConfig.DEBUG) {
+                                System.out.println(e.toString());
+                            }
                         }
                     }
                 }
@@ -981,7 +970,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     if (mPCD.Nodesets != null) {
                         try {
                             Spinner nodesetlistbox = (Spinner) findViewById(R.id.nodesetlistbox);
-                            ArrayAdapter<String> nodesetAdapter = new ArrayAdapter<String>(this, R.layout.devicelist_child_item, NodesetNames);
+                            ArrayAdapter<String> nodesetAdapter = new ArrayAdapter<>(this, R.layout.devicelist_child_item, NodesetNames);
                             nodesetAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
                             nodesetlistbox.setAdapter(nodesetAdapter);
                             nodesetlistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
@@ -1007,7 +996,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                             if (CurrentNodeset < mPCD.Nodesets.length) {
                                                 if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
                                                     Spinner nodelistbox = (Spinner) findViewById(R.id.nodelistbox);
-                                                    ArrayAdapter<String> nodeAdapter = new ArrayAdapter<String>(Main.this, R.layout.devicelist_child_item, NodesNames);
+                                                    ArrayAdapter<String> nodeAdapter = new ArrayAdapter<>(Main.this, R.layout.devicelist_child_item, NodesNames);
                                                     nodeAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
                                                     nodelistbox.setAdapter(nodeAdapter);
                                                     nodelistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
@@ -1024,7 +1013,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                                             ((com.larswerkman.holocolorpicker.ColorPicker) findViewById(R.id.node_colorpicker)).setColor(Color.rgb(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].R, mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].G, mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].B));
 
                                                             ((NodeXYCanvasView) findViewById(R.id.nodecanvas)).setPoint(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].X, mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].Y);
-                                                            ((NodeXYCanvasView) findViewById(R.id.nodecanvas)).invalidate();
+                                                            findViewById(R.id.nodecanvas).invalidate();
                                                         }
 
                                                         @Override
@@ -1044,7 +1033,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                 }
                             });
                         }catch(Exception e){
-
+                            if (BuildConfig.DEBUG) {
+                                System.out.println(e.toString());
+                            }
                         }
                     }
                 }
@@ -1086,7 +1077,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                             mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].R = Color.red(selectedcolor);
                                             mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].G = Color.green(selectedcolor);
                                             mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].B = Color.blue(selectedcolor);
-                                            ((NodeXYCanvasView) findViewById(R.id.nodecanvas)).invalidate();
+                                            findViewById(R.id.nodecanvas).invalidate();
                                             set_node();
                                         }
                                     }
@@ -1502,8 +1493,10 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
             try {
                 Thread.sleep(10);
-            } catch (InterruptedException error) {
-
+            } catch (InterruptedException e) {
+                if (BuildConfig.DEBUG) {
+                    System.out.println(e.toString());
+                }
             }
         }
 
@@ -1571,6 +1564,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                             stageviewdownload = BitmapFactory.decodeStream(in);
                             DownloadStageview=3;
                         } catch (Exception e) {
+                            if (BuildConfig.DEBUG) {
+                                System.out.println(e.toString());
+                            }
                         }
                     }
 
@@ -1660,7 +1656,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     
     public void SynchronizeData() {
         // Download Projectsettings
-        String s="";
+        String s;
         int Maximum;
         int CountX;
         int CountY;
@@ -1673,7 +1669,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         mPCD.Scenes = new PCD_Scene[12][];
 
         s = SendReceiveTCPCommand("get_devices");
-        if (s=="-1") return;
+        if (s.equals("-1")) return;
         //devices 56 1:NAME,{GUID} 2:NAME,{GUID} 3:....
         //devices 60 1:Blau Decke Rechts,{DF55AE31-ED33-491A-9756-ED9B6F076EF2} 2:Gelb Decke Rechts,{E084758A-0665-4AF7-9810-D0AEB3BEAA99} 3:Rot Decke Rechts,{C61B
         if (s.length()>10) {
@@ -1696,7 +1692,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         }
 
         s = SendReceiveTCPCommand("get_groups");
-        if (s=="-1") return;
+        if (s.equals("-1")) return;
         if (s.length()>10) {
             Maximum = Integer.parseInt(mySubString(s, 7, s.indexOf(":") - 7 - 2));
             mPCD.Groups = new PCD_Group[Maximum];
@@ -1718,7 +1714,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
         for (i=0; i<=11; i++) {
             s = SendReceiveTCPCommand("get_scenes "+Integer.toString(i));
-            if (s == "-1") return;
+            if (s.equals("-1")) return;
             if (s.length() > 10) {
                 Maximum = Integer.parseInt(mySubString(s, 7, s.indexOf(":") - 7 - 2));
                 mPCD.Scenes[i] = new PCD_Scene[Maximum];
@@ -1737,15 +1733,16 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         }
 
         s = SendReceiveTCPCommand("get_nodesets");
-        if (s == "-1") return;
+        if (s.equals("-1")) return;
         if (s.length() > 10) {
             Maximum = Integer.parseInt(mySubString(s, 9, s.indexOf(":") - 9 - 2));
             mPCD.Nodesets = new PCD_Nodeset[Maximum];
-
+            NodesetNames = new String[Maximum];
             for (i = 0; i < Maximum - 1; i++) {
                 mPCD.Nodesets[i] = new PCD_Nodeset();
                 mPCD.Nodesets[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
                 mPCD.Nodesets[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                NodesetNames[i] = mPCD.Nodesets[i].Name;
                 mPCD.Nodesets[i].stretching=128000;
                 mPCD.Nodesets[i].contrast=20;
                 mPCD.Nodesets[i].fadetime=75;
@@ -1758,6 +1755,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             mPCD.Nodesets[Maximum - 1] = new PCD_Nodeset();
             mPCD.Nodesets[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
             mPCD.Nodesets[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+            NodesetNames[Maximum - 1] = mPCD.Nodesets[Maximum - 1].Name;
             mPCD.Nodesets[Maximum - 1].stretching=128000;
             mPCD.Nodesets[Maximum - 1].contrast=20;
             mPCD.Nodesets[Maximum - 1].fadetime=75;
@@ -1768,7 +1766,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         }
         for (i = 0; i<mPCD.Nodesets.length; i++) {
             s = SendReceiveTCPCommand("get_nodes "+mPCD.Nodesets[i].ID);
-            if (s == "-1") return;
+            if (s.equals("-1")) return;
             if (s.length() > 10) {
                 Maximum = Integer.parseInt(mySubString(s, 6, s.indexOf(":") - 6 - 2));
                 mPCD.Nodesets[i].Nodes = new PCD_Node[Maximum];
@@ -1810,7 +1808,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         }
 
         s = SendReceiveTCPCommand("get_controlpanel");
-        if (s=="-1") return;
+        if (s.equals("-1")) return;
         CountX = Integer.parseInt(mySubString(s, 7, s.indexOf(",") - 7));
         CountY = Integer.parseInt(mySubString(s, s.indexOf(",") + 8, s.length() - s.indexOf(",") - 8));
         if ((CountX>0) && (CountY>0)) {
@@ -1851,9 +1849,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             if (s.equals("-1")) return;
             //CVS 1:128,2:33,3:100,...
 
-            if (!s.contains("CVS")) {
-                return;
-            } else {
+            if (s.contains("CVS")) {
                 for (Channel = StartChannel; Channel <= (StartChannel + ChannelCount); Channel++) {
                     if (Channel < (StartChannel + ChannelCount)) {
                         Value = Integer.parseInt(mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1));
@@ -1865,13 +1861,15 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 }
             }
         }catch(Exception e){
-
+            if (BuildConfig.DEBUG) {
+                System.out.println(e.toString());
+            }
         }
     }
 
     public static int get_channel(int Channel) {
         String s;
-        int Value=-1;
+        int Value;
 
         s = SendReceiveTCPCommand("get_ch " + Integer.toString(Channel));
 
@@ -1887,7 +1885,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
     public static int get_devchannel(String ID, String Channelname) {
         String s;
-        int Value=-1;
+        int Value;
 
         s = SendReceiveTCPCommand("get_devchannel " + ID + " " + Channelname);
 
@@ -2059,10 +2057,10 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     }
 
     public static void run_command(String ID, int int1, int int2, String string1, String string2, String ID1, String ID2, int Value) {
-        if (ID1=="") {
+        if (ID1.equals("")) {
             ID1="{00000000-0000-0000-0000-000000000000}";
         }
-        if (ID2=="") {
+        if (ID2.equals("")) {
             ID2="{00000000-0000-0000-0000-000000000000}";
         }
 
@@ -2070,7 +2068,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     }
 
     private void create_scenelist_grouplist() {
-        scenelist_grouplist = new ArrayList<PCD_Scene>();
+        scenelist_grouplist = new ArrayList<>();
 
         PCD_Scene simplescene = new PCD_Scene();
         simplescene.ID = "0";
@@ -2134,11 +2132,10 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     }
 
     private void load_scene_child(PCD_Scene[] sceneElements) {
-        scenelist_childlist = new ArrayList<PCD_Scene>();
+        scenelist_childlist = new ArrayList<>();
         if (sceneElements==null) return; // dont try to insert scenes to childlist if there are no scenes!
 
-        for (PCD_Scene sceneElement : sceneElements)
-            scenelist_childlist.add(sceneElement);
+        Collections.addAll(scenelist_childlist, sceneElements);
     }
 
     private void set_sceneGroupIndicatorToRight() {
@@ -2211,7 +2208,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     }
                 }
             }catch(Exception e){
-
+                if (BuildConfig.DEBUG) {
+                    System.out.println(e.toString());
+                }
             }
 
             if (DownloadStageview==3) {
@@ -2248,8 +2247,8 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         paths=f.listFiles();
 
         int FileCount=0;
-        for (int i=0; i<paths.length; i++) {
-            if (!(paths[i].toString().substring(paths[i].toString().lastIndexOf("/") + 1).equals("Settings"))) {
+        for (File path : paths) {
+            if (!(path.toString().substring(path.toString().lastIndexOf("/") + 1).equals("Settings"))) {
                 FileCount++;
             }
         }
@@ -2257,10 +2256,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         AvailablePresetNames = null;
         AvailablePresetNames = new String[FileCount];
         int FileCount2=0;
-        for(int i=0; i<paths.length; i++)
-        {
-            if (!(paths[i].toString().substring(paths[i].toString().lastIndexOf("/") + 1).equals("Settings"))) {
-                AvailablePresetNames[FileCount2] = paths[i].toString().substring(paths[i].toString().lastIndexOf("/") + 1);
+        for (File path : paths) {
+            if (!(path.toString().substring(path.toString().lastIndexOf("/") + 1).equals("Settings"))) {
+                AvailablePresetNames[FileCount2] = path.toString().substring(path.toString().lastIndexOf("/") + 1);
                 FileCount2++;
             }
         }
@@ -2275,7 +2273,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
         try {
             Spinner presetbox = (Spinner) findViewById(R.id.presetbox);
-            ArrayAdapter<String> presetAdapter = new ArrayAdapter<String>(this, R.layout.devicelist_child_item, AvailablePresetNames);
+            ArrayAdapter<String> presetAdapter = new ArrayAdapter<>(this, R.layout.devicelist_child_item, AvailablePresetNames);
             presetAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
             presetbox.setAdapter(presetAdapter);
             presetbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
@@ -2299,7 +2297,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 }
             });
         }catch(Exception e){
-
+            if (BuildConfig.DEBUG) {
+                System.out.println(e.toString());
+            }
         }
     }
 
@@ -2474,8 +2474,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
             int i;
             int j;
-            int mylength=0;
-            String s="";
+            int mylength;
 
             mPCD = null;
             mPCD = new PCD();
@@ -2595,9 +2594,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
     public void DeletePreset() {
         File file = new File(getFilesDir() + "/" + CurrentPresetName);
-        file.delete();
-
-        Toast.makeText(getBaseContext(), "Preset gelöscht",Toast.LENGTH_SHORT).show();
+        if (file.delete()) {
+            Toast.makeText(getBaseContext(), "Preset gelöscht", Toast.LENGTH_SHORT).show();
+        }
 
         // Presetbox aktualisieren
         FindPresets();

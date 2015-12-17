@@ -14,8 +14,7 @@ public class About extends Fragment {
     }
 
     public static About newInstance() {
-        About fragment = new About();
-        return fragment;
+        return new About();
     }
 
     @Override

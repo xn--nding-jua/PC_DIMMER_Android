@@ -17,14 +17,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="{- 8 Kanäle"
+        android:text="@string/channeloverview_toleft"
         android:id="@+id/minus8chbtn"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/channelslider"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aktualisieren"
+        android:text="@string/channeloverview_updatechanneloverviewbtn"
         android:id="@+id/updatechanneloverviewbtn"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/minus8chbtn"
@@ -33,7 +33,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8 Kanäle -}"
+        android:text="@string/channeloverview_toright"
         android:id="@+id/plus8chbtn"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/channelslider"
@@ -53,18 +53,16 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="Ch1"
+            android:text="@string/channeloverview_ch1"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_weight="1"
             android:id="@+id/ch1lbl"
             android:textAlignment="center"
             android:layout_alignParentTop="true"/>
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/channeloverview_0"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_weight="1"
             android:id="@+id/ch1valuelbl"
             android:textAlignment="center"
             android:layout_below="@+id/ch1lbl"/>
@@ -79,7 +77,7 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="Ch2"
+            android:text="@string/channeloverview_ch2"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/ch2lbl"
             android:layout_toRightOf="@+id/ch1lbl"
@@ -88,9 +86,8 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/channeloverview_ch2value"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_weight="1"
             android:id="@+id/ch2valuelbl"
             android:layout_toRightOf="@+id/ch1valuelbl"
             android:textAlignment="center"
@@ -107,7 +104,7 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="Ch3"
+            android:text="@string/channeloverview_ch3"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/ch3lbl"
             android:layout_toRightOf="@+id/ch2lbl"
@@ -116,9 +113,8 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/channeloverview_ch3value"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_weight="1"
             android:id="@+id/ch3valuelbl"
             android:layout_toRightOf="@+id/ch2valuelbl"
             android:textAlignment="center"
@@ -135,7 +131,7 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="Ch4"
+            android:text="@string/channeloverview_ch4"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/ch4lbl"
             android:layout_toRightOf="@+id/ch3lbl"
@@ -144,9 +140,8 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/channeloverview_ch4value"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_weight="1"
             android:id="@+id/ch4valuelbl"
             android:layout_toRightOf="@+id/ch3valuelbl"
             android:textAlignment="center"
@@ -163,7 +158,7 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="Ch5"
+            android:text="@string/channeloverview_ch5"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/ch5lbl"
             android:layout_toRightOf="@+id/ch4lbl"
@@ -172,9 +167,8 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/channeloverview_ch5value"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_weight="1"
             android:id="@+id/ch5valuelbl"
             android:layout_toRightOf="@+id/ch4valuelbl"
             android:textAlignment="center"
@@ -191,7 +185,7 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="Ch6"
+            android:text="@string/channeloverview_ch6"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/ch6lbl"
             android:layout_toRightOf="@+id/ch5lbl"
@@ -200,9 +194,8 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/channeloverview_ch6value"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_weight="1"
             android:id="@+id/ch6valuelbl"
             android:layout_toRightOf="@+id/ch5valuelbl"
             android:textAlignment="center"
@@ -219,7 +212,7 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="Ch7"
+            android:text="@string/channeloverview_ch7"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/ch7lbl"
             android:layout_toRightOf="@+id/ch6lbl"
@@ -228,9 +221,8 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/channeloverview_ch7value"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_weight="1"
             android:id="@+id/ch7valuelbl"
             android:layout_toRightOf="@+id/ch6valuelbl"
             android:textAlignment="center"
@@ -247,7 +239,7 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="Ch8"
+            android:text="@string/channeloverview_ch8"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/ch8lbl"
             android:layout_toRightOf="@+id/ch7lbl"
@@ -256,9 +248,8 @@
         <TextView
             android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/channeloverview_ch8value"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_weight="1"
             android:id="@+id/ch8valuelbl"
             android:layout_toRightOf="@+id/ch7valuelbl"
             android:textAlignment="center"

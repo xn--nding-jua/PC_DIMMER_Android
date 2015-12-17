@@ -2,6 +2,7 @@ package de.phoenixstudios.pc_dimmer;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.SeekBar;
@@ -36,7 +37,7 @@ public class VerticalSeekBar extends SeekBar {
         setMeasuredDimension(getMeasuredHeight(), getMeasuredWidth());
     }
 
-    protected void onDraw(Canvas c) {
+    protected void onDraw(@NonNull Canvas c) {
         c.rotate(-90);
         c.translate(-getHeight(), 0);
 
@@ -44,7 +45,7 @@ public class VerticalSeekBar extends SeekBar {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (!isEnabled()) {
             return false;
         }

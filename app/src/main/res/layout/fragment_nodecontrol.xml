@@ -7,7 +7,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context="de.phoenixstudios.pc_dimmer.nodecontrol">
 
         <LinearLayout
@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Knotenset:"
+                android:text="@string/nodecontrol_nodeset"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_weight="0.5"
                 android:id="@+id/nodesetlbl"/>
@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Knoten:"
+                android:text="@string/nodecontrol_nodes"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_weight="0.5"
                 android:id="@+id/nodelbl"/>
@@ -89,7 +89,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ausdehnung"
+                            android:text="@string/nodecontrol_stretching"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:id="@+id/node_strechlbl"
                             android:textAlignment="center"
@@ -108,7 +108,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Kontrast"
+                            android:text="@string/nodecontrol_contrast"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:id="@+id/node_contrastlbl"
                             android:textAlignment="center"
@@ -128,7 +128,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Blendzeit [ms]:"
+                            android:text="@string/nodecontrol_fadetime"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:id="@+id/node_fadetimelbl"
                             android:textAlignment="center"
@@ -145,13 +145,13 @@
                             android:layout_below="@+id/node_fadetimelbl"
                             android:layout_alignLeft="@+id/node_fadetimelbl"
                             android:layout_alignRight="@+id/node_contrastlbl"
-                            android:text="75" />
+                            android:text="@string/nodecontrol_75" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/nodeset_usergbcheckbox"
-                            android:text="Verändere RGB"
+                            android:text="@string/nodecontrol_changergb"
                             android:layout_alignTop="@+id/node_contrastslider"
                             android:layout_toRightOf="@+id/node_contrastlbl"
                             android:layout_marginLeft="45dp" />
@@ -160,7 +160,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/nodeset_useambercheckbox"
-                            android:text="Verändere Amber"
+                            android:text="@string/nodecontrol_changeamber"
                             android:layout_below="@+id/nodeset_usergbcheckbox"
                             android:layout_alignLeft="@+id/nodeset_usergbcheckbox" />
 
@@ -168,7 +168,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/nodeset_usewhitecheckbox"
-                            android:text="Verändere Weiß"
+                            android:text="@string/nodecontrol_changewhite"
                             android:layout_below="@+id/nodeset_useambercheckbox"
                             android:layout_alignLeft="@+id/nodeset_usergbcheckbox" />
 
@@ -176,7 +176,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/nodeset_usedimmercheckbox"
-                            android:text="Verändere Dimmer"
+                            android:text="@string/nodecontrol_changedimmer"
                             android:layout_below="@+id/nodeset_usewhitecheckbox"
                             android:layout_alignLeft="@+id/nodeset_usergbcheckbox" />
                     </RelativeLayout>
@@ -208,7 +208,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Amber"
+                            android:text="@string/nodecontrol_amber"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:id="@+id/node_amberlbl"
                             android:textAlignment="center"
@@ -219,7 +219,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Weiß"
+                            android:text="@string/nodecontrol_white"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:id="@+id/node_whitelbl"
                             android:textAlignment="center"
@@ -229,7 +229,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dimmer"
+                            android:text="@string/nodecontrol_dimmer"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:id="@+id/node_dimmerlbl"
                             android:textAlignment="center"
@@ -277,7 +277,7 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RGB"
+                            android:text="@string/nodecontrol_rgb"
                             android:id="@+id/usergbcheckbox"
                             android:layout_below="@+id/node_amberslider"
                             android:layout_alignParentLeft="true" />
@@ -288,7 +288,7 @@
                             android:id="@+id/useambercheckbox"
                             android:layout_below="@+id/node_amberslider"
                             android:layout_toRightOf="@+id/node_valuebar"
-                            android:text="A" />
+                            android:text="@string/nodecontrol_a" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
@@ -296,7 +296,7 @@
                             android:id="@+id/usewhitecheckbox"
                             android:layout_below="@+id/node_whiteslider"
                             android:layout_alignLeft="@+id/node_whiteslider"
-                            android:text="W" />
+                            android:text="@string/nodecontrol_w" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
@@ -304,9 +304,7 @@
                             android:id="@+id/usedimmercheckbox"
                             android:layout_below="@+id/node_dimmerslider"
                             android:layout_toRightOf="@+id/node_whiteslider"
-                            android:text="D" />
-
-
+                            android:text="@string/nodecontrol_d" />
                     </RelativeLayout>
                 </FrameLayout>
             </LinearLayout>

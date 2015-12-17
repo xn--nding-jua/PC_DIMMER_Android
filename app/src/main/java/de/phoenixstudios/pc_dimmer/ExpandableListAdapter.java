@@ -3,15 +3,9 @@ package de.phoenixstudios.pc_dimmer;
 import java.util.List;
 import java.util.Map;
 
-import de.phoenixstudios.pc_dimmer.R;
-
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Typeface;
-import android.media.Image;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,11 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-/**
- * Created by cnoeding on 09.12.2015.
- */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Activity context;
@@ -70,7 +60,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 List<Main.PCD_Scene> child = scenelist_collection.get(scenes.get(groupPosition));
                 Main.stop_scene(child.get(childPosition).ID);
-            };
+            }
 
 /*
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);

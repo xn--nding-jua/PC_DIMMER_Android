@@ -1,7 +1,6 @@
 package de.phoenixstudios.pc_dimmer;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,8 +15,7 @@ public class nodecontrol extends Fragment implements View.OnClickListener{
     }
 
     public static nodecontrol newInstance() {
-        nodecontrol fragment = new nodecontrol();
-        return fragment;
+        return new nodecontrol();
     }
 
     @Override

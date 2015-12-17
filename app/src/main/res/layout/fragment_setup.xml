@@ -9,7 +9,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="IP-Adresse:"
+            android:text="@string/setup_ipaddress"
             android:id="@+id/textView"
             android:layout_below="@+id/textView4"
             android:layout_alignParentLeft="true" />
@@ -38,15 +38,16 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:id="@+id/ipAddressEdit"
-            android:text="192.168.0.203"
+            android:text="@string/setup_startupipaddress"
             android:layout_below="@+id/textView"
+            android:inputType="text"
             android:layout_alignParentLeft="true" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Port:"
+            android:text="@string/setup_port"
             android:id="@+id/textView3"
             android:layout_alignTop="@+id/textView"
             android:layout_alignLeft="@+id/portEdit" />
@@ -55,15 +56,16 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:id="@+id/portEdit"
-            android:text="10160"
+            android:text="@string/setup_standardport"
             android:layout_alignTop="@+id/ipAddressEdit"
             android:layout_toRightOf="@+id/ipAddressEdit"
+            android:inputType="number"
             android:layout_alignParentRight="true" />
 
         <Button
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Netzwerk ein"
+            android:text="@string/setup_networkon"
             android:id="@+id/connectBtn"
             android:layout_below="@+id/ipAddressEdit"
             android:layout_alignParentLeft="true"
@@ -72,7 +74,7 @@
         <Button
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Trennen"
+            android:text="@string/setup_disconnect"
             android:id="@+id/disconnectBtn"
             android:layout_alignTop="@+id/connectBtn"
             android:layout_alignLeft="@+id/portEdit"
@@ -81,7 +83,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Daten synchronisieren"
+            android:text="@string/setup_syncdata"
             android:id="@+id/syncBtn"
             android:layout_below="@+id/connectBtn"
             android:layout_alignParentLeft="true"
@@ -90,7 +92,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Speichern"
+            android:text="@string/setup_save"
             android:id="@+id/savepresetbtn"
             android:layout_alignTop="@+id/deletepresetbtn"
             android:layout_alignLeft="@+id/textView3"
@@ -99,7 +101,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Löschen"
+            android:text="@string/setup_delete"
             android:id="@+id/deletepresetbtn"
             android:layout_below="@+id/presetbox"
             android:layout_alignParentRight="true"
@@ -109,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Verfügbare Presets auswählen:"
+            android:text="@string/setup_choosepreset"
             android:id="@+id/textView2"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true" />
@@ -118,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Verbindungseinstellungen:"
+            android:text="@string/setup_connectionsettings"
             android:id="@+id/textView4"
             android:layout_below="@+id/savepresetbtn"
             android:layout_alignParentLeft="true" />
@@ -127,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Sonstige Einstellungen:"
+            android:text="@string/setup_additionalsettings"
             android:id="@+id/textView5"
             android:layout_below="@+id/syncBtn"
             android:layout_alignParentLeft="true" />
@@ -140,14 +142,14 @@
             android:id="@+id/fadetimeEdit"
             android:layout_below="@+id/textView6"
             android:layout_alignParentLeft="true"
-            android:text="150"
+            android:text="@string/setup_150"
             android:layout_alignRight="@+id/connectBtn" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Blendzeit [ms]:"
+            android:text="@string/setup_fadetime"
             android:id="@+id/textView6"
             android:layout_below="@+id/textView5"
             android:layout_alignParentLeft="true" />
@@ -155,7 +157,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Einstellungen speichern"
+            android:text="@string/setup_savesettings"
             android:id="@+id/savesettingsbtn"
             android:layout_below="@+id/fadetimeEdit"
             android:layout_alignParentLeft="true"
@@ -164,7 +166,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Laden"
+            android:text="@string/setup_load"
             android:id="@+id/loadpresetbtn"
             android:layout_alignTop="@+id/savepresetbtn"
             android:layout_alignParentLeft="true"
@@ -176,6 +178,7 @@
             android:id="@+id/networkstateimage"
             android:src="@drawable/ic_uplinksearching"
             android:layout_below="@+id/portEdit"
+            android:contentDescription="@string/setup_networkstate"
             android:layout_toRightOf="@+id/textView2" />
 
     </RelativeLayout>

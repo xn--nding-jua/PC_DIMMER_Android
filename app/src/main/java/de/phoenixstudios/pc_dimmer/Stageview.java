@@ -16,8 +16,7 @@ public class Stageview extends Fragment {
     }
 
     public static Stageview newInstance() {
-        Stageview fragment = new Stageview();
-        return fragment;
+        return new Stageview();
     }
 
     @Override

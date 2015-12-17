@@ -36,7 +36,7 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
                 fragment = About.newInstance();
                 return fragment;
             default:
-                fragment = Setup.newInstance("", "");
+                fragment = Setup.newInstance();
                 return fragment;
         }
     }

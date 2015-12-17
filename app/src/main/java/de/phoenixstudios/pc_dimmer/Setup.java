@@ -9,39 +9,19 @@ import android.view.ViewGroup;
 
 
 public class Setup extends Fragment implements View.OnClickListener{
-/*
-    private static final String ARG_PARAM1 = "param_setup_1";
-    private static final String ARG_PARAM2 = "param_setup_2";
-    private String mParam1;
-    private String mParam2;
-*/
-
     private CallbackToMain mCallbackToMain;
 
     public Setup() {
         // Required empty public constructor
     }
 
-    public static Setup newInstance(String param1, String param2) {
-        Setup fragment = new Setup();
-/*
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-*/
-        return fragment;
+    public static Setup newInstance() {
+        return new Setup();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-*/
     }
 
     @Override
