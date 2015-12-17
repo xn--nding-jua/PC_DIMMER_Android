@@ -136,7 +136,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     public static int Channelvalues[] = new int[8192];
     String CurrentPresetName="";
     String AvailablePresetNames[];
-    int GlobalFadetime=150;
+    static public int GlobalFadetime=150;
     String LastPresetName="";
 
     TabHost devicecontrol_tabHost;
