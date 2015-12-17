@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="de.phoenixstudios.pc_dimmer.Setup">
+    tools:context="de.phoenixstudios.pc_dimmer.About">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Version 0.6 Beta (13.12.2015)"
+            android:text="Version 0.9 Beta (17.12.2015)"
             android:id="@+id/textView9"
             android:layout_below="@+id/textView8"
             android:layout_alignLeft="@+id/textView8" />

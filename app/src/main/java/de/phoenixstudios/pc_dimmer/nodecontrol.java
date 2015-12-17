@@ -30,7 +30,19 @@ public class nodecontrol extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nodecontrol, container, false);
+        View view = inflater.inflate(R.layout.fragment_nodecontrol, container, false);
+
+        view.findViewById(R.id.usergbcheckbox).setOnClickListener(this);
+        view.findViewById(R.id.useambercheckbox).setOnClickListener(this);
+        view.findViewById(R.id.usewhitecheckbox).setOnClickListener(this);
+        view.findViewById(R.id.usedimmercheckbox).setOnClickListener(this);
+
+        view.findViewById(R.id.nodeset_usergbcheckbox).setOnClickListener(this);
+        view.findViewById(R.id.nodeset_useambercheckbox).setOnClickListener(this);
+        view.findViewById(R.id.nodeset_usewhitecheckbox).setOnClickListener(this);
+        view.findViewById(R.id.nodeset_usedimmercheckbox).setOnClickListener(this);
+
+        return view;
     }
 
     public void onViewCreated(View v, Bundle savedInstanceState) {

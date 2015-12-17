@@ -3,6 +3,7 @@ package de.phoenixstudios.pc_dimmer;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -14,11 +15,13 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.GridView;
@@ -78,16 +81,49 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         public int X;
         public int Y;
     }
+    public class PCD_Node {
+        public String ID;
+        public String Name;
+        public int X;
+        public int Y;
+        public int R;
+        public int G;
+        public int B;
+        public int A;
+        public int W;
+        public int Dimmer;
+        public boolean UseRGB;
+        public boolean UseA;
+        public boolean UseW;
+        public boolean UseDimmer;
+    }
+    public class PCD_Nodeset {
+        public String ID;
+        public String Name;
+        public int stretching;
+        public int contrast;
+        public int fadetime;
+        public boolean ChangeRGB;
+        public boolean ChangeA;
+        public boolean ChangeW;
+        public boolean ChangeDimmer;
+        public PCD_Node Nodes[];
+    }
     public class PCD {
         PCD_Device Devices[];
         PCD_Group Groups[];
         PCD_ControlpanelButton ControlpanelButtons[][];
         PCD_Scene Scenes[][];
+        PCD_Nodeset Nodesets[];
     }
     public static PCD mPCD=null;
 
-    String DeviceNames[];
-    String GroupNames[];
+    static String DeviceNames[];
+    static String GroupNames[];
+    static String NodesetNames[];
+    static String NodesNames[];
+    public static int CurrentNodeset;
+    public static int CurrentNode;
     public static String CurrentDeviceOrGroupID;
 
     boolean firstcall_presetbox=true;
@@ -104,6 +140,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     String LastPresetName="";
 
     TabHost devicecontrol_tabHost;
+    TabHost nodecontrol_tabHost;
 
     static boolean NetworkThreadAlive=false;
     static String NetworkIPAddress="192.168.0.203";
@@ -152,6 +189,20 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     protected void onDestroy() {
         NetworkThreadAlive=false;
         super.onDestroy();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+/*
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+        }
+*/
     }
 
     public void ShowMessage(String msg) {
@@ -309,21 +360,25 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     }
 
                     if (mPCD.Groups!=null) {
-                        Spinner grouplistbox = (Spinner) findViewById(R.id.grouplistbox);
-                        ArrayAdapter<String> groupAdapter = new ArrayAdapter<String>(this, R.layout.devicelist_child_item, GroupNames);
-                        groupAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
-                        grouplistbox.setAdapter(groupAdapter);
-                        grouplistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                //Toast.makeText(parent.getContext(), "Gewählte Gruppe: " + mPCD.Groups[pos].Name, Toast.LENGTH_SHORT).show();
-                                CurrentDeviceOrGroupID = mPCD.Groups[pos].ID;
-                            }
+                        try {
+                            Spinner grouplistbox = (Spinner) findViewById(R.id.grouplistbox);
+                            ArrayAdapter<String> groupAdapter = new ArrayAdapter<String>(this, R.layout.devicelist_child_item, GroupNames);
+                            groupAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
+                            grouplistbox.setAdapter(groupAdapter);
+                            grouplistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                                    //Toast.makeText(parent.getContext(), "Gewählte Gruppe: " + mPCD.Groups[pos].Name, Toast.LENGTH_SHORT).show();
+                                    CurrentDeviceOrGroupID = mPCD.Groups[pos].ID;
+                                }
 
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
 
-                            }
-                        });
+                                }
+                            });
+                        }catch(Exception e){
+
+                        }
                     }
                 }
 
@@ -345,7 +400,29 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                     }
                 });
-                de.phoenixstudios.pc_dimmer.VerticalSeekBar strobeslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.strobeslider);
+                dimmerslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar strobeslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.strobeslider);
                 strobeslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -362,6 +439,28 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                     }
                 });
+                strobeslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
                 Button dimmer100btn = (Button) findViewById(R.id.dimmer100btn);
                 dimmer100btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -428,7 +527,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     }
                 });
 
-                de.phoenixstudios.pc_dimmer.VerticalSeekBar amberslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.amberslider);
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar amberslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.amberslider);
                 amberslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -445,8 +544,29 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                     }
                 });
+                amberslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
 
-                de.phoenixstudios.pc_dimmer.VerticalSeekBar whiteslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.whiteslider);
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar whiteslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.whiteslider);
                 whiteslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -463,11 +583,63 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                     }
                 });
+                whiteslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
 
 
 
                 // Initialize PanTilt
                 PanTiltCanvasView pantiltcanvas = (PanTiltCanvasView) findViewById(R.id.pantiltcanvas);
+                pantiltcanvas.setOnTouchListener(new PanTiltCanvasView.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+
+                            case MotionEvent.ACTION_MOVE:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_SCROLL:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle canvas touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
                 pantiltcanvas.clearCanvas();
 
 
@@ -492,7 +664,29 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                     }
                 });
-                de.phoenixstudios.pc_dimmer.VerticalSeekBar prismarotslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.prismarotslider);
+                irisslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar prismarotslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.prismarotslider);
                 prismarotslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -509,6 +703,28 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                     }
                 });
+                prismarotslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
                 Button prismaonbtn = (Button) findViewById(R.id.prismaonbtn);
                 prismaonbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -760,6 +976,504 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     public void NodecontrolCallbackToMain(int Cmd){
         switch(Cmd) {
             case R.layout.fragment_nodecontrol:
+                // Fill nodesetlistbox
+                if (mPCD!=null) {
+                    if (mPCD.Nodesets != null) {
+                        try {
+                            Spinner nodesetlistbox = (Spinner) findViewById(R.id.nodesetlistbox);
+                            ArrayAdapter<String> nodesetAdapter = new ArrayAdapter<String>(this, R.layout.devicelist_child_item, NodesetNames);
+                            nodesetAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
+                            nodesetlistbox.setAdapter(nodesetAdapter);
+                            nodesetlistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                                    CurrentNodeset = pos;
+
+                                    ((VerticalSeekBar) findViewById(R.id.node_stretchslider)).setProgress(mPCD.Nodesets[CurrentNodeset].stretching);
+                                    ((VerticalSeekBar) findViewById(R.id.node_contrastslider)).setProgress(mPCD.Nodesets[CurrentNodeset].contrast);
+                                    ((EditText) findViewById(R.id.node_fadetimeedit)).setText(Integer.toString(mPCD.Nodesets[CurrentNodeset].fadetime));
+                                    ((CheckBox) findViewById(R.id.nodeset_usergbcheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].ChangeRGB);
+                                    ((CheckBox) findViewById(R.id.nodeset_useambercheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].ChangeA);
+                                    ((CheckBox) findViewById(R.id.nodeset_usewhitecheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].ChangeW);
+                                    ((CheckBox) findViewById(R.id.nodeset_usedimmercheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].ChangeDimmer);
+
+                                    NodesNames = new String[mPCD.Nodesets[CurrentNodeset].Nodes.length];
+                                    for (int i = 0; i < mPCD.Nodesets[CurrentNodeset].Nodes.length; i++) {
+                                        NodesNames[i] = mPCD.Nodesets[CurrentNodeset].Nodes[i].Name;
+                                    }
+
+                                    // fill nodelistbox
+                                    if (mPCD != null) {
+                                        if (mPCD.Nodesets != null) {
+                                            if (CurrentNodeset < mPCD.Nodesets.length) {
+                                                if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                                    Spinner nodelistbox = (Spinner) findViewById(R.id.nodelistbox);
+                                                    ArrayAdapter<String> nodeAdapter = new ArrayAdapter<String>(Main.this, R.layout.devicelist_child_item, NodesNames);
+                                                    nodeAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
+                                                    nodelistbox.setAdapter(nodeAdapter);
+                                                    nodelistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+                                                        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                                                            CurrentNode = pos;
+
+                                                            ((VerticalSeekBar) findViewById(R.id.node_amberslider)).setProgress(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].A);
+                                                            ((VerticalSeekBar) findViewById(R.id.node_whiteslider)).setProgress(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].W);
+                                                            ((VerticalSeekBar) findViewById(R.id.node_dimmerslider)).setProgress(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].Dimmer);
+                                                            ((CheckBox) findViewById(R.id.usergbcheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseRGB);
+                                                            ((CheckBox) findViewById(R.id.useambercheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseA);
+                                                            ((CheckBox) findViewById(R.id.usewhitecheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseW);
+                                                            ((CheckBox) findViewById(R.id.usedimmercheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseDimmer);
+                                                            ((com.larswerkman.holocolorpicker.ColorPicker) findViewById(R.id.node_colorpicker)).setColor(Color.rgb(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].R, mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].G, mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].B));
+
+                                                            ((NodeXYCanvasView) findViewById(R.id.nodecanvas)).setPoint(mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].X, mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].Y);
+                                                            ((NodeXYCanvasView) findViewById(R.id.nodecanvas)).invalidate();
+                                                        }
+
+                                                        @Override
+                                                        public void onNothingSelected(AdapterView<?> parent) {
+
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
+
+                                }
+                            });
+                        }catch(Exception e){
+
+                        }
+                    }
+                }
+
+
+
+                // Prepare Tabs and set Text
+                nodecontrol_tabHost = (TabHost) findViewById(R.id.nodecontrol_tabHost);
+                nodecontrol_tabHost.setup();
+
+                TabHost.TabSpec nodecontrol_spec1 = nodecontrol_tabHost.newTabSpec("nodecontrol_tab1");
+                nodecontrol_spec1.setContent(R.id.nodecontrol_tab1);
+                nodecontrol_spec1.setIndicator("Generell");
+
+                TabHost.TabSpec nodecontrol_spec2 = nodecontrol_tabHost.newTabSpec("nodecontrol_tab2");
+                nodecontrol_spec2.setContent(R.id.nodecontrol_tab2);
+                nodecontrol_spec2.setIndicator("Knoten");
+
+                nodecontrol_tabHost.addTab(nodecontrol_spec1);
+                nodecontrol_tabHost.addTab(nodecontrol_spec2);
+
+                // Prepare Colorpickers and Colorcontrols
+                ColorPicker node_colorpicker = (ColorPicker) findViewById(R.id.node_colorpicker);
+                SaturationBar node_saturationBar = (SaturationBar) findViewById(R.id.node_saturationbar);
+                ValueBar node_valueBar = (ValueBar) findViewById(R.id.node_valuebar);
+
+                node_colorpicker.addSaturationBar(node_saturationBar);
+                node_colorpicker.addValueBar(node_valueBar);
+                node_colorpicker.setShowOldCenterColor(false); // turn off showing the old color
+                //colorpicker.setOldCenterColor(colorpicker.getColor()); // set the old selected color u can do it like this
+
+                node_colorpicker.setOnColorChangedListener(new ColorPicker.OnColorChangedListener() {
+                    public void onColorChanged(int selectedcolor) {
+                        if (mPCD != null) {
+                            if (mPCD.Nodesets != null) {
+                                if ((mPCD.Nodesets.length > 0) && (CurrentNodeset < mPCD.Nodesets.length)) {
+                                    if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                        if ((mPCD.Nodesets[CurrentNodeset].Nodes.length > 0) && (CurrentNode < mPCD.Nodesets[CurrentNodeset].Nodes.length)) {
+                                            mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].R = Color.red(selectedcolor);
+                                            mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].G = Color.green(selectedcolor);
+                                            mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].B = Color.blue(selectedcolor);
+                                            ((NodeXYCanvasView) findViewById(R.id.nodecanvas)).invalidate();
+                                            set_node();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+
+                // Prepare canvas
+                NodeXYCanvasView nodecanvas = (NodeXYCanvasView) findViewById(R.id.nodecanvas);
+                nodecanvas.setOnTouchListener(new NodeXYCanvasView.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+
+                            case MotionEvent.ACTION_MOVE:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_SCROLL:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle canvas touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+                nodecanvas.clearCanvas();
+
+
+
+
+                // Prepare sliders
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar node_amberslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_amberslider);
+                node_amberslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        if (mPCD != null) {
+                            if (mPCD.Nodesets != null) {
+                                if ((mPCD.Nodesets.length > 0) && (CurrentNodeset < mPCD.Nodesets.length)) {
+                                    if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                        if ((mPCD.Nodesets[CurrentNodeset].Nodes.length > 0) && (CurrentNode < mPCD.Nodesets[CurrentNodeset].Nodes.length)) {
+                                            mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].A = ((de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_amberslider)).getProgress();
+                                            set_node();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                node_amberslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar node_whiteslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_whiteslider);
+                node_whiteslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        if (mPCD != null) {
+                            if (mPCD.Nodesets != null) {
+                                if ((mPCD.Nodesets.length > 0) && (CurrentNodeset < mPCD.Nodesets.length)) {
+                                    if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                        if ((mPCD.Nodesets[CurrentNodeset].Nodes.length > 0) && (CurrentNode < mPCD.Nodesets[CurrentNodeset].Nodes.length)) {
+                                            mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].W = ((de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_whiteslider)).getProgress();
+                                            set_node();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                node_whiteslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar node_dimmerslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_dimmerslider);
+                node_dimmerslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        if (mPCD != null) {
+                            if (mPCD.Nodesets != null) {
+                                if ((mPCD.Nodesets.length > 0) && (CurrentNodeset < mPCD.Nodesets.length)) {
+                                    if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                        if ((mPCD.Nodesets[CurrentNodeset].Nodes.length > 0) && (CurrentNode < mPCD.Nodesets[CurrentNodeset].Nodes.length)) {
+                                            mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].Dimmer=((de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_dimmerslider)).getProgress();
+                                            set_node();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                node_dimmerslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar node_stretchslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_stretchslider);
+                node_stretchslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        if (mPCD != null) {
+                            if (mPCD.Nodesets != null) {
+                                if ((mPCD.Nodesets.length > 0) && (CurrentNodeset < mPCD.Nodesets.length)) {
+                                    mPCD.Nodesets[CurrentNodeset].stretching=((de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_stretchslider)).getProgress();
+                                    set_nodeset();
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                node_stretchslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar node_contrastslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_contrastslider);
+                node_contrastslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        if (mPCD != null) {
+                            if (mPCD.Nodesets != null) {
+                                if ((mPCD.Nodesets.length > 0) && (CurrentNodeset < mPCD.Nodesets.length)) {
+                                    mPCD.Nodesets[CurrentNodeset].contrast=((de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.node_contrastslider)).getProgress();
+                                    set_nodeset();
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                node_contrastslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
+                break;
+            case R.id.usergbcheckbox:
+                if (mPCD!=null) {
+                    if (mPCD.Nodesets!=null) {
+                        if ((mPCD.Nodesets.length>0) && (CurrentNodeset<mPCD.Nodesets.length)) {
+                            if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                if ((mPCD.Nodesets[CurrentNodeset].Nodes.length>0) && (CurrentNode<mPCD.Nodesets[CurrentNodeset].Nodes.length)) {
+                                    mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseRGB=((CheckBox) findViewById(R.id.usergbcheckbox)).isChecked();
+                                    set_node();
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+            case R.id.useambercheckbox:
+                if (mPCD!=null) {
+                    if (mPCD.Nodesets!=null) {
+                        if ((mPCD.Nodesets.length>0) && (CurrentNodeset<mPCD.Nodesets.length)) {
+                            if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                if ((mPCD.Nodesets[CurrentNodeset].Nodes.length>0) && (CurrentNode<mPCD.Nodesets[CurrentNodeset].Nodes.length)) {
+                                    mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseA=((CheckBox) findViewById(R.id.useambercheckbox)).isChecked();
+                                    set_node();
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+            case R.id.usewhitecheckbox:
+                if (mPCD!=null) {
+                    if (mPCD.Nodesets!=null) {
+                        if ((mPCD.Nodesets.length>0) && (CurrentNodeset<mPCD.Nodesets.length)) {
+                            if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                if ((mPCD.Nodesets[CurrentNodeset].Nodes.length>0) && (CurrentNode<mPCD.Nodesets[CurrentNodeset].Nodes.length)) {
+                                    mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseW=((CheckBox) findViewById(R.id.usewhitecheckbox)).isChecked();
+                                    set_node();
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+            case R.id.usedimmercheckbox:
+                if (mPCD!=null) {
+                    if (mPCD.Nodesets!=null) {
+                        if ((mPCD.Nodesets.length>0) && (CurrentNodeset<mPCD.Nodesets.length)) {
+                            if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                if ((mPCD.Nodesets[CurrentNodeset].Nodes.length>0) && (CurrentNode<mPCD.Nodesets[CurrentNodeset].Nodes.length)) {
+                                    mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseDimmer=((CheckBox) findViewById(R.id.usedimmercheckbox)).isChecked();
+                                    set_node();
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+            case R.id.nodeset_usergbcheckbox:
+                if (mPCD!=null) {
+                    if (mPCD.Nodesets!=null) {
+                        if ((mPCD.Nodesets.length>0) && (CurrentNodeset<mPCD.Nodesets.length)) {
+                            mPCD.Nodesets[CurrentNodeset].ChangeRGB=((CheckBox) findViewById(R.id.nodeset_usergbcheckbox)).isChecked();
+                            set_nodeset();
+                        }
+                    }
+                }
+                break;
+            case R.id.nodeset_useambercheckbox:
+                if (mPCD!=null) {
+                    if (mPCD.Nodesets!=null) {
+                        if ((mPCD.Nodesets.length>0) && (CurrentNodeset<mPCD.Nodesets.length)) {
+                            mPCD.Nodesets[CurrentNodeset].ChangeA=((CheckBox) findViewById(R.id.nodeset_useambercheckbox)).isChecked();
+                            set_nodeset();
+                        }
+                    }
+                }
+                break;
+            case R.id.nodeset_usewhitecheckbox:
+                if (mPCD!=null) {
+                    if (mPCD.Nodesets!=null) {
+                        if ((mPCD.Nodesets.length>0) && (CurrentNodeset<mPCD.Nodesets.length)) {
+                            mPCD.Nodesets[CurrentNodeset].ChangeW=((CheckBox) findViewById(R.id.nodeset_usewhitecheckbox)).isChecked();
+                            set_nodeset();
+                        }
+                    }
+                }
+                break;
+            case R.id.nodeset_usedimmercheckbox:
+                if (mPCD!=null) {
+                    if (mPCD.Nodesets!=null) {
+                        if ((mPCD.Nodesets.length>0) && (CurrentNodeset<mPCD.Nodesets.length)) {
+                            mPCD.Nodesets[CurrentNodeset].ChangeDimmer=((CheckBox) findViewById(R.id.nodeset_usedimmercheckbox)).isChecked();
+                            set_nodeset();
+                        }
+                    }
+                }
                 break;
         }
     }
@@ -898,9 +1612,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     }
                 }
 
-                // While-Schleife nur maximal alle 200ms durchlaufen
+                // While-Schleife nur maximal alle 1ms durchlaufen
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(1);
                 }catch(Exception error){
                     if (BuildConfig.DEBUG) {
                         System.out.println(error.toString());
@@ -1019,6 +1733,79 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 mPCD.Scenes[i][Maximum - 1] = new PCD_Scene();
                 mPCD.Scenes[i][Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
                 mPCD.Scenes[i][Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+            }
+        }
+
+        s = SendReceiveTCPCommand("get_nodesets");
+        if (s == "-1") return;
+        if (s.length() > 10) {
+            Maximum = Integer.parseInt(mySubString(s, 9, s.indexOf(":") - 9 - 2));
+            mPCD.Nodesets = new PCD_Nodeset[Maximum];
+
+            for (i = 0; i < Maximum - 1; i++) {
+                mPCD.Nodesets[i] = new PCD_Nodeset();
+                mPCD.Nodesets[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                mPCD.Nodesets[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                mPCD.Nodesets[i].stretching=128000;
+                mPCD.Nodesets[i].contrast=20;
+                mPCD.Nodesets[i].fadetime=75;
+                mPCD.Nodesets[i].ChangeRGB=true;
+                mPCD.Nodesets[i].ChangeA=false;
+                mPCD.Nodesets[i].ChangeW=false;
+                mPCD.Nodesets[i].ChangeDimmer=false;
+                s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
+            }
+            mPCD.Nodesets[Maximum - 1] = new PCD_Nodeset();
+            mPCD.Nodesets[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+            mPCD.Nodesets[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+            mPCD.Nodesets[Maximum - 1].stretching=128000;
+            mPCD.Nodesets[Maximum - 1].contrast=20;
+            mPCD.Nodesets[Maximum - 1].fadetime=75;
+            mPCD.Nodesets[Maximum - 1].ChangeRGB=true;
+            mPCD.Nodesets[Maximum - 1].ChangeA=false;
+            mPCD.Nodesets[Maximum - 1].ChangeW=false;
+            mPCD.Nodesets[Maximum - 1].ChangeDimmer=false;
+        }
+        for (i = 0; i<mPCD.Nodesets.length; i++) {
+            s = SendReceiveTCPCommand("get_nodes "+mPCD.Nodesets[i].ID);
+            if (s == "-1") return;
+            if (s.length() > 10) {
+                Maximum = Integer.parseInt(mySubString(s, 6, s.indexOf(":") - 6 - 2));
+                mPCD.Nodesets[i].Nodes = new PCD_Node[Maximum];
+
+                for (j = 0; j < Maximum - 1; j++) {
+                    mPCD.Nodesets[i].Nodes[j] = new PCD_Node();
+                    mPCD.Nodesets[i].Nodes[j].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                    mPCD.Nodesets[i].Nodes[j].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                    mPCD.Nodesets[i].Nodes[j].X=5000;
+                    mPCD.Nodesets[i].Nodes[j].Y=5000;
+                    mPCD.Nodesets[i].Nodes[j].R=255;
+                    mPCD.Nodesets[i].Nodes[j].G=0;
+                    mPCD.Nodesets[i].Nodes[j].B=0;
+                    mPCD.Nodesets[i].Nodes[j].A=0;
+                    mPCD.Nodesets[i].Nodes[j].W=0;
+                    mPCD.Nodesets[i].Nodes[j].Dimmer=0;
+                    mPCD.Nodesets[i].Nodes[j].UseRGB=true;
+                    mPCD.Nodesets[i].Nodes[j].UseA=false;
+                    mPCD.Nodesets[i].Nodes[j].UseW=false;
+                    mPCD.Nodesets[i].Nodes[j].UseDimmer=false;
+                    s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
+                }
+                mPCD.Nodesets[i].Nodes[Maximum - 1] = new PCD_Node();
+                mPCD.Nodesets[i].Nodes[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                mPCD.Nodesets[i].Nodes[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                mPCD.Nodesets[i].Nodes[Maximum - 1].X=5000;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].Y=5000;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].R=255;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].G=0;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].B=0;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].A=0;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].W=0;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].Dimmer=0;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].UseRGB=true;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].UseA=false;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].UseW=false;
+                mPCD.Nodesets[i].Nodes[Maximum - 1].UseDimmer=false;
             }
         }
 
@@ -1193,6 +1980,72 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         SendTCPCommand("set_dch "+Integer.toString(Channel)+" "+Integer.toString(Value));
     }
 
+    public void set_nodeset() {
+        if (mPCD!=null) {
+            if (mPCD.Nodesets != null) {
+                if ((mPCD.Nodesets.length > 0) && (CurrentNodeset < mPCD.Nodesets.length)) {
+                    int ChangeRGB=-1;
+                    int ChangeA=-1;
+                    int ChangeW=-1;
+                    int ChangeD=-1;
+
+                    mPCD.Nodesets[CurrentNodeset].fadetime=Integer.parseInt(((EditText) findViewById(R.id.node_fadetimeedit)).getText().toString());
+
+                    if (mPCD.Nodesets[CurrentNodeset].ChangeRGB) ChangeRGB=1;
+                    if (mPCD.Nodesets[CurrentNodeset].ChangeA) ChangeA=1;
+                    if (mPCD.Nodesets[CurrentNodeset].ChangeW) ChangeW=1;
+                    if (mPCD.Nodesets[CurrentNodeset].ChangeDimmer) ChangeD=1;
+
+                    SendTCPCommand("set_nodeset " + mPCD.Nodesets[CurrentNodeset].ID + " " + Integer.toString(mPCD.Nodesets[CurrentNodeset].stretching) + " " +
+                            Integer.toString(mPCD.Nodesets[CurrentNodeset].contrast) + " " + Integer.toString(mPCD.Nodesets[CurrentNodeset].fadetime) + " " + ChangeRGB + " " + ChangeA + " " + ChangeW + " " + ChangeD);
+                }
+            }
+        }
+    }
+
+    public static void set_node() {
+        if (mPCD!=null) {
+            if (mPCD.Nodesets != null) {
+                if ((mPCD.Nodesets.length > 0) && (CurrentNodeset < mPCD.Nodesets.length)) {
+                    if (mPCD.Nodesets[Main.CurrentNodeset].Nodes != null) {
+                        if ((mPCD.Nodesets[Main.CurrentNodeset].Nodes.length > 0) && (CurrentNode < mPCD.Nodesets[CurrentNodeset].Nodes.length)) {
+                            int R, G, B, A, W, D;
+
+                            if (mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseRGB) {
+                                R = mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].R;
+                                G = mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].G;
+                                B = mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].B;
+                            } else {
+                                R = -1;
+                                G = -1;
+                                B = -1;
+                            }
+                            if (mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseA) {
+                                A = mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].A;
+                            } else {
+                                A = -1;
+                            }
+                            if (mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseW) {
+                                W = mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].W;
+                            } else {
+                                W = -1;
+                            }
+                            if (mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].UseDimmer) {
+                                D = mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].Dimmer;
+                            } else {
+                                D = -1;
+                            }
+
+                            SendTCPCommand("set_node " + mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].ID + " " +
+                                    mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].X + " " + mPCD.Nodesets[CurrentNodeset].Nodes[CurrentNode].Y + " " +
+                                    Integer.toString(R) + " " + Integer.toString(G) + " " + Integer.toString(B) + " " + Integer.toString(A) + " " + Integer.toString(W) + " " + Integer.toString(D));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public static void start_scene(String ID) {
         SendTCPCommand("start_sc "+ID);
     }
@@ -1341,9 +2194,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         ((TextView) findViewById(R.id.ch3valuelbl)).setText(Integer.toString(Channelvalues[StartChannel+2]));
         ((TextView) findViewById(R.id.ch4valuelbl)).setText(Integer.toString(Channelvalues[StartChannel+3]));
         ((TextView) findViewById(R.id.ch5valuelbl)).setText(Integer.toString(Channelvalues[StartChannel+4]));
-        ((TextView) findViewById(R.id.ch6valuelbl)).setText(Integer.toString(Channelvalues[StartChannel+5]));
-        ((TextView) findViewById(R.id.ch7valuelbl)).setText(Integer.toString(Channelvalues[StartChannel+6]));
-        ((TextView) findViewById(R.id.ch8valuelbl)).setText(Integer.toString(Channelvalues[StartChannel+7]));
+        ((TextView) findViewById(R.id.ch6valuelbl)).setText(Integer.toString(Channelvalues[StartChannel + 5]));
+        ((TextView) findViewById(R.id.ch7valuelbl)).setText(Integer.toString(Channelvalues[StartChannel + 6]));
+        ((TextView) findViewById(R.id.ch8valuelbl)).setText(Integer.toString(Channelvalues[StartChannel + 7]));
     }
 
     private Runnable myTimerRunnable = new Runnable() {
@@ -1420,30 +2273,34 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         }
 */
 
-        Spinner presetbox = (Spinner) findViewById(R.id.presetbox);
-        ArrayAdapter<String> presetAdapter = new ArrayAdapter<String>(this, R.layout.devicelist_child_item, AvailablePresetNames);
-        presetAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
-        presetbox.setAdapter(presetAdapter);
-        presetbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                if (!firstcall_presetbox) {
-                    // Load the chosen preset
-                    if (!CurrentPresetName.equals(AvailablePresetNames[pos])) {
-                        CurrentPresetName = AvailablePresetNames[pos];
-                        LoadPreset();
+        try {
+            Spinner presetbox = (Spinner) findViewById(R.id.presetbox);
+            ArrayAdapter<String> presetAdapter = new ArrayAdapter<String>(this, R.layout.devicelist_child_item, AvailablePresetNames);
+            presetAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
+            presetbox.setAdapter(presetAdapter);
+            presetbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                    if (!firstcall_presetbox) {
+                        // Load the chosen preset
+                        if (!CurrentPresetName.equals(AvailablePresetNames[pos])) {
+                            CurrentPresetName = AvailablePresetNames[pos];
+                            LoadPreset();
 
-                        // Refresh controlpanel-fragment
-                        ControlpanelCallbackToMain(R.layout.fragment_controlpanel);
+                            // Refresh controlpanel-fragment
+                            ControlpanelCallbackToMain(R.layout.fragment_controlpanel);
+                        }
                     }
+                    firstcall_presetbox = false;
                 }
-                firstcall_presetbox = false;
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
+                }
+            });
+        }catch(Exception e){
+
+        }
     }
 
     public void SavePreset() {
@@ -1514,6 +2371,45 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                         outputWriter.writeInt(0);
                                     }
 
+                                    if (mPCD.Nodesets != null) {
+                                        outputWriter.writeInt(mPCD.Nodesets.length);
+                                        for (i = 0; i < mPCD.Nodesets.length; i++) {
+                                            outputWriter.writeObject(mPCD.Nodesets[i].ID);
+                                            outputWriter.writeObject(mPCD.Nodesets[i].Name);
+                                            outputWriter.writeInt(mPCD.Nodesets[i].stretching);
+                                            outputWriter.writeInt(mPCD.Nodesets[i].contrast);
+                                            outputWriter.writeInt(mPCD.Nodesets[i].fadetime);
+                                            outputWriter.writeBoolean(mPCD.Nodesets[i].ChangeRGB);
+                                            outputWriter.writeBoolean(mPCD.Nodesets[i].ChangeA);
+                                            outputWriter.writeBoolean(mPCD.Nodesets[i].ChangeW);
+                                            outputWriter.writeBoolean(mPCD.Nodesets[i].ChangeDimmer);
+
+                                            if (mPCD.Nodesets[i].Nodes != null) {
+                                                outputWriter.writeInt(mPCD.Nodesets[i].Nodes.length);
+                                                for (j = 0; j < mPCD.Nodesets[i].Nodes.length; j++) {
+                                                    outputWriter.writeObject(mPCD.Nodesets[i].Nodes[j].ID);
+                                                    outputWriter.writeObject(mPCD.Nodesets[i].Nodes[j].Name);
+                                                    outputWriter.writeInt(mPCD.Nodesets[i].Nodes[j].X);
+                                                    outputWriter.writeInt(mPCD.Nodesets[i].Nodes[j].Y);
+                                                    outputWriter.writeInt(mPCD.Nodesets[i].Nodes[j].R);
+                                                    outputWriter.writeInt(mPCD.Nodesets[i].Nodes[j].G);
+                                                    outputWriter.writeInt(mPCD.Nodesets[i].Nodes[j].B);
+                                                    outputWriter.writeInt(mPCD.Nodesets[i].Nodes[j].A);
+                                                    outputWriter.writeInt(mPCD.Nodesets[i].Nodes[j].W);
+                                                    outputWriter.writeInt(mPCD.Nodesets[i].Nodes[j].Dimmer);
+                                                    outputWriter.writeBoolean(mPCD.Nodesets[i].Nodes[j].UseRGB);
+                                                    outputWriter.writeBoolean(mPCD.Nodesets[i].Nodes[j].UseA);
+                                                    outputWriter.writeBoolean(mPCD.Nodesets[i].Nodes[j].UseW);
+                                                    outputWriter.writeBoolean(mPCD.Nodesets[i].Nodes[j].UseDimmer);
+                                                }
+                                            } else {
+                                                outputWriter.writeInt(0);
+                                            }
+                                        }
+                                    } else {
+                                        outputWriter.writeInt(0);
+                                    }
+
                                     if (mPCD.ControlpanelButtons != null) {
                                         outputWriter.writeInt(mPCD.ControlpanelButtons.length);
                                         for (i = 0; i < mPCD.ControlpanelButtons.length; i++) {
@@ -1537,7 +2433,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                         outputWriter.writeInt(0);
                                     }
 
+                                    outputWriter.flush();
                                     outputWriter.close();
+                                    fileos.flush();
                                     fileos.close();
 
                                     Toast.makeText(getBaseContext(), "Preset gespeichert", Toast.LENGTH_SHORT).show();
@@ -1622,6 +2520,47 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 }
             }
 
+            mylength=InputRead.readInt();
+            if (mylength > 0) {
+                mPCD.Nodesets = new PCD_Nodeset[mylength];
+                NodesetNames = new String[mylength];
+                for (i = 0; i < mPCD.Nodesets.length; i++) {
+                    mPCD.Nodesets[i] = new PCD_Nodeset();
+                    mPCD.Nodesets[i].ID = (String) InputRead.readObject();
+                    mPCD.Nodesets[i].Name = (String) InputRead.readObject();
+                    NodesetNames[i] = mPCD.Nodesets[i].Name;
+
+                    mPCD.Nodesets[i].stretching = InputRead.readInt();
+                    mPCD.Nodesets[i].contrast = InputRead.readInt();
+                    mPCD.Nodesets[i].fadetime = InputRead.readInt();
+                    mPCD.Nodesets[i].ChangeRGB = InputRead.readBoolean();
+                    mPCD.Nodesets[i].ChangeA = InputRead.readBoolean();
+                    mPCD.Nodesets[i].ChangeW = InputRead.readBoolean();
+                    mPCD.Nodesets[i].ChangeDimmer = InputRead.readBoolean();
+                    mylength=InputRead.readInt();
+                    if (mylength > 0) {
+                        mPCD.Nodesets[i].Nodes = new PCD_Node[mylength];
+                        for (j = 0; j < mPCD.Nodesets[i].Nodes.length; j++) {
+                            mPCD.Nodesets[i].Nodes[j] = new PCD_Node();
+                            mPCD.Nodesets[i].Nodes[j].ID = (String) InputRead.readObject();
+                            mPCD.Nodesets[i].Nodes[j].Name = (String) InputRead.readObject();
+                            mPCD.Nodesets[i].Nodes[j].X = InputRead.readInt();
+                            mPCD.Nodesets[i].Nodes[j].Y = InputRead.readInt();
+                            mPCD.Nodesets[i].Nodes[j].R = InputRead.readInt();
+                            mPCD.Nodesets[i].Nodes[j].G = InputRead.readInt();
+                            mPCD.Nodesets[i].Nodes[j].B = InputRead.readInt();
+                            mPCD.Nodesets[i].Nodes[j].A = InputRead.readInt();
+                            mPCD.Nodesets[i].Nodes[j].W = InputRead.readInt();
+                            mPCD.Nodesets[i].Nodes[j].Dimmer = InputRead.readInt();
+                            mPCD.Nodesets[i].Nodes[j].UseRGB = InputRead.readBoolean();
+                            mPCD.Nodesets[i].Nodes[j].UseA = InputRead.readBoolean();
+                            mPCD.Nodesets[i].Nodes[j].UseW = InputRead.readBoolean();
+                            mPCD.Nodesets[i].Nodes[j].UseDimmer = InputRead.readBoolean();
+                        }
+                    }
+                }
+            }
+
             mylength = InputRead.readInt();
             if (mylength > 0) {
                 mPCD.ControlpanelButtons = new PCD_ControlpanelButton[mylength][];
@@ -1649,7 +2588,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
             Toast.makeText(getBaseContext(), "Preset geladen",Toast.LENGTH_SHORT).show();
         }catch(Exception e){
-            //System.out.println(e.toString());
+            System.out.println(e.toString());
             Toast.makeText(getBaseContext(), "Fehler in Preset!",Toast.LENGTH_SHORT).show();
         }
     }

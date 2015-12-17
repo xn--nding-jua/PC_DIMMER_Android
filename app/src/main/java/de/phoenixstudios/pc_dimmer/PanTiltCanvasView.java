@@ -70,9 +70,16 @@ public class PanTiltCanvasView extends View {
         canvas.drawLine(canvas.getWidth() / 2, 0, canvas.getWidth() / 2, canvas.getHeight(), mPaint); // Mittlerer senkrechter Strich
         canvas.drawCircle(mX, mY, 35.0f, mPaint); // Punkt an aktuelle Position zeichnen
 
-        Main.set_pantilt(Main.CurrentDeviceOrGroupID, -1, Math.round((mX / canvas.getWidth()) * 255), -1, Math.round((mY/canvas.getHeight())*255), 150, -1);
+        Main.set_pantilt(Main.CurrentDeviceOrGroupID, -1, Math.round((mX / canvas.getWidth()) * 255), -1, Math.round((mY / canvas.getHeight()) * 255), 150, -1);
         //Main.set_channel(Main.CurrentDeviceOrGroupID, "Pan", -1, Math.round((mX / canvas.getWidth()) * 255), 150, -1);
         //Main.set_channel(Main.CurrentDeviceOrGroupID, "Tilt", -1, Math.round((mY/canvas.getHeight())*255), 150, -1);
+    }
+
+    public void setPoint(float x, float y) {
+        if (mCanvas!=null) {
+            mX = (x / 10000) * mCanvas.getWidth();
+            mY = (y / 10000) * mCanvas.getHeight();
+        }
     }
 
     // when ACTION_DOWN start touch according to the x,y values
