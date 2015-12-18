@@ -7,12 +7,15 @@ PC_DIMMER is a Windows-Software that is capable of controlling up to 16 DMX-Univ
 
 The PC_DIMMER for Android is a Remote-Control-App for Android >=4.0.3 to control the important parts of PC_DIMMER from a Tablet or Smartphone
 
-At the moment this piece of software is in early beta-state. So please be warned that it should not be used in productive environment at the moment.
-
 
 Usage
 --------
-Download the file app/app-release.apk to your Android-Device, deactivate the "Block Unknown Sources"-function on your device and install the APK. Afterwards enter the IP-Address of your PC_DIMMER-Server. Within PC_DIMMER for Windows you should activate the "Terminal-Interface" in the "Setup"-Tab of the Mainwindow.
+Go to the Google Playstore and search for the app called "PC_DIMMER". Install it using the well-known buttons.
+
+Alternatively download the file app/app-release.apk to your Android-Device, deactivate the "Block Unknown Sources"-function on your device and install the APK. Afterwards enter the IP-Address of your PC_DIMMER-Server. Within PC_DIMMER for Windows you should activate the "Terminal-Interface" in the "Setup"-Tab of the Mainwindow.
+
+The app will be available in the F-Droid repository in the future, too.
+
 
 
 Contact
