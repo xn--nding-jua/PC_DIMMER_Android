@@ -270,10 +270,12 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                 scenelist_collection = new LinkedHashMap<>();
                 if (mPCD!=null) {
-                    for (PCD_Scene scene : scenelist_grouplist) {
-                        load_scene_child(mPCD.Scenes[Integer.parseInt(scene.ID)]);
-                        scenelist_collection.put(scene, scenelist_childlist);
-                    }
+					if (mPCD.Scenes!=null) {
+						for (PCD_Scene scene : scenelist_grouplist) {
+							load_scene_child(mPCD.Scenes[Integer.parseInt(scene.ID)]);
+							scenelist_collection.put(scene, scenelist_childlist);
+						}
+					}
                 }
                 scenelistview = (ExpandableListView) findViewById(R.id.scenes_listview);
                 if (scenelistview!=null) {
