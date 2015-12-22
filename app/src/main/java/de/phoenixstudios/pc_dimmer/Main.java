@@ -272,7 +272,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 if (mPCD!=null) {
 					if (mPCD.Scenes!=null) {
 						for (PCD_Scene scene : scenelist_grouplist) {
-							load_scene_child(mPCD.Scenes[Integer.parseInt(scene.ID)]);
+							load_scene_child(mPCD.Scenes[Integer.parseInt(scene.ID)-1]);
 							scenelist_collection.put(scene, scenelist_childlist);
 						}
 					}
