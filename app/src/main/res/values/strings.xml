@@ -108,4 +108,8 @@
     <string name="str_farbe">Farbe</string>
     <string name="str_xy">X/Y</string>
     <string name="str_more">Weitere</string>
+    <string name="str_pcdimmer">PC_DIMMER</string>
+    <string name="str_ok2">OK</string>
+    <string name="str_syncok">Synchronisation abgeschlossen</string>
+    <string name="str_synccancelled">Synchronisation abgebrochen</string>
 </resources>

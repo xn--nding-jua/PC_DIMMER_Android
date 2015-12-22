@@ -1675,42 +1675,46 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             //devices 60 1:Blau Decke Rechts,{DF55AE31-ED33-491A-9756-ED9B6F076EF2} 2:Gelb Decke Rechts,{E084758A-0665-4AF7-9810-D0AEB3BEAA99} 3:Rot Decke Rechts,{C61B
             if (s.length() > 10) {
                 Maximum = Integer.parseInt(mySubString(s, 8, s.indexOf(":") - 8 - 2));
-                mPCD.Devices = new PCD_Device[Maximum];
-                DeviceNames = new String[Maximum];
+                if (Maximum>0) {
+                    mPCD.Devices = new PCD_Device[Maximum];
+                    DeviceNames = new String[Maximum];
 
-                for (i = 0; i < Maximum - 1; i++) {
-                    mPCD.Devices[i] = new PCD_Device();
-                    mPCD.Devices[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                    mPCD.Devices[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                    DeviceNames[i] = mPCD.Devices[i].Name;
-                    s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
-                    //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round((i/Maximum)*25));
+                    for (i = 0; i < (Maximum - 1); i++) {
+                        mPCD.Devices[i] = new PCD_Device();
+                        mPCD.Devices[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                        mPCD.Devices[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                        DeviceNames[i] = mPCD.Devices[i].Name;
+                        s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
+                        //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round((i/Maximum)*25));
+                    }
+                    mPCD.Devices[Maximum - 1] = new PCD_Device();
+                    mPCD.Devices[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                    mPCD.Devices[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                    DeviceNames[Maximum - 1] = mPCD.Devices[Maximum - 1].Name;
                 }
-                mPCD.Devices[Maximum - 1] = new PCD_Device();
-                mPCD.Devices[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                mPCD.Devices[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                DeviceNames[Maximum - 1] = mPCD.Devices[Maximum - 1].Name;
             }
 
             s = SendReceiveTCPCommand("get_groups");
             if (s.equals("-1")) return;
             if (s.length() > 10) {
                 Maximum = Integer.parseInt(mySubString(s, 7, s.indexOf(":") - 7 - 2));
-                mPCD.Groups = new PCD_Group[Maximum];
-                GroupNames = new String[Maximum];
+                if (Maximum>0) {
+                    mPCD.Groups = new PCD_Group[Maximum];
+                    GroupNames = new String[Maximum];
 
-                for (i = 0; i < Maximum - 1; i++) {
-                    mPCD.Groups[i] = new PCD_Group();
-                    mPCD.Groups[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                    mPCD.Groups[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                    GroupNames[i] = mPCD.Groups[i].Name;
-                    s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
-                    //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(25+(i/Maximum)*25));
+                    for (i = 0; i < (Maximum - 1); i++) {
+                        mPCD.Groups[i] = new PCD_Group();
+                        mPCD.Groups[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                        mPCD.Groups[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                        GroupNames[i] = mPCD.Groups[i].Name;
+                        s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
+                        //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(25+(i/Maximum)*25));
+                    }
+                    mPCD.Groups[Maximum - 1] = new PCD_Group();
+                    mPCD.Groups[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                    mPCD.Groups[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                    GroupNames[Maximum - 1] = mPCD.Groups[Maximum - 1].Name;
                 }
-                mPCD.Groups[Maximum - 1] = new PCD_Group();
-                mPCD.Groups[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                mPCD.Groups[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                GroupNames[Maximum - 1] = mPCD.Groups[Maximum - 1].Name;
             }
 
             for (i = 0; i <= 11; i++) {
@@ -1718,18 +1722,20 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 if (s.equals("-1")) return;
                 if (s.length() > 10) {
                     Maximum = Integer.parseInt(mySubString(s, 7, s.indexOf(":") - 7 - 2));
-                    mPCD.Scenes[i] = new PCD_Scene[Maximum];
+                    if (Maximum>0) {
+                        mPCD.Scenes[i] = new PCD_Scene[Maximum];
 
-                    for (j = 0; j < Maximum - 1; j++) {
-                        mPCD.Scenes[i][j] = new PCD_Scene();
-                        mPCD.Scenes[i][j].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                        mPCD.Scenes[i][j].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                        s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
-                        //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(50+(i/Maximum)*2));
+                        for (j = 0; j < (Maximum - 1); j++) {
+                            mPCD.Scenes[i][j] = new PCD_Scene();
+                            mPCD.Scenes[i][j].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                            mPCD.Scenes[i][j].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                            s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
+                            //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(50+(i/Maximum)*2));
+                        }
+                        mPCD.Scenes[i][Maximum - 1] = new PCD_Scene();
+                        mPCD.Scenes[i][Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                        mPCD.Scenes[i][Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
                     }
-                    mPCD.Scenes[i][Maximum - 1] = new PCD_Scene();
-                    mPCD.Scenes[i][Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                    mPCD.Scenes[i][Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
                 }
             }
 
@@ -1737,75 +1743,79 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             if (s.equals("-1")) return;
             if (s.length() > 10) {
                 Maximum = Integer.parseInt(mySubString(s, 9, s.indexOf(":") - 9 - 2));
-                mPCD.Nodesets = new PCD_Nodeset[Maximum];
-                NodesetNames = new String[Maximum];
-                for (i = 0; i < Maximum - 1; i++) {
-                    mPCD.Nodesets[i] = new PCD_Nodeset();
-                    mPCD.Nodesets[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                    mPCD.Nodesets[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                    NodesetNames[i] = mPCD.Nodesets[i].Name;
-                    mPCD.Nodesets[i].stretching = 128000;
-                    mPCD.Nodesets[i].contrast = 20;
-                    mPCD.Nodesets[i].fadetime = 75;
-                    mPCD.Nodesets[i].ChangeRGB = true;
-                    mPCD.Nodesets[i].ChangeA = false;
-                    mPCD.Nodesets[i].ChangeW = false;
-                    mPCD.Nodesets[i].ChangeDimmer = false;
-                    s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
-                }
-                mPCD.Nodesets[Maximum - 1] = new PCD_Nodeset();
-                mPCD.Nodesets[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                mPCD.Nodesets[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                NodesetNames[Maximum - 1] = mPCD.Nodesets[Maximum - 1].Name;
-                mPCD.Nodesets[Maximum - 1].stretching = 128000;
-                mPCD.Nodesets[Maximum - 1].contrast = 20;
-                mPCD.Nodesets[Maximum - 1].fadetime = 75;
-                mPCD.Nodesets[Maximum - 1].ChangeRGB = true;
-                mPCD.Nodesets[Maximum - 1].ChangeA = false;
-                mPCD.Nodesets[Maximum - 1].ChangeW = false;
-                mPCD.Nodesets[Maximum - 1].ChangeDimmer = false;
-            }
-            for (i = 0; i < mPCD.Nodesets.length; i++) {
-                s = SendReceiveTCPCommand("get_nodes " + mPCD.Nodesets[i].ID);
-                if (s.equals("-1")) return;
-                if (s.length() > 10) {
-                    Maximum = Integer.parseInt(mySubString(s, 6, s.indexOf(":") - 6 - 2));
-                    mPCD.Nodesets[i].Nodes = new PCD_Node[Maximum];
-
-                    for (j = 0; j < Maximum - 1; j++) {
-                        mPCD.Nodesets[i].Nodes[j] = new PCD_Node();
-                        mPCD.Nodesets[i].Nodes[j].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                        mPCD.Nodesets[i].Nodes[j].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                        mPCD.Nodesets[i].Nodes[j].X = 5000;
-                        mPCD.Nodesets[i].Nodes[j].Y = 5000;
-                        mPCD.Nodesets[i].Nodes[j].R = 255;
-                        mPCD.Nodesets[i].Nodes[j].G = 0;
-                        mPCD.Nodesets[i].Nodes[j].B = 0;
-                        mPCD.Nodesets[i].Nodes[j].A = 0;
-                        mPCD.Nodesets[i].Nodes[j].W = 0;
-                        mPCD.Nodesets[i].Nodes[j].Dimmer = 0;
-                        mPCD.Nodesets[i].Nodes[j].UseRGB = true;
-                        mPCD.Nodesets[i].Nodes[j].UseA = false;
-                        mPCD.Nodesets[i].Nodes[j].UseW = false;
-                        mPCD.Nodesets[i].Nodes[j].UseDimmer = false;
+                if (Maximum>0) {
+                    mPCD.Nodesets = new PCD_Nodeset[Maximum];
+                    NodesetNames = new String[Maximum];
+                    for (i = 0; i < (Maximum - 1); i++) {
+                        mPCD.Nodesets[i] = new PCD_Nodeset();
+                        mPCD.Nodesets[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                        mPCD.Nodesets[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                        NodesetNames[i] = mPCD.Nodesets[i].Name;
+                        mPCD.Nodesets[i].stretching = 128000;
+                        mPCD.Nodesets[i].contrast = 20;
+                        mPCD.Nodesets[i].fadetime = 75;
+                        mPCD.Nodesets[i].ChangeRGB = true;
+                        mPCD.Nodesets[i].ChangeA = false;
+                        mPCD.Nodesets[i].ChangeW = false;
+                        mPCD.Nodesets[i].ChangeDimmer = false;
                         s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
                     }
-                    mPCD.Nodesets[i].Nodes[Maximum - 1] = new PCD_Node();
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].X = 5000;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].Y = 5000;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].R = 255;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].G = 0;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].B = 0;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].A = 0;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].W = 0;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].Dimmer = 0;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].UseRGB = true;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].UseA = false;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].UseW = false;
-                    mPCD.Nodesets[i].Nodes[Maximum - 1].UseDimmer = false;
-                }
+                    mPCD.Nodesets[Maximum - 1] = new PCD_Nodeset();
+                    mPCD.Nodesets[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                    mPCD.Nodesets[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                    NodesetNames[Maximum - 1] = mPCD.Nodesets[Maximum - 1].Name;
+                    mPCD.Nodesets[Maximum - 1].stretching = 128000;
+                    mPCD.Nodesets[Maximum - 1].contrast = 20;
+                    mPCD.Nodesets[Maximum - 1].fadetime = 75;
+                    mPCD.Nodesets[Maximum - 1].ChangeRGB = true;
+                    mPCD.Nodesets[Maximum - 1].ChangeA = false;
+                    mPCD.Nodesets[Maximum - 1].ChangeW = false;
+                    mPCD.Nodesets[Maximum - 1].ChangeDimmer = false;
+
+                    for (i = 0; i < mPCD.Nodesets.length; i++) {
+                        s = SendReceiveTCPCommand("get_nodes " + mPCD.Nodesets[i].ID);
+                        if (s.equals("-1")) return;
+                        if (s.length() > 10) {
+                            Maximum = Integer.parseInt(mySubString(s, 6, s.indexOf(":") - 6 - 2));
+                            if (Maximum>0) {
+                                mPCD.Nodesets[i].Nodes = new PCD_Node[Maximum];
+
+                                for (j = 0; j < (Maximum - 1); j++) {
+                                    mPCD.Nodesets[i].Nodes[j] = new PCD_Node();
+                                    mPCD.Nodesets[i].Nodes[j].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                                    mPCD.Nodesets[i].Nodes[j].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                                    mPCD.Nodesets[i].Nodes[j].X = 5000;
+                                    mPCD.Nodesets[i].Nodes[j].Y = 5000;
+                                    mPCD.Nodesets[i].Nodes[j].R = 255;
+                                    mPCD.Nodesets[i].Nodes[j].G = 0;
+                                    mPCD.Nodesets[i].Nodes[j].B = 0;
+                                    mPCD.Nodesets[i].Nodes[j].A = 0;
+                                    mPCD.Nodesets[i].Nodes[j].W = 0;
+                                    mPCD.Nodesets[i].Nodes[j].Dimmer = 0;
+                                    mPCD.Nodesets[i].Nodes[j].UseRGB = true;
+                                    mPCD.Nodesets[i].Nodes[j].UseA = false;
+                                    mPCD.Nodesets[i].Nodes[j].UseW = false;
+                                    mPCD.Nodesets[i].Nodes[j].UseDimmer = false;
+                                    s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
+                                }
+                                mPCD.Nodesets[i].Nodes[Maximum - 1] = new PCD_Node();
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].X = 5000;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].Y = 5000;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].R = 255;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].G = 0;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].B = 0;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].A = 0;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].W = 0;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].Dimmer = 0;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].UseRGB = true;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].UseA = false;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].UseW = false;
+                                mPCD.Nodesets[i].Nodes[Maximum - 1].UseDimmer = false;
+                            }
+                        }
+                    }                }
             }
 
             s = SendReceiveTCPCommand("get_controlpanel");
@@ -1838,10 +1848,14 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             }
 
             QueryChannelvalues(1, 8);
+
+            Toast.makeText(getBaseContext(), R.string.str_syncok, Toast.LENGTH_LONG).show();
         }catch(Exception e){
             if (BuildConfig.DEBUG) {
                 System.out.println(e.toString());
             }
+
+            Toast.makeText(getBaseContext(), R.string.str_synccancelled, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -2675,5 +2689,14 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         }catch(Exception e){
             //System.out.println(e.toString());
         }
+    }
+
+    public void ShowMessage(String msg) {
+        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(Main.this);
+        dlgAlert.setMessage(msg);
+        dlgAlert.setTitle(R.string.str_pcdimmer);
+        dlgAlert.setPositiveButton(R.string.str_ok2, null);
+        dlgAlert.setCancelable(true);
+        dlgAlert.create().show();
     }
 }
