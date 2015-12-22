@@ -2542,7 +2542,6 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     }
                 }
             }
-
             mylength=InputRead.readInt();
             if (mylength > 0) {
                 mPCD.Nodesets = new PCD_Nodeset[mylength];
@@ -2595,7 +2594,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                             mPCD.ControlpanelButtons[i][j] = new PCD_ControlpanelButton();
                             mPCD.ControlpanelButtons[i][j].ID = (String) InputRead.readObject();
                             mPCD.ControlpanelButtons[i][j].Name = (String) InputRead.readObject();
-                            mPCD.ControlpanelButtons[i][j].ID = (String) InputRead.readObject();
+                            mPCD.ControlpanelButtons[i][j].Type = (String) InputRead.readObject();
                             mPCD.ControlpanelButtons[i][j].R = InputRead.readInt();
                             mPCD.ControlpanelButtons[i][j].G = InputRead.readInt();
                             mPCD.ControlpanelButtons[i][j].B = InputRead.readInt();
