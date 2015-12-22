@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PC_DIMMER</string>
     <string name="about_title">PC_DIMMER für Android</string>
-    <string name="about_versionstring">Version 1.0 vom 17.12.2015</string>
+    <string name="about_versionstring">Version 1.1 vom 22.12.2015</string>
     <string name="about_website">http://www.pcdimmer.de</string>
     <string name="about_name">(c) 2015 Dipl.-Ing. Christian Nöding</string>
     <string name="about_street">Rodeweg 4</string>
@@ -81,4 +81,31 @@
     <string name="setup_networkstate">networkstate</string>
     <string name="stageview_refresh">Ansicht aktualisieren</string>
     <string name="inputdialog_presetname">Presetname:</string>
+    <string name="str_pluginszenen">Pluginszenen</string>
+    <string name="str_presetszenen">Preset-Szenen</string>
+    <string name="str_mediacenterszenen">MediaCenterSzenen</string>
+    <string name="str_effekte">Effekte</string>
+    <string name="str_automatikszenen">Automatikszenen</string>
+    <string name="str_presets">Presets</string>
+    <string name="str_kombinationsszenen">Kombinationsszenen</string>
+    <string name="str_befehle">Befehle</string>
+    <string name="str_bewegungsszenen">Bewegungsszenen</string>
+    <string name="str_audioszenen">Audioszenen</string>
+    <string name="str_geräteszenen">Geräteszenen</string>
+    <string name="str_einfacheszenen">Einfache Szenen</string>
+    <string name="str_erroronsave">Fehler beim Speichern!</string>
+    <string name="str_settingssaved">Einstellungen gespeichert</string>
+    <string name="str_presetdeleted">Preset gelöscht</string>
+    <string name="str_errorinpreset">Fehler in Preset!</string>
+    <string name="str_presetloaded">Preset geladen</string>
+    <string name="str_cancel">Abbrechen</string>
+    <string name="str_presetsaved">Preset gespeichert</string>
+    <string name="str_ok">OK</string>
+    <string name="str_commandthreadclosed">TCPCommandThread closed.</string>
+    <string name="str_nodes">Knoten</string>
+    <string name="str_general">Generell</string>
+    <string name="str_dimmer">Dimmer</string>
+    <string name="str_farbe">Farbe</string>
+    <string name="str_xy">X/Y</string>
+    <string name="str_more">Weitere</string>
 </resources>

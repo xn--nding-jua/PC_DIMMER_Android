@@ -144,7 +144,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     TabHost nodecontrol_tabHost;
 
     static boolean NetworkThreadAlive=false;
-    static String NetworkIPAddress="192.168.0.203";
+    static String NetworkIPAddress="192.168.0.1";
     static int NetworkPort=10160;
     static boolean NetworkConnectionOK=false;
     static String NetworkErrorMsg="";
@@ -309,19 +309,19 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                 TabHost.TabSpec devicecontrol_spec1 = devicecontrol_tabHost.newTabSpec("devicecontrol_tab1");
                 devicecontrol_spec1.setContent(R.id.devicecontrol_tab1);
-                devicecontrol_spec1.setIndicator("Dimmer");
+                devicecontrol_spec1.setIndicator(getString(R.string.str_dimmer));
 
                 TabHost.TabSpec devicecontrol_spec2 = devicecontrol_tabHost.newTabSpec("devicecontrol_tab2");
                 devicecontrol_spec2.setContent(R.id.devicecontrol_tab2);
-                devicecontrol_spec2.setIndicator("Farbe");
+                devicecontrol_spec2.setIndicator(getString(R.string.str_farbe));
 
                 TabHost.TabSpec devicecontrol_spec3 = devicecontrol_tabHost.newTabSpec("devicecontrol_tab3");
                 devicecontrol_spec3.setContent(R.id.devicecontrol_tab3);
-                devicecontrol_spec3.setIndicator("X/Y");
+                devicecontrol_spec3.setIndicator(getString(R.string.str_xy));
 
                 TabHost.TabSpec devicecontrol_spec4 = devicecontrol_tabHost.newTabSpec("devicecontrol_tab4");
                 devicecontrol_spec4.setContent(R.id.devicecontrol_tab4);
-                devicecontrol_spec4.setIndicator("Weitere");
+                devicecontrol_spec4.setIndicator(getString(R.string.str_more));
 
                 devicecontrol_tabHost.addTab(devicecontrol_spec1);
                 devicecontrol_tabHost.addTab(devicecontrol_spec2);
@@ -784,8 +784,6 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     }
                 });
 
-
-
                 SeekBar channelslider = (SeekBar) findViewById(R.id.channelslider);
                 SeekBar ch1slider = (SeekBar) findViewById(R.id.ch1slider);
                 SeekBar ch2slider = (SeekBar) findViewById(R.id.ch2slider);
@@ -987,16 +985,16 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                     ((CheckBox) findViewById(R.id.nodeset_usewhitecheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].ChangeW);
                                     ((CheckBox) findViewById(R.id.nodeset_usedimmercheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].ChangeDimmer);
 
-                                    NodesNames = new String[mPCD.Nodesets[CurrentNodeset].Nodes.length];
-                                    for (int i = 0; i < mPCD.Nodesets[CurrentNodeset].Nodes.length; i++) {
-                                        NodesNames[i] = mPCD.Nodesets[CurrentNodeset].Nodes[i].Name;
-                                    }
-
                                     // fill nodelistbox
                                     if (mPCD != null) {
                                         if (mPCD.Nodesets != null) {
                                             if (CurrentNodeset < mPCD.Nodesets.length) {
                                                 if (mPCD.Nodesets[CurrentNodeset].Nodes != null) {
+                                                    NodesNames = new String[mPCD.Nodesets[CurrentNodeset].Nodes.length];
+                                                    for (int i = 0; i < mPCD.Nodesets[CurrentNodeset].Nodes.length; i++) {
+                                                        NodesNames[i] = mPCD.Nodesets[CurrentNodeset].Nodes[i].Name;
+                                                    }
+
                                                     Spinner nodelistbox = (Spinner) findViewById(R.id.nodelistbox);
                                                     ArrayAdapter<String> nodeAdapter = new ArrayAdapter<>(Main.this, R.layout.devicelist_child_item, NodesNames);
                                                     nodeAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
@@ -1050,11 +1048,11 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                 TabHost.TabSpec nodecontrol_spec1 = nodecontrol_tabHost.newTabSpec("nodecontrol_tab1");
                 nodecontrol_spec1.setContent(R.id.nodecontrol_tab1);
-                nodecontrol_spec1.setIndicator("Generell");
+                nodecontrol_spec1.setIndicator(getString(R.string.str_general));
 
                 TabHost.TabSpec nodecontrol_spec2 = nodecontrol_tabHost.newTabSpec("nodecontrol_tab2");
                 nodecontrol_spec2.setContent(R.id.nodecontrol_tab2);
-                nodecontrol_spec2.setIndicator("Knoten");
+                nodecontrol_spec2.setIndicator(getString(R.string.str_nodes));
 
                 nodecontrol_tabHost.addTab(nodecontrol_spec1);
                 nodecontrol_tabHost.addTab(nodecontrol_spec2);
@@ -1647,7 +1645,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         @Override
         protected void onPostExecute(Long result) {
             if (BuildConfig.DEBUG) {
-                System.out.println("TCPCommandThread closed.");
+                System.out.println(getString(R.string.str_commandthreadclosed));
             }
         }
     }
@@ -1670,175 +1668,181 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         mPCD = new PCD();
         mPCD.Scenes = new PCD_Scene[12][];
 
-        s = SendReceiveTCPCommand("get_devices");
-        if (s.equals("-1")) return;
-        //devices 56 1:NAME,{GUID} 2:NAME,{GUID} 3:....
-        //devices 60 1:Blau Decke Rechts,{DF55AE31-ED33-491A-9756-ED9B6F076EF2} 2:Gelb Decke Rechts,{E084758A-0665-4AF7-9810-D0AEB3BEAA99} 3:Rot Decke Rechts,{C61B
-        if (s.length()>10) {
-            Maximum = Integer.parseInt(mySubString(s, 8, s.indexOf(":") - 8 - 2));
-            mPCD.Devices = new PCD_Device[Maximum];
-            DeviceNames = new String[Maximum];
+        try {
+            s = SendReceiveTCPCommand("get_devices");
+            if (s.equals("-1")) return;
+            //devices 56 1:NAME,{GUID} 2:NAME,{GUID} 3:....
+            //devices 60 1:Blau Decke Rechts,{DF55AE31-ED33-491A-9756-ED9B6F076EF2} 2:Gelb Decke Rechts,{E084758A-0665-4AF7-9810-D0AEB3BEAA99} 3:Rot Decke Rechts,{C61B
+            if (s.length() > 10) {
+                Maximum = Integer.parseInt(mySubString(s, 8, s.indexOf(":") - 8 - 2));
+                mPCD.Devices = new PCD_Device[Maximum];
+                DeviceNames = new String[Maximum];
 
-            for (i=0; i < Maximum - 1; i++) {
-                mPCD.Devices[i] = new PCD_Device();
-                mPCD.Devices[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                mPCD.Devices[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                DeviceNames[i] = mPCD.Devices[i].Name;
-                s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
-                //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round((i/Maximum)*25));
+                for (i = 0; i < Maximum - 1; i++) {
+                    mPCD.Devices[i] = new PCD_Device();
+                    mPCD.Devices[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                    mPCD.Devices[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                    DeviceNames[i] = mPCD.Devices[i].Name;
+                    s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
+                    //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round((i/Maximum)*25));
+                }
+                mPCD.Devices[Maximum - 1] = new PCD_Device();
+                mPCD.Devices[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                mPCD.Devices[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                DeviceNames[Maximum - 1] = mPCD.Devices[Maximum - 1].Name;
             }
-            mPCD.Devices[Maximum-1] = new PCD_Device();
-            mPCD.Devices[Maximum-1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-            mPCD.Devices[Maximum-1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-            DeviceNames[Maximum-1] = mPCD.Devices[Maximum-1].Name;
-        }
 
-        s = SendReceiveTCPCommand("get_groups");
-        if (s.equals("-1")) return;
-        if (s.length()>10) {
-            Maximum = Integer.parseInt(mySubString(s, 7, s.indexOf(":") - 7 - 2));
-            mPCD.Groups = new PCD_Group[Maximum];
-            GroupNames = new String[Maximum];
-
-            for (i=0; i < Maximum - 1; i++) {
-                mPCD.Groups[i] = new PCD_Group();
-                mPCD.Groups[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                mPCD.Groups[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                GroupNames[i]=mPCD.Groups[i].Name;
-                s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
-                //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(25+(i/Maximum)*25));
-            }
-            mPCD.Groups[Maximum-1] = new PCD_Group();
-            mPCD.Groups[Maximum-1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-            mPCD.Groups[Maximum-1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-            GroupNames[Maximum-1]=mPCD.Groups[Maximum-1].Name;
-        }
-
-        for (i=0; i<=11; i++) {
-            s = SendReceiveTCPCommand("get_scenes "+Integer.toString(i));
+            s = SendReceiveTCPCommand("get_groups");
             if (s.equals("-1")) return;
             if (s.length() > 10) {
                 Maximum = Integer.parseInt(mySubString(s, 7, s.indexOf(":") - 7 - 2));
-                mPCD.Scenes[i] = new PCD_Scene[Maximum];
+                mPCD.Groups = new PCD_Group[Maximum];
+                GroupNames = new String[Maximum];
 
-                for (j = 0; j < Maximum - 1; j++) {
-                    mPCD.Scenes[i][j] = new PCD_Scene();
-                    mPCD.Scenes[i][j].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                    mPCD.Scenes[i][j].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                for (i = 0; i < Maximum - 1; i++) {
+                    mPCD.Groups[i] = new PCD_Group();
+                    mPCD.Groups[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                    mPCD.Groups[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                    GroupNames[i] = mPCD.Groups[i].Name;
                     s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
-                    //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(50+(i/Maximum)*2));
+                    //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(25+(i/Maximum)*25));
                 }
-                mPCD.Scenes[i][Maximum - 1] = new PCD_Scene();
-                mPCD.Scenes[i][Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                mPCD.Scenes[i][Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                mPCD.Groups[Maximum - 1] = new PCD_Group();
+                mPCD.Groups[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                mPCD.Groups[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                GroupNames[Maximum - 1] = mPCD.Groups[Maximum - 1].Name;
             }
-        }
 
-        s = SendReceiveTCPCommand("get_nodesets");
-        if (s.equals("-1")) return;
-        if (s.length() > 10) {
-            Maximum = Integer.parseInt(mySubString(s, 9, s.indexOf(":") - 9 - 2));
-            mPCD.Nodesets = new PCD_Nodeset[Maximum];
-            NodesetNames = new String[Maximum];
-            for (i = 0; i < Maximum - 1; i++) {
-                mPCD.Nodesets[i] = new PCD_Nodeset();
-                mPCD.Nodesets[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                mPCD.Nodesets[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                NodesetNames[i] = mPCD.Nodesets[i].Name;
-                mPCD.Nodesets[i].stretching=128000;
-                mPCD.Nodesets[i].contrast=20;
-                mPCD.Nodesets[i].fadetime=75;
-                mPCD.Nodesets[i].ChangeRGB=true;
-                mPCD.Nodesets[i].ChangeA=false;
-                mPCD.Nodesets[i].ChangeW=false;
-                mPCD.Nodesets[i].ChangeDimmer=false;
-                s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
+            for (i = 0; i <= 11; i++) {
+                s = SendReceiveTCPCommand("get_scenes " + Integer.toString(i));
+                if (s.equals("-1")) return;
+                if (s.length() > 10) {
+                    Maximum = Integer.parseInt(mySubString(s, 7, s.indexOf(":") - 7 - 2));
+                    mPCD.Scenes[i] = new PCD_Scene[Maximum];
+
+                    for (j = 0; j < Maximum - 1; j++) {
+                        mPCD.Scenes[i][j] = new PCD_Scene();
+                        mPCD.Scenes[i][j].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                        mPCD.Scenes[i][j].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                        s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
+                        //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(50+(i/Maximum)*2));
+                    }
+                    mPCD.Scenes[i][Maximum - 1] = new PCD_Scene();
+                    mPCD.Scenes[i][Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                    mPCD.Scenes[i][Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                }
             }
-            mPCD.Nodesets[Maximum - 1] = new PCD_Nodeset();
-            mPCD.Nodesets[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-            mPCD.Nodesets[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-            NodesetNames[Maximum - 1] = mPCD.Nodesets[Maximum - 1].Name;
-            mPCD.Nodesets[Maximum - 1].stretching=128000;
-            mPCD.Nodesets[Maximum - 1].contrast=20;
-            mPCD.Nodesets[Maximum - 1].fadetime=75;
-            mPCD.Nodesets[Maximum - 1].ChangeRGB=true;
-            mPCD.Nodesets[Maximum - 1].ChangeA=false;
-            mPCD.Nodesets[Maximum - 1].ChangeW=false;
-            mPCD.Nodesets[Maximum - 1].ChangeDimmer=false;
-        }
-        for (i = 0; i<mPCD.Nodesets.length; i++) {
-            s = SendReceiveTCPCommand("get_nodes "+mPCD.Nodesets[i].ID);
+
+            s = SendReceiveTCPCommand("get_nodesets");
             if (s.equals("-1")) return;
             if (s.length() > 10) {
-                Maximum = Integer.parseInt(mySubString(s, 6, s.indexOf(":") - 6 - 2));
-                mPCD.Nodesets[i].Nodes = new PCD_Node[Maximum];
-
-                for (j = 0; j < Maximum - 1; j++) {
-                    mPCD.Nodesets[i].Nodes[j] = new PCD_Node();
-                    mPCD.Nodesets[i].Nodes[j].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                    mPCD.Nodesets[i].Nodes[j].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                    mPCD.Nodesets[i].Nodes[j].X=5000;
-                    mPCD.Nodesets[i].Nodes[j].Y=5000;
-                    mPCD.Nodesets[i].Nodes[j].R=255;
-                    mPCD.Nodesets[i].Nodes[j].G=0;
-                    mPCD.Nodesets[i].Nodes[j].B=0;
-                    mPCD.Nodesets[i].Nodes[j].A=0;
-                    mPCD.Nodesets[i].Nodes[j].W=0;
-                    mPCD.Nodesets[i].Nodes[j].Dimmer=0;
-                    mPCD.Nodesets[i].Nodes[j].UseRGB=true;
-                    mPCD.Nodesets[i].Nodes[j].UseA=false;
-                    mPCD.Nodesets[i].Nodes[j].UseW=false;
-                    mPCD.Nodesets[i].Nodes[j].UseDimmer=false;
+                Maximum = Integer.parseInt(mySubString(s, 9, s.indexOf(":") - 9 - 2));
+                mPCD.Nodesets = new PCD_Nodeset[Maximum];
+                NodesetNames = new String[Maximum];
+                for (i = 0; i < Maximum - 1; i++) {
+                    mPCD.Nodesets[i] = new PCD_Nodeset();
+                    mPCD.Nodesets[i].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                    mPCD.Nodesets[i].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                    NodesetNames[i] = mPCD.Nodesets[i].Name;
+                    mPCD.Nodesets[i].stretching = 128000;
+                    mPCD.Nodesets[i].contrast = 20;
+                    mPCD.Nodesets[i].fadetime = 75;
+                    mPCD.Nodesets[i].ChangeRGB = true;
+                    mPCD.Nodesets[i].ChangeA = false;
+                    mPCD.Nodesets[i].ChangeW = false;
+                    mPCD.Nodesets[i].ChangeDimmer = false;
                     s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
                 }
-                mPCD.Nodesets[i].Nodes[Maximum - 1] = new PCD_Node();
-                mPCD.Nodesets[i].Nodes[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
-                mPCD.Nodesets[i].Nodes[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
-                mPCD.Nodesets[i].Nodes[Maximum - 1].X=5000;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].Y=5000;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].R=255;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].G=0;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].B=0;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].A=0;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].W=0;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].Dimmer=0;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].UseRGB=true;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].UseA=false;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].UseW=false;
-                mPCD.Nodesets[i].Nodes[Maximum - 1].UseDimmer=false;
+                mPCD.Nodesets[Maximum - 1] = new PCD_Nodeset();
+                mPCD.Nodesets[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                mPCD.Nodesets[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                NodesetNames[Maximum - 1] = mPCD.Nodesets[Maximum - 1].Name;
+                mPCD.Nodesets[Maximum - 1].stretching = 128000;
+                mPCD.Nodesets[Maximum - 1].contrast = 20;
+                mPCD.Nodesets[Maximum - 1].fadetime = 75;
+                mPCD.Nodesets[Maximum - 1].ChangeRGB = true;
+                mPCD.Nodesets[Maximum - 1].ChangeA = false;
+                mPCD.Nodesets[Maximum - 1].ChangeW = false;
+                mPCD.Nodesets[Maximum - 1].ChangeDimmer = false;
             }
-        }
+            for (i = 0; i < mPCD.Nodesets.length; i++) {
+                s = SendReceiveTCPCommand("get_nodes " + mPCD.Nodesets[i].ID);
+                if (s.equals("-1")) return;
+                if (s.length() > 10) {
+                    Maximum = Integer.parseInt(mySubString(s, 6, s.indexOf(":") - 6 - 2));
+                    mPCD.Nodesets[i].Nodes = new PCD_Node[Maximum];
 
-        s = SendReceiveTCPCommand("get_controlpanel");
-        if (s.equals("-1")) return;
-        CountX = Integer.parseInt(mySubString(s, 7, s.indexOf(",") - 7));
-        CountY = Integer.parseInt(mySubString(s, s.indexOf(",") + 8, s.length() - s.indexOf(",") - 8));
-        if ((CountX>0) && (CountY>0)) {
-            s = SendReceiveTCPCommand("get_controlpanel 0 0");
-            //button: 1x1, name:bla, r:255, g:255, b:255, type:bla, id:{3A...}, button: 1x2, name:bla,....
-            mPCD.ControlpanelButtons = new PCD_ControlpanelButton[CountY][CountX];
-
-            for (y=0; y<CountY;y++) {
-                for (x=0; x<CountX; x++) {
-                    mPCD.ControlpanelButtons[y][x] = new PCD_ControlpanelButton();
-                    mPCD.ControlpanelButtons[y][x].ID = mySubString(s, s.indexOf("id:") + 3, 38);
-                    mPCD.ControlpanelButtons[y][x].Name = mySubString(s, s.indexOf("name:") + 5, s.indexOf(", r:") - s.indexOf("name:") - 5);
-                    mPCD.ControlpanelButtons[y][x].Type = mySubString(s, s.indexOf("type:") + 5, s.indexOf(", id:") - s.indexOf("type:") - 5);
-                    mPCD.ControlpanelButtons[y][x].R = Integer.parseInt(mySubString(s, s.indexOf("r:") + 2, s.indexOf(", g:") - s.indexOf("r:") - 2));
-                    mPCD.ControlpanelButtons[y][x].G = Integer.parseInt(mySubString(s, s.indexOf("g:") + 2, s.indexOf(", b:") - s.indexOf("g:") - 2));
-                    mPCD.ControlpanelButtons[y][x].B = Integer.parseInt(mySubString(s, s.indexOf("b:") + 2, s.indexOf(", type:") - s.indexOf("b:") - 2));
-                    mPCD.ControlpanelButtons[y][x].X = x;
-                    mPCD.ControlpanelButtons[y][x].Y = y;
-
-                    if ((y<(CountY-1)) || (x<(CountX-1))) {
-                        s = mySubString(s, s.indexOf("id:") + 3 + 38 + 2, s.length() - s.indexOf("id:") - 3 - 38 - 2);
+                    for (j = 0; j < Maximum - 1; j++) {
+                        mPCD.Nodesets[i].Nodes[j] = new PCD_Node();
+                        mPCD.Nodesets[i].Nodes[j].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                        mPCD.Nodesets[i].Nodes[j].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                        mPCD.Nodesets[i].Nodes[j].X = 5000;
+                        mPCD.Nodesets[i].Nodes[j].Y = 5000;
+                        mPCD.Nodesets[i].Nodes[j].R = 255;
+                        mPCD.Nodesets[i].Nodes[j].G = 0;
+                        mPCD.Nodesets[i].Nodes[j].B = 0;
+                        mPCD.Nodesets[i].Nodes[j].A = 0;
+                        mPCD.Nodesets[i].Nodes[j].W = 0;
+                        mPCD.Nodesets[i].Nodes[j].Dimmer = 0;
+                        mPCD.Nodesets[i].Nodes[j].UseRGB = true;
+                        mPCD.Nodesets[i].Nodes[j].UseA = false;
+                        mPCD.Nodesets[i].Nodes[j].UseW = false;
+                        mPCD.Nodesets[i].Nodes[j].UseDimmer = false;
+                        s = mySubString(s, s.indexOf("}") + 2, s.length() - s.indexOf("}") - 2);
                     }
-                    //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(75+(y/CountY)*20));
+                    mPCD.Nodesets[i].Nodes[Maximum - 1] = new PCD_Node();
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].ID = mySubString(s, s.indexOf(",") + 1, 38);
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].Name = mySubString(s, s.indexOf(":") + 1, s.indexOf(",") - s.indexOf(":") - 1);
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].X = 5000;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].Y = 5000;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].R = 255;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].G = 0;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].B = 0;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].A = 0;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].W = 0;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].Dimmer = 0;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].UseRGB = true;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].UseA = false;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].UseW = false;
+                    mPCD.Nodesets[i].Nodes[Maximum - 1].UseDimmer = false;
                 }
             }
-        }
 
-        QueryChannelvalues(1, 8);
+            s = SendReceiveTCPCommand("get_controlpanel");
+            if (s.equals("-1")) return;
+            CountX = Integer.parseInt(mySubString(s, 7, s.indexOf(",") - 7));
+            CountY = Integer.parseInt(mySubString(s, s.indexOf(",") + 8, s.length() - s.indexOf(",") - 8));
+            if ((CountX > 0) && (CountY > 0)) {
+                s = SendReceiveTCPCommand("get_controlpanel 0 0");
+                //button: 1x1, name:bla, r:255, g:255, b:255, type:bla, id:{3A...}, button: 1x2, name:bla,....
+                mPCD.ControlpanelButtons = new PCD_ControlpanelButton[CountY][CountX];
+
+                for (y = 0; y < CountY; y++) {
+                    for (x = 0; x < CountX; x++) {
+                        mPCD.ControlpanelButtons[y][x] = new PCD_ControlpanelButton();
+                        mPCD.ControlpanelButtons[y][x].ID = mySubString(s, s.indexOf("id:") + 3, 38);
+                        mPCD.ControlpanelButtons[y][x].Name = mySubString(s, s.indexOf("name:") + 5, s.indexOf(", r:") - s.indexOf("name:") - 5);
+                        mPCD.ControlpanelButtons[y][x].Type = mySubString(s, s.indexOf("type:") + 5, s.indexOf(", id:") - s.indexOf("type:") - 5);
+                        mPCD.ControlpanelButtons[y][x].R = Integer.parseInt(mySubString(s, s.indexOf("r:") + 2, s.indexOf(", g:") - s.indexOf("r:") - 2));
+                        mPCD.ControlpanelButtons[y][x].G = Integer.parseInt(mySubString(s, s.indexOf("g:") + 2, s.indexOf(", b:") - s.indexOf("g:") - 2));
+                        mPCD.ControlpanelButtons[y][x].B = Integer.parseInt(mySubString(s, s.indexOf("b:") + 2, s.indexOf(", type:") - s.indexOf("b:") - 2));
+                        mPCD.ControlpanelButtons[y][x].X = x;
+                        mPCD.ControlpanelButtons[y][x].Y = y;
+
+                        if ((y < (CountY - 1)) || (x < (CountX - 1))) {
+                            s = mySubString(s, s.indexOf("id:") + 3 + 38 + 2, s.length() - s.indexOf("id:") - 3 - 38 - 2);
+                        }
+                        //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(75+(y/CountY)*20));
+                    }
+                }
+            }
+
+            QueryChannelvalues(1, 8);
+        }catch(Exception e){
+            if (BuildConfig.DEBUG) {
+                System.out.println(e.toString());
+            }
+        }
     }
 
     public void QueryChannelvalues(int StartChannel, int ChannelCount) {
@@ -1871,15 +1875,21 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
     public static int get_channel(int Channel) {
         String s;
-        int Value;
+        int Value=0;
 
-        s = SendReceiveTCPCommand("get_ch " + Integer.toString(Channel));
+        try {
+            s = SendReceiveTCPCommand("get_ch " + Integer.toString(Channel));
 
-        if (!s.contains("CV")) {
-            Value = -1;
-        }else{
-            s = mySubString(s, 4, s.length() - 4); // "CV 42 42" -> "42 42"
-            Value = Integer.parseInt(mySubString(s, s.indexOf(" ") + 1, s.length() - s.indexOf(" ") + 1));
+            if (!s.contains("CV")) {
+                Value = -1;
+            } else {
+                s = mySubString(s, 4, s.length() - 4); // "CV 42 42" -> "42 42"
+                Value = Integer.parseInt(mySubString(s, s.indexOf(" ") + 1, s.length() - s.indexOf(" ") + 1));
+            }
+        }catch(Exception e){
+            if (BuildConfig.DEBUG) {
+                System.out.println(e.toString());
+            }
         }
 
         return Value;
@@ -1887,14 +1897,20 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
     public static int get_devchannel(String ID, String Channelname) {
         String s;
-        int Value;
+        int Value=0;
 
-        s = SendReceiveTCPCommand("get_devchannel " + ID + " " + Channelname);
+        try {
+            s = SendReceiveTCPCommand("get_devchannel " + ID + " " + Channelname);
 
-        if (!s.contains("DCV")) {
-            Value = -1;
-        }else{
-            Value = Integer.parseInt(mySubString(s, s.indexOf(" ") + 1, s.length() - s.indexOf(" ") + 1));
+            if (!s.contains("DCV")) {
+                Value = -1;
+            } else {
+                Value = Integer.parseInt(mySubString(s, s.indexOf(" ") + 1, s.length() - s.indexOf(" ") + 1));
+            }
+        }catch(Exception e){
+            if (BuildConfig.DEBUG) {
+                System.out.println(e.toString());
+            }
         }
 
         return Value;
@@ -1904,12 +1920,18 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         String s;
         int Value=-1;
 
-        s = SendReceiveTCPCommand("get_dimmer "+ID);
+        try {
+            s = SendReceiveTCPCommand("get_dimmer " + ID);
 
-        if (!s.contains("DDV")) {
-            Value = -1;
-        }else{
-            Value = Integer.parseInt(mySubString(s, s.indexOf(" ") + 1, s.length() - s.indexOf(" ") + 1));
+            if (!s.contains("DDV")) {
+                Value = -1;
+            } else {
+                Value = Integer.parseInt(mySubString(s, s.indexOf(" ") + 1, s.length() - s.indexOf(" ") + 1));
+            }
+        }catch(Exception e){
+            if (BuildConfig.DEBUG) {
+                System.out.println(e.toString());
+            }
         }
 
         return Value;
@@ -2073,63 +2095,63 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         scenelist_grouplist = new ArrayList<>();
 
         PCD_Scene simplescene = new PCD_Scene();
-        simplescene.ID = "0";
-        simplescene.Name = "Einfache Szenen";
+        simplescene.ID = "1";
+        simplescene.Name = getString(R.string.str_einfacheszenen);
         scenelist_grouplist.add(simplescene);
 
         PCD_Scene devicescenes = new PCD_Scene();
-        devicescenes.ID = "1";
-        devicescenes.Name = "Geräteszenen";
+        devicescenes.ID = "2";
+        devicescenes.Name = getString(R.string.str_geräteszenen);
         scenelist_grouplist.add(devicescenes);
 
         PCD_Scene audioscenes = new PCD_Scene();
-        audioscenes.ID = "2";
-        audioscenes.Name = "Audioszenen";
+        audioscenes.ID = "3";
+        audioscenes.Name = getString(R.string.str_audioszenen);
         scenelist_grouplist.add(audioscenes);
 
         PCD_Scene movingscenes = new PCD_Scene();
-        movingscenes.ID = "3";
-        movingscenes.Name = "Bewegungsszenen";
+        movingscenes.ID = "4";
+        movingscenes.Name = getString(R.string.str_bewegungsszenen);
         scenelist_grouplist.add(movingscenes);
 
         PCD_Scene commands = new PCD_Scene();
-        commands.ID = "4";
-        commands.Name = "Befehle";
+        commands.ID = "5";
+        commands.Name = getString(R.string.str_befehle);
         scenelist_grouplist.add(commands);
 
         PCD_Scene combinationscenes = new PCD_Scene();
-        combinationscenes.ID = "5";
-        combinationscenes.Name = "Kombinationsszenen";
+        combinationscenes.ID = "6";
+        combinationscenes.Name = getString(R.string.str_kombinationsszenen);
         scenelist_grouplist.add(combinationscenes);
 
         PCD_Scene presets = new PCD_Scene();
-        presets.ID = "6";
-        presets.Name = "Presets";
+        presets.ID = "7";
+        presets.Name = getString(R.string.str_presets);
         scenelist_grouplist.add(presets);
 
         PCD_Scene automaticscenes = new PCD_Scene();
-        automaticscenes.ID = "7";
-        automaticscenes.Name = "Automatikszenen";
+        automaticscenes.ID = "8";
+        automaticscenes.Name = getString(R.string.str_automatikszenen);
         scenelist_grouplist.add(automaticscenes);
 
         PCD_Scene effects = new PCD_Scene();
-        effects.ID = "8";
-        effects.Name = "Effekte";
+        effects.ID = "9";
+        effects.Name = getString(R.string.str_effekte);
         scenelist_grouplist.add(effects);
 
         PCD_Scene mediacenterscenes = new PCD_Scene();
-        mediacenterscenes.ID = "9";
-        mediacenterscenes.Name = "MediaCenterSzenen";
+        mediacenterscenes.ID = "10";
+        mediacenterscenes.Name = getString(R.string.str_mediacenterszenen);
         scenelist_grouplist.add(mediacenterscenes);
 
         PCD_Scene presetscenes = new PCD_Scene();
-        presetscenes.ID = "10";
-        presetscenes.Name = "Preset-Szenen";
+        presetscenes.ID = "11";
+        presetscenes.Name = getString(R.string.str_presetszenen);
         scenelist_grouplist.add(presetscenes);
 
         PCD_Scene pluginscenes = new PCD_Scene();
-        pluginscenes.ID = "11";
-        pluginscenes.Name = "Pluginszenen";
+        pluginscenes.ID = "12";
+        pluginscenes.Name = getString(R.string.str_pluginszenen);
         scenelist_grouplist.add(pluginscenes);
     }
 
@@ -2321,7 +2343,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("OK",
+                .setPositiveButton(R.string.str_ok,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // get user input and set it to result
@@ -2440,7 +2462,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                     fileos.flush();
                                     fileos.close();
 
-                                    Toast.makeText(getBaseContext(), "Preset gespeichert", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getBaseContext(), R.string.str_presetsaved, Toast.LENGTH_SHORT).show();
 
                                     // Presetbox aktualisieren
                                     FindPresets();
@@ -2449,7 +2471,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                 }
                             }
                         })
-                .setNegativeButton("Cancel",
+                .setNegativeButton(R.string.str_cancel,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -2587,17 +2609,17 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             InputRead.close();
             fileis.close();
 
-            Toast.makeText(getBaseContext(), "Preset geladen",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), R.string.str_presetloaded,Toast.LENGTH_SHORT).show();
         }catch(Exception e){
             System.out.println(e.toString());
-            Toast.makeText(getBaseContext(), "Fehler in Preset!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), R.string.str_errorinpreset,Toast.LENGTH_SHORT).show();
         }
     }
 
     public void DeletePreset() {
         File file = new File(getFilesDir() + "/" + CurrentPresetName);
         if (file.delete()) {
-            Toast.makeText(getBaseContext(), "Preset gelöscht", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), R.string.str_presetdeleted, Toast.LENGTH_SHORT).show();
         }
 
         // Presetbox aktualisieren
@@ -2617,10 +2639,10 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             outputWriter.close();
             fileos.close();
 
-            Toast.makeText(getBaseContext(), "Einstellungen gespeichert",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), R.string.str_settingssaved,Toast.LENGTH_SHORT).show();
         }catch(Exception e){
             //System.out.println(e.toString());
-            Toast.makeText(getBaseContext(), "Fehler beim Speichern!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), R.string.str_erroronsave,Toast.LENGTH_SHORT).show();
         }
     }
 
