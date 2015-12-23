@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PC_DIMMER</string>
     <string name="about_title">PC_DIMMER für Android</string>
-    <string name="about_versionstring">Version 1.1 vom 22.12.2015</string>
+    <string name="about_versionstring">Version 1.1 vom 23.12.2015</string>
     <string name="about_website">http://www.pcdimmer.de</string>
     <string name="about_name">(c) 2015 Dipl.-Ing. Christian Nöding</string>
     <string name="about_street">Rodeweg 4</string>

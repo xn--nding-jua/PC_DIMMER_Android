@@ -46,6 +46,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -77,22 +79,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8209459">
-              <caret line="1856" column="0" selection-start-line="1856" selection-start-column="0" selection-end-line="1856" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#20958#21273#0" expanded="true" />
                 <element signature="e#21272#21273#0" expanded="true" />
-                <element signature="e#48634#49925#0" expanded="true" />
-                <element signature="e#49924#49925#0" expanded="true" />
-                <element signature="e#88123#88142#0" expanded="true" />
-                <element signature="e#88347#88373#0" expanded="true" />
-                <element signature="e#129102#129123#0" expanded="true" />
-                <element signature="e#129161#129177#0" expanded="true" />
+                <element signature="e#49153#50444#0" expanded="true" />
+                <element signature="e#50443#50444#0" expanded="true" />
+                <element signature="e#69712#69713#0" expanded="true" />
+                <element signature="e#69757#69758#0" expanded="true" />
+                <element signature="e#88964#88983#0" expanded="true" />
+                <element signature="e#89188#89214#0" expanded="true" />
+                <element signature="e#99269#99270#0" expanded="true" />
+                <element signature="e#99315#99316#0" expanded="true" />
+                <element signature="e#99363#99364#0" expanded="true" />
+                <element signature="e#99408#99409#0" expanded="true" />
+                <element signature="e#100256#100294#0" expanded="true" />
+                <element signature="e#100452#100488#0" expanded="true" />
+                <element signature="e#100644#100679#0" expanded="true" />
+                <element signature="e#100837#100876#0" expanded="true" />
+                <element signature="e#101023#101054#0" expanded="true" />
+                <element signature="e#101224#101266#0" expanded="true" />
+                <element signature="e#101415#101446#0" expanded="true" />
+                <element signature="e#101609#101648#0" expanded="true" />
+                <element signature="e#101795#101826#0" expanded="true" />
+                <element signature="e#101996#102037#0" expanded="true" />
+                <element signature="e#102202#102238#0" expanded="true" />
+                <element signature="e#102398#102434#0" expanded="true" />
+                <element signature="e#111131#111146#0" expanded="true" />
+                <element signature="e#111172#119977#0" expanded="true" />
+                <element signature="e#119591#119615#0" expanded="true" />
+                <element signature="e#119976#119977#0" expanded="true" />
+                <element signature="e#120014#120033#0" expanded="true" />
+                <element signature="e#120059#120285#0" expanded="true" />
+                <element signature="e#120284#120285#0" expanded="true" />
+                <element signature="e#126770#126795#0" expanded="true" />
+                <element signature="e#126973#126999#0" expanded="true" />
+                <element signature="e#127224#127250#0" expanded="true" />
+                <element signature="e#128048#128074#0" expanded="true" />
+                <element signature="e#128225#128249#0" expanded="true" />
+                <element signature="e#129838#129859#0" expanded="true" />
+                <element signature="e#129897#129913#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.28716215">
+              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1299,7 +1341,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="C:\Cloud\Programmieren\AndroidStudio\PC_DIMMER" value="4348724141000" />
+        <entry key="C:\Cloud\Programmieren\AndroidStudio\PC_DIMMER" value="4349815044771" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1689,10 +1731,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/VerticalSeekBar.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/ZoomableImageView.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/CollectionPagerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/scenelist_group_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -1745,6 +1788,10 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="PC_DIMMER" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -2278,30 +2325,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3381555">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06148282">
-          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding>
-            <element signature="e#490#508#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_devicecontrol.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.51520914">
@@ -2368,14 +2391,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5104895">
           <caret line="921" column="0" selection-start-line="921" selection-start-column="0" selection-end-line="921" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18647167">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -2475,21 +2490,83 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.119929455">
+          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05743243">
+          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/phoenixstudios/pc_dimmer/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8209459">
-          <caret line="1856" column="0" selection-start-line="1856" selection-start-column="0" selection-end-line="1856" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#20958#21273#0" expanded="true" />
             <element signature="e#21272#21273#0" expanded="true" />
-            <element signature="e#48634#49925#0" expanded="true" />
-            <element signature="e#49924#49925#0" expanded="true" />
-            <element signature="e#88123#88142#0" expanded="true" />
-            <element signature="e#88347#88373#0" expanded="true" />
-            <element signature="e#129102#129123#0" expanded="true" />
-            <element signature="e#129161#129177#0" expanded="true" />
+            <element signature="e#49153#50444#0" expanded="true" />
+            <element signature="e#50443#50444#0" expanded="true" />
+            <element signature="e#69712#69713#0" expanded="true" />
+            <element signature="e#69757#69758#0" expanded="true" />
+            <element signature="e#88964#88983#0" expanded="true" />
+            <element signature="e#89188#89214#0" expanded="true" />
+            <element signature="e#99269#99270#0" expanded="true" />
+            <element signature="e#99315#99316#0" expanded="true" />
+            <element signature="e#99363#99364#0" expanded="true" />
+            <element signature="e#99408#99409#0" expanded="true" />
+            <element signature="e#100256#100294#0" expanded="true" />
+            <element signature="e#100452#100488#0" expanded="true" />
+            <element signature="e#100644#100679#0" expanded="true" />
+            <element signature="e#100837#100876#0" expanded="true" />
+            <element signature="e#101023#101054#0" expanded="true" />
+            <element signature="e#101224#101266#0" expanded="true" />
+            <element signature="e#101415#101446#0" expanded="true" />
+            <element signature="e#101609#101648#0" expanded="true" />
+            <element signature="e#101795#101826#0" expanded="true" />
+            <element signature="e#101996#102037#0" expanded="true" />
+            <element signature="e#102202#102238#0" expanded="true" />
+            <element signature="e#102398#102434#0" expanded="true" />
+            <element signature="e#111131#111146#0" expanded="true" />
+            <element signature="e#111172#119977#0" expanded="true" />
+            <element signature="e#119591#119615#0" expanded="true" />
+            <element signature="e#119976#119977#0" expanded="true" />
+            <element signature="e#120014#120033#0" expanded="true" />
+            <element signature="e#120059#120285#0" expanded="true" />
+            <element signature="e#120284#120285#0" expanded="true" />
+            <element signature="e#126770#126795#0" expanded="true" />
+            <element signature="e#126973#126999#0" expanded="true" />
+            <element signature="e#127224#127250#0" expanded="true" />
+            <element signature="e#128048#128074#0" expanded="true" />
+            <element signature="e#128225#128249#0" expanded="true" />
+            <element signature="e#129838#129859#0" expanded="true" />
+            <element signature="e#129897#129913#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28716215">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

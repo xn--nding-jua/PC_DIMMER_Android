@@ -985,6 +985,13 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                     ((CheckBox) findViewById(R.id.nodeset_usewhitecheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].ChangeW);
                                     ((CheckBox) findViewById(R.id.nodeset_usedimmercheckbox)).setChecked(mPCD.Nodesets[CurrentNodeset].ChangeDimmer);
 
+                                    // cleanup nodelistbox
+                                    NodesNames = new String[0];
+                                    Spinner nodelistbox = (Spinner) findViewById(R.id.nodelistbox);
+                                    ArrayAdapter<String> nodeAdapter = new ArrayAdapter<>(Main.this, R.layout.devicelist_child_item, NodesNames);
+                                    nodeAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
+                                    nodelistbox.setAdapter(nodeAdapter);
+
                                     // fill nodelistbox
                                     if (mPCD != null) {
                                         if (mPCD.Nodesets != null) {
@@ -995,8 +1002,8 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                                         NodesNames[i] = mPCD.Nodesets[CurrentNodeset].Nodes[i].Name;
                                                     }
 
-                                                    Spinner nodelistbox = (Spinner) findViewById(R.id.nodelistbox);
-                                                    ArrayAdapter<String> nodeAdapter = new ArrayAdapter<>(Main.this, R.layout.devicelist_child_item, NodesNames);
+                                                    nodelistbox = (Spinner) findViewById(R.id.nodelistbox);
+                                                    nodeAdapter = new ArrayAdapter<>(Main.this, R.layout.devicelist_child_item, NodesNames);
                                                     nodeAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
                                                     nodelistbox.setAdapter(nodeAdapter);
                                                     nodelistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
@@ -1515,6 +1522,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 break;
             case 3:
                 Answer = NetworkCommandReceivedString;
+                if (Answer==null) {
+                    Answer="";
+                }
                 break;
             default:
                 // Unbekannter Fehler!
@@ -1577,7 +1587,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                         outToServer.flush();
                         NetworkCommandStatus = 2;
 
-						NetworkCommandReceivedString = inFromServer.readLine(); // contains the original command
+						NetworkCommandReceivedString = inFromServer.readLine(); // contains the original command - ignore this message (or use it as a error-check-option)
                         NetworkCommandReceivedString = inFromServer.readLine(); // contains the answer of the command
                         NetworkCommandStatus = 3;
 						NetworkConnectionOK = true;
@@ -1815,38 +1825,42 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                 mPCD.Nodesets[i].Nodes[Maximum - 1].UseDimmer = false;
                             }
                         }
-                    }                }
-            }
-
-            s = SendReceiveTCPCommand("get_controlpanel");
-            if (s.equals("-1")) return;
-            CountX = Integer.parseInt(mySubString(s, 7, s.indexOf(",") - 7));
-            CountY = Integer.parseInt(mySubString(s, s.indexOf(",") + 8, s.length() - s.indexOf(",") - 8));
-            if ((CountX > 0) && (CountY > 0)) {
-                s = SendReceiveTCPCommand("get_controlpanel 0 0");
-                //button: 1x1, name:bla, r:255, g:255, b:255, type:bla, id:{3A...}, button: 1x2, name:bla,....
-                mPCD.ControlpanelButtons = new PCD_ControlpanelButton[CountY][CountX];
-
-                for (y = 0; y < CountY; y++) {
-                    for (x = 0; x < CountX; x++) {
-                        mPCD.ControlpanelButtons[y][x] = new PCD_ControlpanelButton();
-                        mPCD.ControlpanelButtons[y][x].ID = mySubString(s, s.indexOf("id:") + 3, 38);
-                        mPCD.ControlpanelButtons[y][x].Name = mySubString(s, s.indexOf("name:") + 5, s.indexOf(", r:") - s.indexOf("name:") - 5);
-                        mPCD.ControlpanelButtons[y][x].Type = mySubString(s, s.indexOf("type:") + 5, s.indexOf(", id:") - s.indexOf("type:") - 5);
-                        mPCD.ControlpanelButtons[y][x].R = Integer.parseInt(mySubString(s, s.indexOf("r:") + 2, s.indexOf(", g:") - s.indexOf("r:") - 2));
-                        mPCD.ControlpanelButtons[y][x].G = Integer.parseInt(mySubString(s, s.indexOf("g:") + 2, s.indexOf(", b:") - s.indexOf("g:") - 2));
-                        mPCD.ControlpanelButtons[y][x].B = Integer.parseInt(mySubString(s, s.indexOf("b:") + 2, s.indexOf(", type:") - s.indexOf("b:") - 2));
-                        mPCD.ControlpanelButtons[y][x].X = x;
-                        mPCD.ControlpanelButtons[y][x].Y = y;
-
-                        if ((y < (CountY - 1)) || (x < (CountX - 1))) {
-                            s = mySubString(s, s.indexOf("id:") + 3 + 38 + 2, s.length() - s.indexOf("id:") - 3 - 38 - 2);
-                        }
-                        //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(75+(y/CountY)*20));
                     }
                 }
             }
 
+            s = SendReceiveTCPCommand("get_controlpanel");
+            if (s.equals("-1")) return;
+            if (s.length()>14) {
+                CountX = Integer.parseInt(mySubString(s, 7, s.indexOf(",") - 7));
+                CountY = Integer.parseInt(mySubString(s, s.indexOf(",") + 8, s.length() - s.indexOf(",") - 8));
+                if ((CountX > 0) && (CountY > 0)) {
+                    s = SendReceiveTCPCommand("get_controlpanel 0 0");
+                    //button: 1x1, name:bla, r:255, g:255, b:255, type:bla, id:{3A...}, button: 1x2, name:bla,....
+                    mPCD.ControlpanelButtons = new PCD_ControlpanelButton[CountY][CountX];
+
+                    for (y = 0; y < CountY; y++) {
+                        for (x = 0; x < CountX; x++) {
+                            mPCD.ControlpanelButtons[y][x] = new PCD_ControlpanelButton();
+                            mPCD.ControlpanelButtons[y][x].ID = mySubString(s, s.indexOf("id:") + 3, 38);
+                            mPCD.ControlpanelButtons[y][x].Name = mySubString(s, s.indexOf("name:") + 5, s.indexOf(", r:") - s.indexOf("name:") - 5);
+                            mPCD.ControlpanelButtons[y][x].Type = mySubString(s, s.indexOf("type:") + 5, s.indexOf(", id:") - s.indexOf("type:") - 5);
+                            mPCD.ControlpanelButtons[y][x].R = Integer.parseInt(mySubString(s, s.indexOf("r:") + 2, s.indexOf(", g:") - s.indexOf("r:") - 2));
+                            mPCD.ControlpanelButtons[y][x].G = Integer.parseInt(mySubString(s, s.indexOf("g:") + 2, s.indexOf(", b:") - s.indexOf("g:") - 2));
+                            mPCD.ControlpanelButtons[y][x].B = Integer.parseInt(mySubString(s, s.indexOf("b:") + 2, s.indexOf(", type:") - s.indexOf("b:") - 2));
+                            mPCD.ControlpanelButtons[y][x].X = x;
+                            mPCD.ControlpanelButtons[y][x].Y = y;
+
+                            if ((y < (CountY - 1)) || (x < (CountX - 1))) {
+                                s = mySubString(s, s.indexOf("id:") + 3 + 38 + 2, s.length() - s.indexOf("id:") - 3 - 38 - 2);
+                            }
+                            //((ProgressBar) findViewById(R.id.connectProgress)).setProgress(Math.round(75+(y/CountY)*20));
+                        }
+                    }
+                }
+            }
+
+            // Kanalwerte abfragen
             QueryChannelvalues(1, 8);
 
             Toast.makeText(getBaseContext(), R.string.str_syncok, Toast.LENGTH_LONG).show();
@@ -2393,7 +2407,6 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                                     }
 
                                     if (mPCD.Scenes != null) {
-                                        outputWriter.writeInt(mPCD.Scenes.length);
                                         for (i = 0; i < mPCD.Scenes.length; i++) {
                                             if (mPCD.Scenes[i] != null) {
                                                 outputWriter.writeInt(mPCD.Scenes[i].length);
@@ -2480,7 +2493,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                                     // Presetbox aktualisieren
                                     FindPresets();
-                                } catch (Exception e) {
+                                } catch (IOException e) {
                                     System.out.println(e.toString());
                                 }
                             }
@@ -2516,6 +2529,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
             mPCD = null;
             mPCD = new PCD();
+            mPCD.Scenes = new PCD_Scene[12][]; // is always 12 because of 12 types of scenes
 
             mylength=InputRead.readInt();
             if (mylength > 0) {
@@ -2541,21 +2555,19 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 }
             }
 
-            if (mylength > 0) {
+            // mPCD.Scenes is always !=null
+            for (i = 0; i < mPCD.Scenes.length; i++) {
                 mylength = InputRead.readInt();
-                mPCD.Scenes = new PCD_Scene[mylength][];
-                for (i = 0; i < mPCD.Scenes.length; i++) {
-                    mylength=InputRead.readInt();
-                    if (mylength > 0) {
-                        mPCD.Scenes[i] = new PCD_Scene[mylength];
-                        for (j = 0; j < mPCD.Scenes[i].length; j++) {
-                            mPCD.Scenes[i][j] = new PCD_Scene();
-                            mPCD.Scenes[i][j].ID = (String) InputRead.readObject();
-                            mPCD.Scenes[i][j].Name = (String) InputRead.readObject();
-                        }
+                if (mylength > 0) {
+                    mPCD.Scenes[i] = new PCD_Scene[mylength];
+                    for (j = 0; j < mPCD.Scenes[i].length; j++) {
+                        mPCD.Scenes[i][j] = new PCD_Scene();
+                        mPCD.Scenes[i][j].ID = (String) InputRead.readObject();
+                        mPCD.Scenes[i][j].Name = (String) InputRead.readObject();
                     }
                 }
             }
+
             mylength=InputRead.readInt();
             if (mylength > 0) {
                 mPCD.Nodesets = new PCD_Nodeset[mylength];
@@ -2573,6 +2585,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     mPCD.Nodesets[i].ChangeA = InputRead.readBoolean();
                     mPCD.Nodesets[i].ChangeW = InputRead.readBoolean();
                     mPCD.Nodesets[i].ChangeDimmer = InputRead.readBoolean();
+
                     mylength=InputRead.readInt();
                     if (mylength > 0) {
                         mPCD.Nodesets[i].Nodes = new PCD_Node[mylength];
@@ -2623,9 +2636,10 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             fileis.close();
 
             Toast.makeText(getBaseContext(), R.string.str_presetloaded,Toast.LENGTH_SHORT).show();
-        }catch(Exception e){
+
+        }catch(IOException | ClassNotFoundException e) {
             System.out.println(e.toString());
-            Toast.makeText(getBaseContext(), R.string.str_errorinpreset,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), R.string.str_errorinpreset, Toast.LENGTH_SHORT).show();
         }
     }
 
