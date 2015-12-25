@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -166,6 +167,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // disable the screen-turn-off after some time
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         mCollectionPagerAdapter = new CollectionPagerAdapter(getSupportFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -190,6 +194,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     protected void onDestroy() {
         NetworkThreadAlive=false;
         super.onDestroy();
+
+        // allow the screen to turn off again
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
