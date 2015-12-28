@@ -3,6 +3,7 @@ package de.phoenixstudios.pc_dimmer;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,7 +34,6 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SaturationBar;
 import com.larswerkman.holocolorpicker.ValueBar;
@@ -58,9 +58,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
+
 public class Main extends FragmentActivity implements Setup.CallbackToMain, Scenes.CallbackToMain,
         Devicecontrol.CallbackToMain, Controlpanel.CallbackToMain, Channeloverview.CallbackToMain,
-        Stageview.CallbackToMain, nodecontrol.CallbackToMain {
+        Stageview.CallbackToMain, nodecontrol.CallbackToMain, stagesetup.CallbackToMain {
     public class PCD_Device {
         public String ID;
         public String Name;
@@ -127,6 +129,14 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
     public static int CurrentNodeset;
     public static int CurrentNode;
     public static String CurrentDeviceOrGroupID;
+
+    public static class CurrentSetupDevice {
+        public static String ID;
+        public static int Startaddress;
+        public static int color;
+        public static int ChanCount;
+    }
+    public static boolean RefreshAddressEdit;
 
     boolean firstcall_presetbox=true;
 
@@ -1483,6 +1493,105 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         }
     }
 
+    public void StageSetupCallbackToMain(int Cmd){
+        switch(Cmd) {
+            case R.layout.fragment_stagesetup:
+                // Fill Device- and Grouplists
+                if (mPCD!=null) {
+                    if (mPCD.Devices != null) {
+                        Spinner devicelistbox = (Spinner) findViewById(R.id.stagesetup_devicelistbox);
+                        ArrayAdapter<String> deviceAdapter = new ArrayAdapter<>(this, R.layout.devicelist_child_item, DeviceNames);
+                        deviceAdapter.setDropDownViewResource(R.layout.devicelist_child_item);
+                        devicelistbox.setAdapter(deviceAdapter);
+                        devicelistbox.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                                //Toast.makeText(parent.getContext(), "Gewähltes Gerät: " + mPCD.Devices[pos].Name, Toast.LENGTH_SHORT).show();
+                                CurrentSetupDevice.ID = mPCD.Devices[pos].ID;
+
+                                //get device-information from PC_DIMMER
+                                get_deviceinfo(CurrentSetupDevice.ID);
+
+                                //update the GUI
+                                ((EditText) findViewById(R.id.stagesetup_newaddressedit)).setText(Integer.toString(CurrentSetupDevice.Startaddress));
+                                ((Button) findViewById(R.id.stagesetup_newcolorbtn)).setBackgroundColor(CurrentSetupDevice.color); //TODO: SetBackgroundTint
+                                findViewById(R.id.stagesetup_dipswitchcanvas).invalidate();
+                                ((TextView) findViewById(R.id.stagesetup_channelcountlbl)).setText(Integer.toString(CurrentSetupDevice.ChanCount));
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    }
+                }
+
+                // Prepare sliders
+                final SeekBar stagesetup_enlightslider = (SeekBar) findViewById(R.id.stagesetup_enlightseekbar);
+                stagesetup_enlightslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        set_highlight(CurrentSetupDevice.ID, i, 0);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                stagesetup_enlightslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
+                break;
+            case R.id.stagesetup_newaddressbtn:
+                CurrentSetupDevice.Startaddress=Integer.parseInt(((EditText) findViewById(R.id.stagesetup_newaddressedit)).getText().toString());
+                set_devaddress(CurrentSetupDevice.ID, CurrentSetupDevice.Startaddress);
+                break;
+            case R.id.stagesetup_newcolorbtn:
+                AmbilWarnaDialog colordialog = new AmbilWarnaDialog(this, CurrentSetupDevice.color, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                    @Override
+                    public void onOk(AmbilWarnaDialog dialog, int color) {
+                        CurrentSetupDevice.color=color;
+                        ((Button) findViewById(R.id.stagesetup_newcolorbtn)).setBackgroundColor(CurrentSetupDevice.color);
+                        set_devcolor(CurrentSetupDevice.ID, CurrentSetupDevice.color);
+                    }
+
+                    @Override
+                    public void onCancel(AmbilWarnaDialog dialog) {
+                        // cancel was selected by the user
+                    }
+                });
+
+                colordialog.show();
+                break;
+        }
+    }
+
+
     public static void SendTCPCommand(String cmd){
         NetworkCommandStringQueue=cmd;
     }
@@ -1972,6 +2081,43 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         return Value;
     }
 
+    public void get_deviceinfo(String ID) {
+        String s;
+        int Value=0;
+        int r=0;
+        int g=0;
+        int b=0;
+
+        try {
+            s = SendReceiveTCPCommand("get_deviceinfo " + ID);
+
+            if (s.contains("deviceinfo")) {
+                //s = mySubString(s, 12, s.length() - 12); // "name:NAME, address:15, r:255, g:255, b:255, chancount:2, ch1:DIMMER, ch2:SHUTTER"
+                s = mySubString(s, s.indexOf(":") + 1, s.length() - s.indexOf(":") - 1); // NAME, address:15, r:255, g:255, b:255, chancount:2, ch1:DIMMER, ch2:SHUTTER"
+
+                s = mySubString(s, s.indexOf(":") + 1, s.length() - s.indexOf(":") - 1); // 15, r:255, g:255, b:255, chancount:2, ch1:DIMMER, ch2:SHUTTER"
+                CurrentSetupDevice.Startaddress=Integer.parseInt(mySubString(s, 0, s.indexOf(",")));
+
+                s = mySubString(s, s.indexOf(":") + 1, s.length() - s.indexOf(":") - 1); // 255, g:255, b:255, chancount:2, ch1:DIMMER, ch2:SHUTTER"
+                r=Integer.parseInt(mySubString(s, 0, s.indexOf(",")));
+
+                s = mySubString(s, s.indexOf(":") + 1, s.length() - s.indexOf(":") - 1); // 255, b:255, chancount:2, ch1:DIMMER, ch2:SHUTTER"
+                g=Integer.parseInt(mySubString(s, 0, s.indexOf(",")));
+
+                s = mySubString(s, s.indexOf(":") + 1, s.length() - s.indexOf(":") - 1); // 255, chancount:2, ch1:DIMMER, ch2:SHUTTER"
+                b=Integer.parseInt(mySubString(s, 0, s.indexOf(",")));
+
+                CurrentSetupDevice.color=Color.rgb(r, g, b);
+
+                s = mySubString(s, s.indexOf(":") + 1, s.length() - s.indexOf(":") - 1); // 2, ch1:DIMMER, ch2:SHUTTER"
+                CurrentSetupDevice.ChanCount=Integer.parseInt(mySubString(s, 0, s.indexOf(",")));
+            }
+        }catch(Exception e){
+            if (BuildConfig.DEBUG) {
+                System.out.println(e.toString());
+            }
+        }
+    }
 
     public static void set_channel(String ID, String Channel, int StartValue, int EndValue, int Fadetime, int Delay) {
         SendTCPCommand("set_ch " + ID + " " + Channel + " " + Integer.toString(StartValue) + " " + Integer.toString(EndValue) + " " + Integer.toString(Fadetime) + " " + Integer.toString(Delay));
@@ -2002,6 +2148,18 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
     public static void set_dimmer(String ID, int Value, int Fadetime, int Delay) {
         SendTCPCommand("set_dimmer "+ID+" "+Integer.toString(Value)+" "+Integer.toString(Fadetime)+" "+Integer.toString(Delay));
+    }
+
+    public static void set_highlight(String ID, int Value, int Fadetime) {
+        SendTCPCommand("set_highlight "+ID+" "+Integer.toString(Value)+" "+Integer.toString(Fadetime));
+    }
+
+    public static void set_devaddress(String ID, int Startaddress) {
+        SendTCPCommand("set_devaddress "+ID+" "+Integer.toString(Startaddress));
+    }
+
+    public static void set_devcolor(String ID, int color) {
+        SendTCPCommand("set_devcolor "+ID+" "+Integer.toString(Color.red(color))+" "+Integer.toString(Color.green(color))+" "+Integer.toString(Color.blue(color)));
     }
 
     public static void set_gobo1rot(String ID, int Value, int Fadetime, int Delay) {
@@ -2292,6 +2450,14 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     NetworkCommandString = NetworkCommandStringQueue;
                     NetworkCommandStatus = 1;
                     NetworkCommandStringQueue="";
+                }
+            }
+
+            if (RefreshAddressEdit) {
+                RefreshAddressEdit=false;
+                EditText stagesetup_newaddressedit = (EditText) findViewById(R.id.stagesetup_newaddressedit);
+                if (stagesetup_newaddressedit!=null) {
+                    stagesetup_newaddressedit.setText(Integer.toString(Main.CurrentSetupDevice.Startaddress));
                 }
             }
 
@@ -2719,5 +2885,9 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
         dlgAlert.setPositiveButton(R.string.str_ok2, null);
         dlgAlert.setCancelable(true);
         dlgAlert.create().show();
+    }
+
+    public static void SetAddressEdit() {
+        RefreshAddressEdit=true;
     }
 }

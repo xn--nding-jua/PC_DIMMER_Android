@@ -33,6 +33,9 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
                 fragment = Channeloverview.newInstance();
                 return fragment;
             case 7:
+                fragment = stagesetup.newInstance();
+                return fragment;
+            case 8:
                 fragment = About.newInstance();
                 return fragment;
             default:
@@ -43,7 +46,7 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 8;
+        return 9;
     }
 
     @Override
@@ -62,6 +65,8 @@ public class CollectionPagerAdapter extends FragmentStatePagerAdapter {
             case 6:
                 return "Kanalübersicht";
             case 7:
+                return "Bühnensetup";
+            case 8:
                 return "Info";
             default:
                 return "Einstellungen";

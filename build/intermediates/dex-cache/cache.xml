@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Cloud\Programmieren\AndroidStudio\PC_DIMMER\app\build\intermediates\exploded-aar\com.github.yukuku\ambilwarna\2.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7ed87c7f833e46dacace668e63cb8c4b67cb3172">
+        <dex dex="C:\Cloud\Programmieren\AndroidStudio\PC_DIMMER\app\build\intermediates\pre-dexed\release\com.github.yukuku-ambilwarna-2.0.1_0af70842e20b7af7ee1ea87c08f51418dcc8a216.jar" />
+    </item>
+
+</items>

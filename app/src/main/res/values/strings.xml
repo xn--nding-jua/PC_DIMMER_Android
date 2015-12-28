@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PC_DIMMER</string>
     <string name="about_title">PC_DIMMER für Android</string>
-    <string name="about_versionstring">Version 1.1 vom 23.12.2015</string>
+    <string name="about_versionstring">Version 1.2 vom 28.12.2015</string>
     <string name="about_website">http://www.pcdimmer.de</string>
     <string name="about_name">(c) 2015 Dipl.-Ing. Christian Nöding</string>
     <string name="about_street">Rodeweg 4</string>
@@ -112,4 +112,14 @@
     <string name="str_ok2">OK</string>
     <string name="str_syncok">Synchronisation abgeschlossen</string>
     <string name="str_synccancelled">Synchronisation abgebrochen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="stagesetup_startaddress">Startaddresse:</string>
+    <string name="stagesetup_one">1</string>
+    <string name="stagesetup_changestartaddress">Startadresse ändern</string>
+    <string name="stagesetup_changecolorfilter">Farbfilter ändern</string>
+    <string name="stagesetup_channelcount">Kanalanzahl:</string>
+    <string name="stagesetup_zero">0</string>
+    <string name="stagesetup_einleuchten">Einleuchten:</string>
 </resources>
