@@ -61,11 +61,11 @@ public class PanTiltCanvasView extends View {
 
         canvas.drawLine(0, 0, 0, canvas.getHeight(), mPaint); // links
         canvas.drawLine(canvas.getWidth(), 0, canvas.getWidth(), canvas.getHeight(), mPaint); // rechts
-        canvas.drawLine(0, 0, canvas.getHeight(), 0, mPaint); // oben
+        canvas.drawLine(0, 0, canvas.getWidth(), 0, mPaint); // oben
         canvas.drawLine(0, canvas.getHeight(), canvas.getWidth(), canvas.getHeight(), mPaint); // unten
 
 
-        canvas.drawLine(0, canvas.getHeight()/2, canvas.getWidth(), canvas.getHeight()/2, mPaint); // Mittlerer waagrechter Strich
+        canvas.drawLine(0, canvas.getHeight() / 2, canvas.getWidth(), canvas.getHeight() / 2, mPaint); // Mittlerer waagrechter Strich
         canvas.drawLine(canvas.getWidth() / 2, 0, canvas.getWidth() / 2, canvas.getHeight(), mPaint); // Mittlerer senkrechter Strich
         canvas.drawCircle(mX, mY, 35.0f, mPaint); // Punkt an aktuelle Position zeichnen
 
