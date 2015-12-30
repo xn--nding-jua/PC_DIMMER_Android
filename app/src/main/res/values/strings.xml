@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PC_DIMMER</string>
     <string name="about_title">PC_DIMMER für Android</string>
-    <string name="about_versionstring">Version 1.2 vom 28.12.2015</string>
+    <string name="about_versionstring">Version 1.3 vom 30.12.2015</string>
     <string name="about_website">http://www.pcdimmer.de</string>
     <string name="about_name">(c) 2015 Dipl.-Ing. Christian Nöding</string>
     <string name="about_street">Rodeweg 4</string>
@@ -122,4 +122,8 @@
     <string name="stagesetup_channelcount">Kanalanzahl:</string>
     <string name="stagesetup_zero">0</string>
     <string name="stagesetup_einleuchten">Einleuchten:</string>
+    <string name="devicecontrol_gobo1p">Gobo 1 +</string>
+    <string name="devicecontrol_gobo1m">Gobo 1 -</string>
+    <string name="devicecontrol_gobo2p">Gobo 2 +</string>
+    <string name="devicecontrol_gobo2m">Gobo 2 -</string>
 </resources>

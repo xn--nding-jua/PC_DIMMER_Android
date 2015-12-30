@@ -747,6 +747,36 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                         set_prisma(CurrentDeviceOrGroupID, true, -1);
                     }
                 });
+
+
+                Button gobo1p = (Button) findViewById(R.id.gobo1p);
+                prismaoffbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        set_gobo1plus(CurrentDeviceOrGroupID);
+                    }
+                });
+                Button gobo1m = (Button) findViewById(R.id.gobo1m);
+                prismaoffbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        set_gobo1minus(CurrentDeviceOrGroupID);
+                    }
+                });
+                Button gobo2p = (Button) findViewById(R.id.gobo2p);
+                prismaoffbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        set_gobo2plus(CurrentDeviceOrGroupID);
+                    }
+                });
+                Button gobo2m = (Button) findViewById(R.id.gobo2m);
+                prismaoffbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        set_gobo2minus(CurrentDeviceOrGroupID);
+                    }
+                });
         }
     }
 
@@ -1513,7 +1543,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
                                 //update the GUI
                                 ((EditText) findViewById(R.id.stagesetup_newaddressedit)).setText(Integer.toString(CurrentSetupDevice.Startaddress));
-                                ((Button) findViewById(R.id.stagesetup_newcolorbtn)).setBackgroundColor(CurrentSetupDevice.color); //TODO: SetBackgroundTint
+                                ((Button) findViewById(R.id.stagesetup_newcolorbtn)).setBackgroundColor(CurrentSetupDevice.color);
                                 findViewById(R.id.stagesetup_dipswitchcanvas).invalidate();
                                 ((TextView) findViewById(R.id.stagesetup_channelcountlbl)).setText(Integer.toString(CurrentSetupDevice.ChanCount));
                             }
@@ -1531,7 +1561,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                 stagesetup_enlightslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                        set_highlight(CurrentSetupDevice.ID, i, 0);
+                        set_highlight(CurrentSetupDevice.ID, i, 0); // values above 0 will produce flicker. Reason is unclear
                     }
 
                     @Override
@@ -1570,6 +1600,7 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
             case R.id.stagesetup_newaddressbtn:
                 CurrentSetupDevice.Startaddress=Integer.parseInt(((EditText) findViewById(R.id.stagesetup_newaddressedit)).getText().toString());
                 set_devaddress(CurrentSetupDevice.ID, CurrentSetupDevice.Startaddress);
+                findViewById(R.id.stagesetup_dipswitchcanvas).invalidate();
                 break;
             case R.id.stagesetup_newcolorbtn:
                 AmbilWarnaDialog colordialog = new AmbilWarnaDialog(this, CurrentSetupDevice.color, new AmbilWarnaDialog.OnAmbilWarnaListener() {
@@ -2168,6 +2199,19 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
     public static void set_gobo2rot(String ID, int Value, int Fadetime, int Delay) {
         SendTCPCommand("set_gobo2rot "+ID+" "+Integer.toString(Value)+" "+Integer.toString(Fadetime)+" "+Integer.toString(Delay));
+    }
+
+    public static void set_gobo1plus(String ID) {
+        SendTCPCommand("set_gobo1+ "+ID);
+    }
+    public static void set_gobo1minus(String ID) {
+        SendTCPCommand("set_gobo1- "+ID);
+    }
+    public static void set_gobo2plus(String ID) {
+        SendTCPCommand("set_gobo2+ "+ID);
+    }
+    public static void set_gobo2minus(String ID) {
+        SendTCPCommand("set_gobo2- "+ID);
     }
 
     public static void set_iris(String ID, int Value, int Fadetime, int Delay) {

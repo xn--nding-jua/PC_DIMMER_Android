@@ -40,7 +40,7 @@ public class ControlpanelButtonAdapter extends BaseAdapter {
             b = new Button(mContext);
             b.setLayoutParams(new GridView.LayoutParams(LayoutParams.MATCH_PARENT, 100));
             b.setPadding(8, 8, 8, 8);
-            b.setTextSize(8f);
+            b.setTextSize(10f); // 8f
         } else {
             b = (Button) convertView;
         }

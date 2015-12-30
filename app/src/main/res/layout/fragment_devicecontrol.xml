@@ -351,6 +351,40 @@
                                 android:layout_below="@+id/prismaonbtn"
                                 android:layout_toRightOf="@+id/prismarotslider"
                                 android:layout_alignParentRight="true" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/devicecontrol_gobo1p"
+                                android:id="@+id/gobo1p"
+                                android:layout_below="@+id/prismaoffbtn"
+                                android:layout_alignLeft="@+id/prismaoffbtn"
+                                android:layout_marginTop="25dp" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/devicecontrol_gobo1m"
+                                android:id="@+id/gobo1m"
+                                android:layout_below="@+id/prismaoffbtn"
+                                android:layout_toRightOf="@+id/gobo1p"
+                                android:layout_marginTop="25dp" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/devicecontrol_gobo2p"
+                                android:id="@+id/gobo2p"
+                                android:layout_below="@+id/gobo1p"
+                                android:layout_alignLeft="@+id/gobo1p" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/devicecontrol_gobo2m"
+                                android:id="@+id/gobo2m"
+                                android:layout_alignTop="@+id/gobo2p"
+                                android:layout_toRightOf="@+id/gobo2p" />
                         </RelativeLayout>
                     </ScrollView>
                 </FrameLayout>
