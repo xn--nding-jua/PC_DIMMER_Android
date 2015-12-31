@@ -733,6 +733,44 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
                     }
                 });
 
+                final de.phoenixstudios.pc_dimmer.VerticalSeekBar fogslider = (de.phoenixstudios.pc_dimmer.VerticalSeekBar) findViewById(R.id.fogslider);
+                fogslider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        set_fog(i, GlobalFadetime, 0);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                fogslider.setOnTouchListener(new SeekBar.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Disallow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                // Allow ScrollView to intercept touch events.
+                                v.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        // Handle Seekbar touch events.
+                        v.onTouchEvent(event);
+                        return true;
+                    }
+                });
                 Button prismaonbtn = (Button) findViewById(R.id.prismaonbtn);
                 prismaonbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -2179,6 +2217,10 @@ public class Main extends FragmentActivity implements Setup.CallbackToMain, Scen
 
     public static void set_dimmer(String ID, int Value, int Fadetime, int Delay) {
         SendTCPCommand("set_dimmer "+ID+" "+Integer.toString(Value)+" "+Integer.toString(Fadetime)+" "+Integer.toString(Delay));
+    }
+
+    public static void set_fog(int Value, int Fadetime, int Delay) {
+        SendTCPCommand("set_fog "+Integer.toString(Value)+" "+Integer.toString(Fadetime)+" "+Integer.toString(Delay));
     }
 
     public static void set_highlight(String ID, int Value, int Fadetime) {

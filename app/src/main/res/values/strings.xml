@@ -126,4 +126,5 @@
     <string name="devicecontrol_gobo1m">Gobo 1 -</string>
     <string name="devicecontrol_gobo2p">Gobo 2 +</string>
     <string name="devicecontrol_gobo2m">Gobo 2 -</string>
+    <string name="devicecontrol_fog">Nebel</string>
 </resources>

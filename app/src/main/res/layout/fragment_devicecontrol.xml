@@ -282,8 +282,8 @@
                             android:layout_alignParentBottom="true"
                             android:weightSum="1">
                         </LinearLayout>
-
                     </RelativeLayout>
+
 
                     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
@@ -385,6 +385,27 @@
                                 android:id="@+id/gobo2m"
                                 android:layout_alignTop="@+id/gobo2p"
                                 android:layout_toRightOf="@+id/gobo2p" />
+
+                            <TextView
+                                android:layout_width="75dp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/devicecontrol_fog"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:id="@+id/foglbl"
+                                android:textAlignment="center"
+                                android:layout_below="@+id/prismaoffbtn"
+                                android:layout_toRightOf="@+id/gobo1m" />
+
+
+                            <de.phoenixstudios.pc_dimmer.VerticalSeekBar
+                                android:id="@+id/fogslider"
+                                android:layout_width="75dp"
+                                android:layout_height="200dp"
+                                android:progress="128"
+                                android:max="255"
+                                android:layout_alignTop="@+id/gobo1m"
+                                android:layout_toRightOf="@+id/gobo1m"
+                                android:layout_alignBottom="@+id/prismarotslider" />
                         </RelativeLayout>
                     </ScrollView>
                 </FrameLayout>
